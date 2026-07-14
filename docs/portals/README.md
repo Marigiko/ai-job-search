@@ -36,5 +36,5 @@ y deja registro de por qué un portal se adoptó o rechazó. Nombre de archivo: 
 | Arbeitnow | adoptado | visa/relocación + remoto | [arbeitnow.md](arbeitnow.md) |
 | RemoteOK | adoptado | remoto USD | [remoteok.md](remoteok.md) |
 | We Work Remotely | adoptado | remoto USD | [weworkremotely.md](weworkremotely.md) |
-| GetOnBoard | viable (diferido) | LatAm + remoto | [getonbrd.md](getonbrd.md) |
+| GetOnBoard | adoptado | LatAm + remoto | [getonbrd.md](getonbrd.md) |
 | VanHack | rechazado (auth) | visa/relocación | [vanhack.md](vanhack.md) |
