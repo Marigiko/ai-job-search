@@ -298,6 +298,17 @@ List the files written:
 
 Tell the user: "Both files are ready for your review. Open them to check the final output before compiling."
 
+### Record the draft in the tracker
+Append a row to `job_search_tracker.csv` (create it with the standard header from `outcome.md` Step 1 if missing) so the funnel is complete and the dashboard can see drafted-but-not-yet-submitted applications:
+- `status` = `drafted`
+- `date` = today, `company`, `role`, `role_type` (matched to CLAUDE.md → Target Roles), `sector`
+- `fit_rating` = the overall score from Step 1
+- `salary_expected` = candidate min/ideal band; `salary_offered` = the posting's stated pay if any
+- `relocation_visa` = `sponsor` / `relocation` / `remote` / `none` / `unknown` from the Step 1 evaluation
+- `source` = posting URL; `application_url` = apply link or `mailto:` if known
+- `cv_file` / `cover_letter_file` = the paths just written
+If a row for this company+role already exists (e.g. from `/scrape` Step 6), update it in place instead of duplicating.
+
 ### Next Steps
-- **Submitted?** `/outcome <company>` logs it in the tracker and starts the per-application record that `/setup` later uses to calibrate the fit framework.
+- **Submitted?** `/outcome <company>` moves the row from `drafted` to `applied` and starts the per-application record that `/setup` later uses to calibrate the fit framework.
 - **Interview scheduled?** `/interview` builds a stage-specific prep pack from this posting and the documents you just created.

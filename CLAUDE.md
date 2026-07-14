@@ -19,10 +19,15 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 - **Name:** [YOUR_NAME]
 - **Location:** [YOUR_CITY], [YOUR_COUNTRY] ([YOUR_COMMUTE_CONSTRAINTS])
 - **Languages:** [YOUR_LANGUAGES]
-- **CV language:** [YOUR_CV_LANGUAGE] <!-- English unless your market expects otherwise; /setup asks -->
-
-- **Status:** [YOUR_EMPLOYMENT_STATUS]
+- **CV language:** English
+- **Status:** Employed part-time (scraper developer, ~1500 USD/mo) — actively seeking a **second role** to add on top.
 - **LinkedIn headline:** "[YOUR_LINKEDIN_HEADLINE]"
+
+### Mobility (relocation & visa)
+<!-- Drives the Relocation & Visa Fit scoring dimension (04-job-evaluation.md #8) -->
+- **Open to relocation:** Yes — actively wants to relocate abroad (migration is a primary goal).
+- **Visa sponsorship:** Needed (now or in the future). Postings offering relocation packages or visa sponsorship are **preferred**, not disqualified.
+- **Remote fallback:** If no relocation/visa, a fully remote role paying the target band (below) is acceptable to self-fund relocation later.
 
 ### Education
 <!-- List your degrees, most recent first -->
@@ -68,14 +73,32 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 - [PASSION_1]
 - [PASSION_2]
 
+### Target Roles
+<!-- Canonical list of role types to target. Consumed by search-queries.md (search) AND -->
+<!-- 04-job-evaluation.md (scoring) AND 05-cv-templates.md (CV framing). Keep in sync. -->
+<!-- Priority 1 = strongest/most-desired; higher numbers = adjacent/wider net. -->
+- **Backend Developer** (Priority 1) — core: scraping, APIs, data pipelines, [YOUR_BACKEND_STACK]
+- **AI Developer** (Priority 1) — LLM apps, agents, RAG, Claude Code / agentic tooling, [YOUR_AI_STACK]
+- **Frontend Developer** (Priority 2) — [YOUR_FRONTEND_STACK]
+- **VibeCoder / AI-assisted builder** (Priority 2) — rapid product building with AI coding tools (Claude Code, etc.)
+<!-- Add/adjust roles here; then reflect them in search-queries.md priority tiers. -->
+
 ### Target Sectors
 <!-- Industries and companies you're targeting -->
 - [SECTOR_1]: [EXAMPLE_COMPANIES]
 - [SECTOR_2]: [EXAMPLE_COMPANIES]
 
+### Compensation
+<!-- Candidate salary preference. Drives the Compensation Fit scoring dimension (04-job-evaluation.md #7). -->
+<!-- Separate from salary_lookup.py, which is a company market-index benchmark, not a preference. -->
+- **Currency:** USD (monthly, net take-home unless a posting states otherwise)
+- **Minimum acceptable:** 2000 USD/mo (below this → hard fail on Compensation Fit)
+- **Ideal / target:** 3000 USD/mo (at or above → full marks)
+- **Context:** this is a *second* income on top of a ~1500 USD/mo part-time role, so it can be part-time or contract.
+
 ### Deal-breakers
-<!-- Hard constraints on job search -->
-- [DEALBREAKER_1]
+<!-- Hard constraints on job search. NOTE: relocation is NOT a deal-breaker — see Mobility above. -->
+- Pay below the minimum acceptable band (see Compensation)
 - [DEALBREAKER_2]
 
 ## Repo Structure

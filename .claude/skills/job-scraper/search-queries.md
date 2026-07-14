@@ -1,6 +1,8 @@
 # Search Queries for Job Scraper
 
-<!-- SETUP: Customize these queries based on your skills, target roles, and location -->
+<!-- SETUP: Customize these queries based on your skills, target roles, and location. -->
+<!-- Target roles are the canonical list in CLAUDE.md → Target Roles. Keep the tiers below in sync. -->
+<!-- This candidate seeks a SECOND role, remote-in-USD or with relocation/visa (goal: migrate). -->
 
 ## Installed portal CLIs (primary for `/scrape`)
 
@@ -10,70 +12,86 @@ The `site:` query templates in this file are the **WebSearch fallback** — for 
 
 ## Search Sites
 
-Primary (your market's job boards - scaffold one with `/add-portal`):
-- **[YOUR_JOB_BOARD]** - your market's largest general job board
-- **linkedin.com/jobs** - LinkedIn job listings (filter: [YOUR_COUNTRY] / [YOUR_CITY]); also covered by `linkedin-search` CLI
-- **[YOUR_INDUSTRY_JOB_BOARD]** - a niche/industry board for your field (optional)
-- **[YOUR_ADDITIONAL_JOB_BOARD]** - another major board for your market (optional)
+Primary:
+- **linkedin.com/jobs** — LinkedIn job listings (via `linkedin-search`; location passed explicitly, incl. "Remote")
+- **freehire.dev** — tech aggregator (via `freehire-search`; multi-market, remote facets)
+- **Visa/relocation & remote boards** — added via `/add-portal` (Arbeitnow, RemoteOK, We Work Remotely, Relocate.me, Landing.jobs, VanHack)
+- **[YOUR_LOCAL_JOB_BOARD]** — LatAm safety net (GetOnBoard / Computrabajo / Bumeran), scaffold with `/add-portal`
 
 Secondary (company career pages via Google):
 - Direct Google searches with `site:` filters for known target companies
 
 ## Query Categories
 
-Queries are grouped by priority. Each query should be combined with your location terms (e.g. your city, region, or metro area) where the site supports it.
+Queries are grouped by priority. Because the goal is remote-USD or relocation/visa, prefer the modifiers
+`remote`, `"visa sponsorship"`, and `relocation` on international queries. Local queries are a fallback.
 
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
-
-These match your strongest and most desired career direction.
-
-```
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_COUNTRY]
-```
-
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
-
-These match your domain expertise.
+### Priority 1: Backend Developer & AI Developer (strongest, most desired)
 
 ```
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
+site:linkedin.com/jobs "backend developer" remote
+site:linkedin.com/jobs "backend engineer" "visa sponsorship"
+site:linkedin.com/jobs ("web scraping" OR "data pipeline" OR "python") remote
+site:linkedin.com/jobs ("AI engineer" OR "AI developer" OR "LLM" OR "agents") remote
+site:linkedin.com/jobs ("AI engineer" OR "RAG" OR "LLM") "relocation"
 ```
 
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
-
-Adjacent roles you could pivot into.
+### Priority 2: Frontend Developer & VibeCoder / AI-assisted builder
 
 ```
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
+site:linkedin.com/jobs "frontend developer" remote
+site:linkedin.com/jobs "full stack developer" ("visa sponsorship" OR relocation)
+site:linkedin.com/jobs ("AI-assisted" OR "prompt engineer" OR "vibe coding" OR "product engineer") remote
 ```
 
-### Priority 4: Broader Technical / Consulting
+### Priority 3: Relocation / visa-sponsor focused (any of the above roles)
 
-Wider net for general technical roles.
+Target boards and phrasing that surface migration-friendly employers.
 
 ```
-site:[YOUR_JOB_BOARD] [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
+site:arbeitnow.com (backend OR "ai engineer" OR frontend) "visa sponsorship"
+site:remoteok.com (backend OR python OR "ai engineer")
+site:relocate.me developer
+"software engineer" "visa sponsorship" (Netherlands OR Germany OR "New Zealand" OR Canada OR USA)
+"backend developer" "relocation package"
 ```
 
-## Location Filter
+### Priority 4: Broader net (contract / part-time second income)
 
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
+```
+site:linkedin.com/jobs (python OR "backend developer") ("part-time" OR contract) remote
+site:freehire.dev backend remote
+site:linkedin.com/jobs "developer" remote (contract OR freelance)
+```
+
+## Mobility Filter
+
+Relocation is a **goal, not a constraint** (CLAUDE.md → Mobility). When evaluating results:
+- **Fully remote (USD pay in the target band):** in scope — top priority for the "second income now" case.
+- **On-site abroad with relocation/visa support:** in scope and preferred (aligns with migration goal).
+- **On-site abroad without support, candidate willing to relocate:** in scope, FLAG the relocation cost.
+- **Local on-site [YOUR_CITY] within commute:** in scope as a fallback.
+- **On-site somewhere unreachable with no remote/relocation path:** out of scope.
+
+## Salary Filter
+
+Only pursue postings whose stated pay meets the minimum band (CLAUDE.md → Compensation, currently 2000 USD/mo).
+Where a portal supports a salary filter, set it to the minimum. If pay is not stated, keep the posting but flag
+"salary undisclosed — confirm early".
 
 ## Date Filter
 
 Only include jobs posted within the last 14 days, or with an application deadline that has not yet passed. If a posting date cannot be determined, include it but flag as "date unknown".
+
+## Discovery: LinkedIn recruiter posts (Phase 3)
+
+Many roles are advertised in recruiter *posts* (often with an apply-by-email), not the jobs section. Discover public
+post permalinks via WebSearch, then hand the URL to `linkedin-posts-search extract <url>`:
+
+```
+site:linkedin.com/posts ("send your CV" OR "apply at" OR "hiring") ("backend" OR "ai engineer" OR frontend) remote
+site:linkedin.com/posts ("visa sponsorship" OR relocation) developer
+```
 
 ## Adapting Queries
 

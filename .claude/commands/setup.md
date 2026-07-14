@@ -293,10 +293,11 @@ If not, ask behavioral questions:
 - Synthesize answers into a behavioral profile
 
 ### Section 7: Career Goals & Preferences
-- Target roles and industries
+- **Target roles (canonical list):** collect 2-5 role types the user wants, in priority order (e.g. Backend Developer, AI Developer, Frontend Developer). These become the `### Target Roles` section in CLAUDE.md and `01-candidate-profile.md`, and drive both search (`search-queries.md`) and scoring (dimensions in `04`).
 - What excites you in work
 - Deal-breakers and must-haves
-- Salary expectations/baseline (optional)
+- **Compensation band (required — do not skip):** "What is your minimum acceptable pay, and your ideal target? Which currency and period (e.g. USD/month)?" Persist BOTH numbers to the `### Compensation` section of CLAUDE.md and `01`. (This is a candidate preference; it is distinct from `salary_lookup.py`, which is a company market benchmark.)
+- **Mobility (relocation & visa):** "Are you open to relocating? Do you need visa sponsorship now or in the future? Is fully remote acceptable?" Persist to the `### Mobility` section of CLAUDE.md and `01`. Remember: relocation is scored as a positive (dimension 8 in `04`), never a deal-breaker.
 - What environments to avoid
 - Commute/location constraints
 
@@ -330,10 +331,10 @@ This proactive suggestion step helps users discover career paths they might not 
 Once data collection is complete, generate or finish populating the following files. **For Path A**, the seven skill files are already populated by Step A7; check each before writing and skip if its content is no longer placeholder text.
 
 ### 1. Update `CLAUDE.md`
-Replace all `[PLACEHOLDER]` tokens with the user's actual information. Keep the structure, workflow, and verification checklist intact.
+Replace all `[PLACEHOLDER]` tokens with the user's actual information. Keep the structure, workflow, and verification checklist intact. **In particular, fill these preference sections from Section 7 (do not leave them as defaults):** `### Target Roles`, `### Compensation` (min + ideal + currency), and `### Mobility` (relocation / visa / remote-fallback).
 
 ### 2. Populate `01-candidate-profile.md` *(Path B and C; skip if Path A populated it)*
-Write the full candidate profile with structured sections: Identity, Education, Professional Experience, Independent Projects, Technical Skills, Publications, Awards, References.
+Write the full candidate profile with structured sections: Identity, **Job Search Preferences** (Target Roles, Compensation, Mobility — mirror CLAUDE.md), Education, Professional Experience, Independent Projects, Technical Skills, Publications, Awards, References.
 
 ### 3. Populate `02-behavioral-profile.md` *(Path B and C; skip if Path A populated it)*
 Write the behavioral profile based on assessment results or synthesized answers.
@@ -356,16 +357,12 @@ Create STAR examples from their actual experience (at least 3-4 examples). Path 
 Replace placeholder personal data with their actual name, contact info, and add their education and most recent experience entries.
 
 ### 8. Generate `.claude/skills/job-scraper/search-queries.md`
-Replace all placeholder tokens in the search queries file with the user's actual information from Section 9 (or the equivalent follow-up questions in Path A's Step A7):
-- Replace `[YOUR_PRIMARY_ROLE_TYPE]`, `[YOUR_PRIMARY_JOB_TITLE]`, etc. with actual role titles
-- Replace `[YOUR_KEY_SKILL]`, `[YOUR_DOMAIN_KEYWORD_1]`, etc. with actual skills and domain terms
-- Replace `[YOUR_CITY]`, `[YOUR_COUNTRY]`, `[YOUR_REGION]` with actual location
-- Fill in the location filter tiers (ideal, acceptable, borderline, too far) based on commute constraints
-- Organize queries into priority categories matching the user's career direction:
-  - Priority 1: Their strongest/most desired role direction
-  - Priority 2: Their domain expertise
-  - Priority 3: Adjacent roles they could pivot into
-  - Priority 4: Broader roles (wider net)
+Populate the search queries file from Section 9 (or Path A's Step A7). The file's priority tiers are keyed to the
+canonical `### Target Roles` list — keep them in sync:
+- Put each target role's query lines under the matching Priority tier (P1 = strongest roles, P2 = secondary, P3 = relocation/visa-focused, P4 = broader/contract net)
+- Replace remaining tokens: `[YOUR_BACKEND_STACK]`/`[YOUR_AI_STACK]`/etc. with actual skills, `[YOUR_LOCAL_JOB_BOARD]` with the LatAm/local board, `[YOUR_CITY]` with actual location
+- Set the **Mobility Filter** to reflect the user's relocation/visa answers (remote-USD and relocation/visa roles in scope; relocation is a goal, not a constraint)
+- Set the **Salary Filter** minimum to the user's minimum band from Section 7
 
 ---
 

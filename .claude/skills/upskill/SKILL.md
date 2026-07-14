@@ -35,7 +35,8 @@ In targeted mode, derive a slug from the job title and company for the report fi
 
 ### Aggregate mode
 1. Read `job_search_tracker.csv`. Extract all rows. The columns are:
-   `date, company, sector, role, role_type, channel, status, contact_person, fit_rating, notes, cv_file, cover_letter_file, source`
+   `date, company, sector, role, role_type, channel, status, contact_person, fit_rating, salary_expected, salary_offered, relocation_visa, application_url, notes, cv_file, cover_letter_file, source`
+   (Older trackers may have the shorter 13-column header without `salary_expected`/`salary_offered`/`relocation_visa`/`application_url` — read by column name and tolerate their absence.)
 2. For each row, note the `role`, `company`, and `fit_rating`. The `fit_rating` column is a 0–100 score where 100 = perfect fit. You will use it to weight gaps — a lower fit rating means the role exposed more gaps.
 3. Read `.claude/skills/job-application-assistant/01-candidate-profile.md` to get the candidate's current skills and experience.
 4. Check `upskill/` for the most recent aggregate report file (`report-YYYY-MM-DD.md`) — if one exists, note its date and load it for the diff in Step 8.

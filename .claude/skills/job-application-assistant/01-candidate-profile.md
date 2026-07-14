@@ -15,8 +15,24 @@ framework_version: 1.0.0
 - **LinkedIn:** [YOUR_LINKEDIN_URL]
 - **GitHub:** [YOUR_GITHUB_URL]
 - **Languages:** [YOUR_LANGUAGES with proficiency levels]
-- **Status:** [YOUR_EMPLOYMENT_STATUS]
+- **Status:** Employed part-time (scraper developer, ~1500 USD/mo) — seeking a second role.
 - **Constraints:** [YOUR_COMMUTE_OR_LOCATION_CONSTRAINTS]
+
+## Job Search Preferences
+<!-- Preference VALUES (reset by /reset profile). Framework STRUCTURE lives in 04-job-evaluation.md. -->
+<!-- Keep in sync with CLAUDE.md (Target Roles / Compensation / Mobility). -->
+
+### Target Roles
+1. **Backend Developer** (P1) — scraping, APIs, data pipelines, [YOUR_BACKEND_STACK]
+2. **AI Developer** (P1) — LLM apps, agents, RAG, Claude Code / agentic tooling, [YOUR_AI_STACK]
+3. **Frontend Developer** (P2) — [YOUR_FRONTEND_STACK]
+4. **VibeCoder / AI-assisted builder** (P2) — rapid building with AI coding tools
+
+### Compensation (USD/month)
+- Minimum acceptable: **2000** · Ideal/target: **3000** · Currency: USD · Second income (part-time/contract OK)
+
+### Mobility
+- Open to relocation: **Yes** (migration is a goal) · Visa sponsorship: **needed (now/future), preferred not required** · Remote fallback: acceptable at target band
 
 ## Education
 

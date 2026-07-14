@@ -32,7 +32,7 @@ A role that fails this gate is not scored and not drafted. Everything below appl
 
 ## Scoring Dimensions
 
-Evaluate each job posting against these five dimensions:
+Evaluate each job posting against these dimensions:
 
 ### 1. Technical Skills Match (0-100)
 How well do the required/preferred skills align with the candidate's capabilities?
@@ -75,9 +75,12 @@ Does the role and company culture match the behavioral profile?
 **Red flags to research:** Department disorganization, work dominated by maintenance over development, poor chemistry with leadership, culture mismatches. Check reviews, media coverage, LinkedIn connections, and network contacts for insider perspective.
 
 ### 4. Location & Logistics (Pass/Fail + Notes)
-- Within commute range: PASS
-- Remote with occasional office: PASS
-- Requires relocation: FAIL (deal-breaker)
+Relocation is **not** a deal-breaker for this candidate (see CLAUDE.md → Mobility). It is scored positively in dimension 8.
+- Fully remote: PASS
+- On-site within commute range: PASS
+- On-site abroad **with relocation/visa support offered**: PASS (and boosts dimension 8)
+- On-site abroad **that the candidate is willing to relocate for** (even without formal support): PASS with a FLAG (needs a relocation/visa plan — see dim 8)
+- On-site somewhere the candidate cannot be and no relocation/remote option: FAIL
 - Frequent international travel: FLAG (discuss with user)
 
 ### 5. Career Alignment & Motivation (0-100)
@@ -127,6 +130,36 @@ Interpret results relative to the baseline defined in the data file's metadata. 
 
 If the salary tool is not configured, skip this section.
 
+> Note: dimension 6 is a *company market benchmark* (context only, unweighted). The candidate's own salary
+> preference is scored separately in dimension 7 below.
+
+### 7. Compensation Fit (0-100, with a hard floor)
+Score the posting's stated pay against the candidate's band in CLAUDE.md → **Compensation** (min / ideal).
+
+| Situation | Score |
+|-----------|-------|
+| At or above **ideal** | 100 |
+| Between **min** and **ideal** | interpolate 60→100 |
+| At **min** exactly | 60 |
+| Below **min** | **FAIL** (hard floor — veto, like Location FAIL) |
+| No salary stated | 50 + FLAG ("salary undisclosed — confirm before/early in process") |
+
+Normalize to the candidate's currency and period (see CLAUDE.md; monthly USD by default). For annual figures, divide by 12; for hourly/contract, estimate a monthly equivalent and note the assumption. A posting below the minimum band is vetoed regardless of other scores.
+
+### 8. Relocation & Visa Fit (0-100)
+The candidate's goal is to migrate (CLAUDE.md → Mobility). Reward postings that enable it.
+
+| Situation | Score |
+|-----------|-------|
+| Offers visa sponsorship **and** a relocation package | 100 |
+| Offers visa sponsorship **or** relocation support | 85 |
+| Fully remote (self-relocation possible later, no barrier) | 70 |
+| On-site abroad, no support, but candidate willing to relocate | 45 (FLAG: relocation cost on the candidate) |
+| Local on-site, no migration path | 30 |
+| Explicitly no sponsorship for a role that would require it | 15 |
+
+Look for signals: "visa sponsorship", "relocation package/assistance", "we sponsor", country-specific schemes (EU Blue Card, NZ Accredited Employer, H-1B, etc.). Absence of a statement ≠ refusal — FLAG to verify.
+
 ## Output Format
 
 Present the evaluation as:
@@ -139,10 +172,14 @@ Present the evaluation as:
 | Technical Skills | XX/100 | [brief note] |
 | Experience Match | XX/100 | [brief note] |
 | Behavioral Fit | XX/100 | [brief note] |
-| Location | PASS/FAIL | [brief note] |
 | Career Alignment | XX/100 | [brief note] |
+| Compensation Fit | XX/100 or FAIL | [pay vs band] |
+| Relocation & Visa Fit | XX/100 | [migration path] |
+| Location | PASS/FAIL | [brief note] |
 
 **Overall Score: XX/100** (weighted average of scored dimensions)
+
+> A **FAIL** on Location or on Compensation Fit (pay below minimum) vetoes the job regardless of the weighted score.
 
 ### Verdict: [Strong Fit / Good Fit / Moderate Fit / Weak Fit / Poor Fit]
 
@@ -164,12 +201,14 @@ Present the evaluation as:
 ```
 
 ## Weighting
-- Technical Skills: 30%
-- Experience Match: 25%
-- Behavioral Fit: 15%
-- Career Alignment: 30%
+- Technical Skills: 25%
+- Experience Match: 20%
+- Behavioral Fit: 10%
+- Career Alignment: 20%
+- Compensation Fit: 15%
+- Relocation & Visa Fit: 10%
 
-(Location is pass/fail, not weighted)
+(Weights sum to 100% across the six scored dimensions. Location is pass/fail, not weighted. Dimension 6 — company Salary Benchmark — is context only, not weighted. A FAIL on Location or Compensation Fit vetoes the job regardless of the weighted total.)
 
 ## Thresholds
 - **Strong Fit** (75+): Definitely apply, tailor everything

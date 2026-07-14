@@ -219,7 +219,9 @@ If the run found many new jobs (roughly 8+), also suggest `/rank` - it batch-sco
 
 ### Step 6: Update Tracker (Optional)
 
-If the user decides to apply to any job, add a row to `job_search_tracker.csv`.
+If the user decides to apply to any job, add a row to `job_search_tracker.csv` using the standard header
+defined in `outcome.md` Step 1 (17 columns). Populate `relocation_visa` (`sponsor`/`relocation`/`remote`/`none`/`unknown`)
+and `salary_offered` from the posting when visible; set `status` to `interested` (or let `/apply` set `drafted`).
 
 ---
 
@@ -227,7 +229,7 @@ If the user decides to apply to any job, add a row to `job_search_tracker.csv`.
 
 1. **Never fabricate job postings.** Only present jobs from actual CLI search/detail output or WebSearch/WebFetch results.
 2. **Respect deduplication.** Always check seen_jobs.json AND job_search_tracker.csv before presenting.
-3. **Focus on configured geographic area.** Skip jobs that require relocation or are clearly outside commute range.
+3. **Geography follows the mobility preference (CLAUDE.md → Mobility).** Do **not** skip jobs that require relocation — this candidate wants to relocate/migrate, so remote roles, on-site-abroad roles, and roles offering relocation/visa sponsorship are all in scope. Skip only jobs that are genuinely unreachable (on-site somewhere the candidate can't be, with no remote option and no relocation/visa support).
 4. **Only open positions.** Skip postings with expired deadlines or those marked as closed.
 5. **Be efficient with detail fetches.** Don't run `detail` or WebFetch on every search hit — pre-filter by title/snippet, then fetch only promising matches.
 6. **Parallel searches.** Run portal CLI searches in parallel; use WebSearch only for gaps the CLIs don't cover.

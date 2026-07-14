@@ -81,6 +81,10 @@ reports/
 # Upskill reports (personal output)
 upskill/*.md
 
+# Dashboard output (generated from personal tracking data — do not share)
+dashboard.html
+dashboard/*.html
+
 # Agent skills: track the source, ignore only deps and logs.
 # (A blanket `.agents/` ignore silently drops the job-search CLI skills from the repo.)
 .agents/**/node_modules/
