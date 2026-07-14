@@ -158,7 +158,7 @@ The candidate's goal is to migrate (CLAUDE.md → Mobility). Reward postings tha
 | Local on-site, no migration path | 30 |
 | Explicitly no sponsorship for a role that would require it | 15 |
 
-Look for signals: "visa sponsorship", "relocation package/assistance", "we sponsor", country-specific schemes (EU Blue Card, NZ Accredited Employer, H-1B, etc.). Absence of a statement ≠ refusal — FLAG to verify.
+Look for signals: "visa sponsorship", "relocation package/assistance", "we sponsor", country-specific schemes (EU Blue Card, NZ Accredited Employer, H-1B, etc.). Absence of a statement ≠ refusal — FLAG to verify. See `docs/visa-sponsorship.md` for the per-country scheme keywords and how the portals' `visa` hint feeds this dimension.
 
 ## Output Format
 
