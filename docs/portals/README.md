@@ -1,0 +1,40 @@
+# Fichas de portal
+
+Una ficha por portal investigado para la Fase 2. Alimenta el gate de ToS/auth de `/add-portal`
+y deja registro de por qué un portal se adoptó o rechazó. Nombre de archivo: `<portal-slug>.md`.
+
+## Plantilla
+
+```markdown
+# <Nombre del portal> (<dominio>)
+
+- **Estado:** investigando | adoptado | rechazado
+- **Fecha:** YYYY-MM-DD
+- **Mercado / región:** <país o global>
+- **Alineación con la meta:** visa/relocación | remoto USD | LatAm red-de-seguridad | regional
+
+## Acceso
+- **robots.txt:** ¿permite las rutas de búsqueda/detalle? (cita las líneas relevantes)
+- **Auth:** ¿requiere login para ver listados? (sí → RECHAZAR por regla del repo)
+- **ToS:** ¿prohíbe acceso automatizado? (sí → banner "uso personal" en la SKILL.md)
+- **Anti-bot:** Cloudflare / captcha / rate limit observado
+
+## Técnico
+- **Endpoint de búsqueda:** URL + parámetros (preferir API/JSON/RSS sobre scraping HTML)
+- **Endpoint de detalle:** patrón de URL
+- **Campos por resultado:** id, title, company, location, date, url (+ extras: salary, remote, visa)
+- **Notas de parsing:** selectores/shape del JSON
+
+## Decisión
+<adoptar / rechazar y por qué. Si se adopta: nombre del skill generado y estado del test en vivo.>
+```
+
+## Índice
+
+| Portal | Estado | Alineación | Ficha |
+|--------|--------|-----------|-------|
+| Arbeitnow | adoptado | visa/relocación + remoto | [arbeitnow.md](arbeitnow.md) |
+| RemoteOK | adoptado | remoto USD | [remoteok.md](remoteok.md) |
+| We Work Remotely | adoptado | remoto USD | [weworkremotely.md](weworkremotely.md) |
+| GetOnBoard | viable (diferido) | LatAm + remoto | [getonbrd.md](getonbrd.md) |
+| VanHack | rechazado (auth) | visa/relocación | [vanhack.md](vanhack.md) |

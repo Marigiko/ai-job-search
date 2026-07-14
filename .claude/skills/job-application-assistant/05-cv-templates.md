@@ -111,16 +111,22 @@ This is the most important section to customize. It appears right after `\makecv
 
 Write 5-7 lines that function as an "elevator pitch": a concise, compelling introduction explaining why you're qualified for *this specific role*. Focus on what the employer gains from hiring you.
 
-When the role sits outside your home domain, **lead with the domain-transfer argument** - the one or two sentences connecting your background to their problem (e.g. wave physics to radar signal processing) belong in the profile statement's opening, not buried in the cover letter. It is the strongest card a domain-changer holds; play it first.
+**Create one profile statement template per canonical target role (CLAUDE.md → Target Roles).** For this
+candidate that means one each for Backend Developer, AI Developer, Frontend Developer, and VibeCoder/AI-assisted
+builder. Pick the variant matching the posting; blend two if the role straddles them.
 
-**Create 2-3 profile statement templates for your main role types:**
+<!-- SETUP: These are populated based on your background. One block per target role. -->
+**For Backend Developer roles:**
+> [YOUR_BACKEND_PROFILE_STATEMENT] — lead with scraping/data-pipeline/API depth and reliability at scale.
 
-<!-- SETUP: These are populated based on your background -->
-**For [YOUR_PRIMARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_1]
+**For AI Developer roles:**
+> [YOUR_AI_PROFILE_STATEMENT] — lead with LLM apps, agents, RAG, and hands-on agentic tooling (mention **Claude Code** by name).
 
-**For [YOUR_SECONDARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_2]
+**For Frontend Developer roles:**
+> [YOUR_FRONTEND_PROFILE_STATEMENT] — lead with UI stack and shipped product work.
+
+**For VibeCoder / AI-assisted builder roles:**
+> [YOUR_VIBECODER_PROFILE_STATEMENT] — lead with rapid, AI-assisted end-to-end product delivery (mention **Claude Code**).
 
 Statements labeled *[Used for: <company>_<role>]* were extracted from archived application drafts by `/setup` Path A. They are **phrasing references, never fact sources**: when drafting from one, every factual claim still comes from `01-candidate-profile.md` - a past tailored draft does not vouch for its own accuracy.
 

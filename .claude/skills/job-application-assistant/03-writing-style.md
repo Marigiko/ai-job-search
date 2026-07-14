@@ -87,6 +87,20 @@ The cover letter is **not a CV repetition**. It should be forward-looking:
 
 ## Language for Different Role Types
 
+<!-- Aligned with CLAUDE.md → Target Roles. -->
+
+### Backend Developer roles
+- Lead with languages/frameworks, web scraping, APIs, data pipelines, throughput and reliability
+- Quantify: data volumes, request rates, uptime, jobs processed
+
+### AI Developer roles
+- Lead with LLM applications, agents, RAG, evaluation; name concrete tools and models
+- Reference agentic coding with **Claude Code** by name where genuine
+
+### Frontend Developer / VibeCoder roles
+- Frontend: lead with UI stack, shipped features, performance/accessibility
+- VibeCoder: lead with speed of AI-assisted end-to-end delivery (prototype → product), again crediting **Claude Code**
+
 ### Technical/ML roles
 - Lead with programming languages, ML frameworks, specific model architectures
 - Mention datasets, data volumes, pipeline complexity
