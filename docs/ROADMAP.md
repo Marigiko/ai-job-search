@@ -42,10 +42,11 @@ Cada portal se ficha en `docs/portals/`. **9 portales adoptados y probados en vi
 - ✅ Queries de descubrimiento en `search-queries.md` (`site:linkedin.com/posts …`)
 - ✅ Modo autenticado documentado y **OFF por defecto** (`search` explica el flujo WebSearch→extract, no crawlea el feed)
 
-## Fase 4 — Postular por email (redactar + enviar con confirmación) ⬜
-- ⬜ Detección de postulación por email en `/apply`
-- ⬜ Preview + confirmación explícita → envío vía Gmail MCP con PDF adjunto
-- ⬜ Registro en tracker (`channel=email`)
+## Fase 4 — Postular por email (redactar + enviar con confirmación) ✅
+- ✅ Detección de `applyEmail` en `/apply` Step 0 (integra `linkedin-posts-search extract/parse`)
+- ✅ Nueva sección "Email application path": redacta email + adjunta PDFs (base64) → preview → confirmación explícita → **crea borrador Gmail** (`mcp__claude_ai_Gmail__create_draft`)
+- ✅ Registro en tracker (`channel=email`, `application_url=mailto:`)
+- ⚠️ Nota: el MCP de Gmail **solo crea borradores** (no tiene tool de envío) → el envío final es el clic del usuario (lo más seguro; cumple "enviar con confirmación"). Fallback si el adjunto falla: adjuntar PDFs manualmente.
 
 ## Fase 5 — Tracking completo (prerequisito del dashboard) ✅
 - ✅ `/apply` escribe fila `drafted`
