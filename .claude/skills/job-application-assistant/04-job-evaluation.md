@@ -44,9 +44,9 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** [YOUR_PRIMARY_SKILLS]
-**Moderate match areas:** [YOUR_SECONDARY_SKILLS]
-**Weak match areas:** [SKILLS_YOU_LACK]
+**Strong match areas:** Node.js/NestJS, TypeScript, Python (FastAPI/Django), REST/GraphQL APIs, AWS, Docker/Kubernetes, CI/CD, event-driven (Kafka/RabbitMQ), LLM automation (Ollama/LangChain/n8n), web scraping (Selenium/Puppeteer), React/Next.js
+**Moderate match areas:** React Native/Expo, PHP, Java, Spring, Terraform, GraphQL at scale, data engineering
+**Weak match areas:** Go (basics only), Rust, mobile-native (iOS/Android Kotlin/Swift), ML model training (uses LLMs, doesn't train them), formal data-science/statistics roles
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for?
@@ -58,9 +58,9 @@ Does work history align with what they're looking for?
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** [YOUR_DIRECT_EXPERIENCE_DOMAINS]
-**Moderate:** [YOUR_ADJACENT_EXPERIENCE]
-**Entry-level:** [ROLES_WITH_LIMITED_EXPERIENCE]
+**Strong:** backend/full-stack engineering (Node/TS/Python), cloud-native systems on AWS, API design, AI/LLM automation, web scraping, tech mentoring
+**Moderate:** frontend-lead roles, DevOps/platform engineering, legal-tech / data-acquisition, startup 0→1 product engineering
+**Entry-level:** dedicated data-science/ML-research, SRE-only, senior engineering-management (has mentoring, not formal management)
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -94,19 +94,19 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+- Land a strong **second income** (min 2000 / ideal 3000 USD/mo) on top of the current part-time Magnar role
+- **Migrate abroad** via a role with relocation/visa sponsorship (EU, NZ, USA/Canada) — or remote-USD to self-fund it
+- Grow toward senior backend/AI engineering with architectural ownership at an AI-forward company
 
-**Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: [YOUR_ENERGIZING_TASKS]
-- Tasks that drain: [YOUR_DRAINING_TASKS]
-- Non-task factors: leadership style, department culture, company values, degree of autonomy
+**Motivation filter:** Evaluate not just whether Mario *can* do the tasks, but whether they will *energize* him:
+- Tasks that energize: building scalable/cloud-native systems, AI/LLM automation & agents, 0→1 product work, clean-architecture refactors, mentoring
+- Tasks that drain: pure maintenance/legacy-only work, bureaucratic low-autonomy process, ticket-taking with no design input
+- Non-task factors: autonomy, AI-forward culture, remote flexibility, relocation/visa support
 
-**Life situation alignment:** Consider personal constraints:
-- **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
-- **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
-- **Professional development**: [YOUR_GROWTH_PRIORITIES]
+**Life situation alignment:**
+- **Security**: has a part-time role (~1500 USD/mo); this search is for *additional* income, so part-time/contract is fine and the minimum band is a hard floor
+- **Flexibility**: must coexist with the current Magnar part-time role → remote-friendly hours strongly preferred
+- **Professional development**: wants architectural growth and a path to relocation/migration
 
 ### 6. Salary Benchmark (Optional)
 

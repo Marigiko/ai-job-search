@@ -16,7 +16,7 @@ Primary:
 - **linkedin.com/jobs** — LinkedIn job listings (via `linkedin-search`; location passed explicitly, incl. "Remote")
 - **freehire.dev** — tech aggregator (via `freehire-search`; multi-market, remote facets)
 - **Visa/relocation & remote boards** — added via `/add-portal` (Arbeitnow, RemoteOK, We Work Remotely, Relocate.me, Landing.jobs, VanHack)
-- **[YOUR_LOCAL_JOB_BOARD]** — LatAm safety net (GetOnBoard / Computrabajo / Bumeran), scaffold with `/add-portal`
+- **Computrabajo (ar) + GetOnBoard** — LatAm/Argentina safety net (`computrabajo-search --country ar`, `getonbrd-search`)
 
 Secondary (company career pages via Google):
 - Direct Google searches with `site:` filters for known target companies
@@ -70,7 +70,7 @@ Relocation is a **goal, not a constraint** (CLAUDE.md → Mobility). When evalua
 - **Fully remote (USD pay in the target band):** in scope — top priority for the "second income now" case.
 - **On-site abroad with relocation/visa support:** in scope and preferred (aligns with migration goal).
 - **On-site abroad without support, candidate willing to relocate:** in scope, FLAG the relocation cost.
-- **Local on-site [YOUR_CITY] within commute:** in scope as a fallback.
+- **Local on-site Resistencia (Chaco) / Argentina within commute, or Buenos Aires:** in scope as a fallback.
 - **On-site somewhere unreachable with no remote/relocation path:** out of scope.
 
 ## Salary Filter
