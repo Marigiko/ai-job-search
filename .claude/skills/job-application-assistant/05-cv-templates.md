@@ -115,18 +115,18 @@ Write 5-7 lines that function as an "elevator pitch": a concise, compelling intr
 candidate that means one each for Backend Developer, AI Developer, Frontend Developer, and VibeCoder/AI-assisted
 builder. Pick the variant matching the posting; blend two if the role straddles them.
 
-<!-- SETUP: These are populated based on your background. One block per target role. -->
+<!-- SETUP: Populated from CV/LinkedIn, 2026-07-14. Tailor per posting in /apply. -->
 **For Backend Developer roles:**
-> [YOUR_BACKEND_PROFILE_STATEMENT] — lead with scraping/data-pipeline/API depth and reliability at scale.
+> Full-Stack/Backend Developer with 5+ years building scalable, cloud-native APIs and event-driven systems in Node.js (NestJS), TypeScript and Python (FastAPI/Django). Proven impact: cut deployment time 50% via CI/CD and improved API performance 45%. Strong in AWS, Docker/Kubernetes, Kafka/RabbitMQ, and clean architecture (SOLID/DDD).
 
 **For AI Developer roles:**
-> [YOUR_AI_PROFILE_STATEMENT] — lead with LLM apps, agents, RAG, and hands-on agentic tooling (mention **Claude Code** by name).
+> Software engineer specialized in LLM-driven automation: multi-agent workflows on self-hosted LLMs (Ollama), LLM orchestration (LangChain), and n8n process automation, on a solid Node/Python + AWS backend foundation. Builds data-acquisition and RAG pipelines (currently scraping legal corpora for a legal-AI platform) and ships with agentic tooling including **Claude Code**.
 
 **For Frontend Developer roles:**
-> [YOUR_FRONTEND_PROFILE_STATEMENT] — lead with UI stack and shipped product work.
+> Frontend-capable full-stack developer with React.js, Next.js, React Native/Expo and Tailwind/shadcn/ui. Shipped high-performance UIs, a reusable component library (+30% delivery speed), and accessibility work (+30 Lighthouse points), backed by real API/backend experience.
 
 **For VibeCoder / AI-assisted builder roles:**
-> [YOUR_VIBECODER_PROFILE_STATEMENT] — lead with rapid, AI-assisted end-to-end product delivery (mention **Claude Code**).
+> Product-minded engineer who ships validated MVPs in under 72 hours by combining full-stack breadth with AI-assisted development (**Claude Code**, LLM agents, n8n). Turns fuzzy requirements into working software fast, then hardens it with clean architecture and automated testing.
 
 Statements labeled *[Used for: <company>_<role>]* were extracted from archived application drafts by `/setup` Path A. They are **phrasing references, never fact sources**: when drafting from one, every factual claim still comes from `01-candidate-profile.md` - a past tailored draft does not vouch for its own accuracy.
 

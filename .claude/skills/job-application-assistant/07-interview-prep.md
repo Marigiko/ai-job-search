@@ -14,30 +14,44 @@ Keep answers to 1-2 minutes. Be specific. End with what you learned or would do 
 
 ## Ready-Made STAR Examples
 
-<!-- These are populated by /setup from your actual experience. Below are templates showing the format. -->
+<!-- Populated by /setup (Path A) from the CV/LinkedIn, 2026-07-14. Sharpen numbers with real detail before interviews. -->
 
-### 1. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT - what was happening, what was the problem]
-**T:** [YOUR RESPONSIBILITY - what you specifically needed to do]
-**A:** [WHAT YOU DID - specific actions, tools, methods]
-**R:** [OUTCOME - measurable results, adoption, impact]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+### 1. CI/CD overhaul at SalesMatch.Ai (DevOps / ownership)
+**S:** Backend services deployed slowly with frequent manual steps, slowing the team.
+**T:** Own the deployment pipeline and cut turnaround while reducing manual error.
+**A:** Rebuilt CI/CD with GitHub Actions, containerized services (Docker/Kubernetes) on AWS, and standardized peer review (PRs).
+**R:** Reduced deployment time by ~50%, eliminated manual intervention, and cut PR errors ~40% after the review standard.
+**Use for:** "Tell me about improving a process", "a time you increased team velocity", "DevOps/CI-CD experience"
 
-### 2. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT]
-**T:** [YOUR RESPONSIBILITY]
-**A:** [WHAT YOU DID]
-**R:** [OUTCOME]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+### 2. Legacy refactor with Clean Architecture at FlamaTech (architecture / quality)
+**S:** Critical legacy modules carried heavy technical debt and caused cross-team integration issues.
+**T:** Stabilize the system and make it maintainable without halting delivery.
+**A:** Refactored toward Clean Architecture (SOLID, DDD), designed/documented comprehensive REST APIs, and added Jest test suites.
+**R:** Cut technical debt ~50%, reduced cross-team integration issues ~40%, and raised system stability ~30%.
+**Use for:** "a time you dealt with technical debt", "how you design for maintainability", "handling legacy code"
 
-### 3. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT]
-**T:** [YOUR RESPONSIBILITY]
-**A:** [WHAT YOU DID]
-**R:** [OUTCOME]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+### 3. Real-Time IoT Monitoring Platform (systems design / event-driven)
+**S:** Needed to process real-time device data at scale from many sources.
+**T:** Design an event-driven pipeline that stays reliable under load.
+**A:** Built a Kafka + Zookeeper + Node.js system ingesting device data via MQTT; provisioned AWS with Terraform and deployed microservices on Kubernetes/Helm.
+**R:** A working real-time platform demonstrating event-driven architecture, IaC, and container orchestration end to end.
+**Use for:** "design a scalable system", "event-driven/streaming experience", "a project you're proud of"
 
-<!-- Add more STAR examples as needed. Aim for 4-6 covering different competencies. -->
+### 4. Kosame — AI multi-agent automation (AI/LLM delivery)
+**S:** Turning product conversations into structured user stories was slow and manual.
+**T:** Automate requirement analysis with LLMs.
+**A:** Built a voice-to-user-story generator using LLMs integrated with Trello and n8n, plus multi-agent workflows on self-hosted LLMs (Ollama).
+**R:** Automated a repetitive product task end to end; demonstrates practical LLM orchestration and agentic tooling.
+**Use for:** "AI/LLM experience", "an automation you built", "how you use AI tools in your work"
+
+### 5. Teaching 150+ students at Kodigo (mentoring / communication)
+**S:** Bootcamp students needed to reach job-ready full-stack level (Java/React).
+**T:** Teach and mentor cohorts to complete complex final projects.
+**A:** Delivered full-stack instruction and personalized technical mentoring; adjusted support to keep students engaged.
+**R:** 92% satisfaction, guided 80% to complete complex final projects, and improved retention ~30%.
+**Use for:** "leadership/mentoring", "explain something complex simply", "working with non-experts"
+
+<!-- Add more STAR examples as needed. -->>
 
 ## Common Tough Questions
 

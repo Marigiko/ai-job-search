@@ -1,10 +1,10 @@
-# Job Application Assistant for [YOUR_NAME]
+# Job Application Assistant for Mario Aquino
 
-<!-- SETUP: This file is populated by running /setup -->
-<!-- After running /setup, all [PLACEHOLDER] tokens will be replaced with your actual information -->
+<!-- Profile populated by /setup (Path A) from documents/cv + documents/linkedin on 2026-07-14. -->
+<!-- Re-run /setup to refresh, or /setup --section search to reconfigure job search only. -->
 
 ## Role
-This repo is a job application workspace. Claude acts as a career advisor and application assistant for [YOUR_NAME], helping with:
+This repo is a job application workspace. Claude acts as a career advisor and application assistant for Mario Aquino, helping with:
 1. **Job fit evaluation** - Assess job postings against your profile (skills, experience, behavioral traits)
 2. **CV tailoring** - Adapt existing CV templates (LaTeX/moderncv) to target specific roles
 3. **Cover letter writing** - Draft targeted cover letters using existing templates (LaTeX)
@@ -16,12 +16,13 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 <!-- This section is auto-populated by /setup. You can also fill it in manually. -->
 
 ### Identity
-- **Name:** [YOUR_NAME]
-- **Location:** [YOUR_CITY], [YOUR_COUNTRY] ([YOUR_COMMUTE_CONSTRAINTS])
-- **Languages:** [YOUR_LANGUAGES]
+- **Name:** Mario Aquino (legal: Sergio Mario Oscar Aquino)
+- **Location:** Resistencia, Chaco, Argentina (open to remote / relocation)
+- **Contact:** marioaquinojob@gmail.com · +54 9 362 5455786 · linkedin.com/in/keyzdev · github.com/Marigiko
+- **Languages:** Spanish (native), English (B2+ professional working), Portuguese (B2)
 - **CV language:** English
-- **Status:** Employed part-time (scraper developer, ~1500 USD/mo) — actively seeking a **second role** to add on top.
-- **LinkedIn headline:** "[YOUR_LINKEDIN_HEADLINE]"
+- **Status:** Employed part-time (Scraper Developer, ~1500 USD/mo) — actively seeking a **second role** to add on top.
+- **LinkedIn headline:** "Senior Full-Stack / Backend Developer | Node.js · TypeScript · Python | AWS & Cloud Infrastructure | AI Automation & LLMs"
 
 ### Mobility (relocation & visa)
 <!-- Drives the Relocation & Visa Fit scoring dimension (04-job-evaluation.md #8) -->
@@ -30,63 +31,62 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 - **Remote fallback:** If no relocation/visa, a fully remote role paying the target band (below) is acceptable to self-fund relocation later.
 
 ### Education
-<!-- List your degrees, most recent first -->
-- **[DEGREE_LEVEL] in [FIELD]** ([YEAR_START]-[YEAR_END]) - [INSTITUTION]
-  - Thesis: "[THESIS_TITLE]"
-  - Topics: [KEY_TOPICS]
+- **Information Systems Engineering** (in progress) - National Technological University (UTN), Argentina
+- **Bachelor's in Cyber Defense** (in progress) - National University of Defense (UNDEF), Argentina
+- **Electromechanical Technician** (completed) - Technical High School, Argentina
 
 ### Professional Experience
-<!-- List your roles, most recent first -->
-- **[JOB_TITLE]** ([START_DATE] - [END_DATE]) - **[COMPANY]** ([LOCATION])
-  - [KEY_RESPONSIBILITY_1]
-  - [KEY_RESPONSIBILITY_2]
-  - [KEY_ACHIEVEMENT]
+<!-- Most recent first. Full detail in 01-candidate-profile.md. -->
+- **Scraper Developer** (part-time, Jul 2026 - present) - **Magnar** (Chilean legal-tech, remote) — build scrapers for public legal documents (regulations, legislation, case law) feeding Magnar's legal-AI platform; current second-income role
+- **Senior Full-Stack Engineer** (Feb 2024 - Jan 2026) - **SalesMatch.Ai** (Spain, remote) — Node.js/TS/NestJS backends; CI/CD -50% deploy time; Python+n8n automation; AWS/Docker/K8s; mentored juniors (-40% PR errors). *(anonymized as "Peninsula – Corporate Innovation" in the public CV)*
+- **Full-Stack Developer** (Dec 2023 - Mar 2024) - **Syloper** (Santa Fe, Argentina) — React/Next.js/Node; -45% API latency (PostgreSQL/Redis); MVPs in <72h
+- **Software Engineer** (Mar 2023 - Feb 2024) - **FlamaTech** (Spain) — REST APIs; Clean Architecture (SOLID/DDD) -50% tech debt; Jest +30% stability; Docker
+- **Programming Coach & Mentor** (May 2022 - May 2023) - **Kodigo** (El Salvador, remote) — taught 150+ students, 92% satisfaction
+- **Frontend Intern** (Oct 2021 - Feb 2022) - **AirBits** (Argentina) — UI/UX -25% friction; A11y +30 Lighthouse pts
 
 ### Technical Skills
-- **Primary:** [YOUR_PRIMARY_SKILLS]
-- **Secondary:** [YOUR_SECONDARY_SKILLS]
-- **Domain:** [YOUR_DOMAIN_EXPERTISE]
-- **Software:** [YOUR_TOOLS_AND_SOFTWARE]
+- **Primary:** Node.js/NestJS, TypeScript, Python (FastAPI/Django), REST/GraphQL APIs
+- **Secondary:** React.js/Next.js, React Native/Expo, PHP, Java, Go (basics)
+- **Domain:** cloud-native/scalable systems, event-driven architecture (Kafka/RabbitMQ/MQTT), AI automation & LLMs (Ollama, LangChain, n8n, multi-agent), web scraping (Selenium/Puppeteer)
+- **Software:** AWS (EC2/S3/Lambda/RDS/EKS), Docker, Kubernetes, Helm, Terraform, GitHub Actions, PostgreSQL/MongoDB/Redis, Jest/Cypress
 
 ### Certifications
-<!-- List relevant certifications with dates -->
-- **[CERTIFICATION_NAME]** - [HOURS]h - completed [DATE]
+- **Scrum Developer Professional (SDPC)** & **Scrum Fundamentals (SFPC)** - SCRUMstudy
+- **Python Essentials** (Cisco/NDG); **Python/SQL/JavaScript (Basic)**, **Problem Solving**, **CS Fundamentals** (HackerRank)
+- **Introduction to TCP/IP** (NDG); **Argentina Programa** (2022); **Growth Hacking**; **Web Development Introduction 1 & 2**
 
 ### Publications
-<!-- List peer-reviewed publications, if any -->
-- [AUTHOR_LIST] ([YEAR]). [TITLE]. [JOURNAL].
+- (none)
 
 ### Awards
-<!-- List relevant awards, hackathons, competitions -->
-- [AWARD_NAME] - [EVENT] ([YEAR])
+- (none recorded yet)
 
 ### Behavioral Profile
-<!-- Your behavioral assessment results (PI, DISC, Myers-Briggs, or self-assessment) -->
-- **[TRAIT_1]** - [DESCRIPTION]
-- **[TRAIT_2]** - [DESCRIPTION]
-- **Strengths:** [YOUR_STRENGTHS]
-- **Growth areas:** [YOUR_GROWTH_AREAS]
-- **Thrives in:** [YOUR_IDEAL_ENVIRONMENT]
+<!-- Inferred from LinkedIn About + CV — review before relying on this. -->
+- **Strategic pragmatist** - "technology is a lever, not an end"; sees many problems as process/structure, not code
+- **Builder–mentor** - taught 150+ students (92% satisfaction), mentored juniors, ships validated MVPs in <72h
+- **Strengths:** clean architecture + modern automation, scaling systems in an orderly/sustainable way, fast delivery, cross-stack breadth
+- **Growth areas:** English is B2+ (strong but not native); formal CS degrees still in progress (offset by 5+ yrs shipping)
+- **Thrives in:** autonomy, greenfield/scaling work, AI-forward teams
 
 ### What Excites You
-<!-- What motivates you professionally -->
-- [PASSION_1]
-- [PASSION_2]
+- Building scalable, cloud-native systems and AI/LLM automation that removes operational friction
+- Rapid, AI-assisted product building (agentic tooling incl. **Claude Code**)
 
 ### Target Roles
 <!-- Canonical list of role types to target. Consumed by search-queries.md (search) AND -->
 <!-- 04-job-evaluation.md (scoring) AND 05-cv-templates.md (CV framing). Keep in sync. -->
 <!-- Priority 1 = strongest/most-desired; higher numbers = adjacent/wider net. -->
-- **Backend Developer** (Priority 1) — core: scraping, APIs, data pipelines, [YOUR_BACKEND_STACK]
-- **AI Developer** (Priority 1) — LLM apps, agents, RAG, Claude Code / agentic tooling, [YOUR_AI_STACK]
-- **Frontend Developer** (Priority 2) — [YOUR_FRONTEND_STACK]
+- **Backend Developer** (Priority 1) — Node.js/NestJS, Python (FastAPI/Django), REST/GraphQL, event-driven (Kafka/RabbitMQ), AWS; web scraping & data pipelines
+- **AI Developer** (Priority 1) — LLM orchestration (Ollama, LangChain), multi-agent systems, n8n automation, RAG, Claude Code / agentic tooling
+- **Frontend Developer** (Priority 2) — React.js, Next.js, React Native/Expo, Tailwind, shadcn/ui
 - **VibeCoder / AI-assisted builder** (Priority 2) — rapid product building with AI coding tools (Claude Code, etc.)
 <!-- Add/adjust roles here; then reflect them in search-queries.md priority tiers. -->
 
 ### Target Sectors
-<!-- Industries and companies you're targeting -->
-- [SECTOR_1]: [EXAMPLE_COMPANIES]
-- [SECTOR_2]: [EXAMPLE_COMPANIES]
+- AI / LLM products & automation (legal-tech, dev-tools, agents) — e.g. Magnar-like legaltech, AI startups
+- SaaS / cloud-native platforms and startups hiring backend/full-stack in USD or with relocation/visa
+- Any sector offering strong remote-USD comp or EU/NZ/USA-Canada relocation for backend/AI roles
 
 ### Compensation
 <!-- Candidate salary preference. Drives the Compensation Fit scoring dimension (04-job-evaluation.md #7). -->
@@ -99,7 +99,7 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 ### Deal-breakers
 <!-- Hard constraints on job search. NOTE: relocation is NOT a deal-breaker — see Mobility above. -->
 - Pay below the minimum acceptable band (see Compensation)
-- [DEALBREAKER_2]
+- Roles that conflict with keeping the current part-time Magnar role (must fit as a second income — part-time/contract/remote-friendly hours)
 
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)
