@@ -6,9 +6,15 @@
 
 Leyenda de estado: ⬜ pendiente · 🟨 en progreso · ✅ hecho
 
+## Estado global (2026-07-14)
+Fases 0–6 ✅ · Fase 7 ✅ (clave implementadas, resto como recetas en `FEATURES.md`). **Único pendiente: Fase 1a** —
+poblar tu perfil real vía `/setup` (requiere tus datos; el framework ya está listo para capturarlos).
+Portales: **11 skills de portal** (2 previos + 9 nuevos), cobertura **USA / Europa / Nueva Zelanda** cubierta
+(ver `portals/README.md`). Verificación: lint OK, 64 tests Python, 10× `bun test` de portales en verde.
+
 ---
 
-## Fase 0 — Documentación 🟨
+## Fase 0 — Documentación ✅
 - ✅ `docs/ROADMAP.md` (este archivo)
 - ✅ `docs/DECISIONS.md` (log de decisiones)
 - ✅ `docs/portals/README.md` (plantilla + índice de fichas de portal)
