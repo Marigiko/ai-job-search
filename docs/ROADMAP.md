@@ -35,11 +35,12 @@ Cada portal se ficha en `docs/portals/`. **9 portales adoptados y probados en vi
 
 **Rechazados/diferidos:** VanHack ❌ / Wellfound ❌ / Bumeran ❌ (auth/Cloudflare) · Relocate.me / Seek NZ ⏸ (diferidos; NZ ya cubierto). Ver matriz en `docs/portals/README.md`.
 
-## Fase 3 — Posts de recruiters en LinkedIn (híbrido) ⬜
-- ⬜ Skill `linkedin-posts-search`, comando `extract <post-url>` (modo compliant)
-- ⬜ Extracción de `applyEmail` por regex
-- ⬜ Queries de descubrimiento en `search-queries.md`
-- ⬜ Modo autenticado documentado y **OFF por defecto**
+## Fase 3 — Posts de recruiters en LinkedIn (híbrido) ✅
+- ✅ Skill `linkedin-posts-search`, comando `extract <post-url>` (compliant; posts públicos dan 200 logged-out)
+- ✅ Extracción de `applyEmail` por regex (de-ofusca `[at]`/`[dot]`/`&#64;`); fecha decodificada del activity id
+- ✅ Comando `parse --text`/stdin (fallback offline si el post está gated) — probado con email argentino ofuscado
+- ✅ Queries de descubrimiento en `search-queries.md` (`site:linkedin.com/posts …`)
+- ✅ Modo autenticado documentado y **OFF por defecto** (`search` explica el flujo WebSearch→extract, no crawlea el feed)
 
 ## Fase 4 — Postular por email (redactar + enviar con confirmación) ⬜
 - ⬜ Detección de postulación por email en `/apply`
