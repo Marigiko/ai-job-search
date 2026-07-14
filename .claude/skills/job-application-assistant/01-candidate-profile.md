@@ -94,6 +94,7 @@ Argentina
 
 ### Backend
 - Node.js, NestJS, Express, FastAPI, Django, Laravel, Spring; REST APIs, GraphQL
+- Bun (JS/TS runtime) *(GitHub — Real-time-Safety-Monitoring-Platform)*
 
 ### Frontend
 - React.js, Next.js, React Native, Expo, Tailwind CSS, shadcn/ui, Framer Motion
@@ -103,6 +104,7 @@ Argentina
 
 ### Data & Streaming
 - PostgreSQL, MongoDB, Redis; Apache Kafka, Zookeeper, RabbitMQ, MQTT
+- TypeORM (ORM); JSON Schema event contracts between microservices *(GitHub — Real-time-Safety-Monitoring-Platform)*
 
 ### AI & Automation
 - LLM orchestration (Ollama, LangChain), multi-agent systems, n8n; web scraping (Selenium, Puppeteer)
