@@ -24,11 +24,11 @@ Leyenda de estado: ⬜ pendiente · 🟨 en progreso · ✅ hecho
 Orden por alineación con la meta. Cada portal se ficha en `docs/portals/`.
 1. 🟨 Visa/relocación: **Arbeitnow ✅** (skill probado en vivo), Relocate.me ⬜, Landing.jobs ⬜, VanHack ❌ (auth-walled, rechazado)
 2. 🟨 Remotos globales: **RemoteOK ✅** (con `--min-salary`), **We Work Remotely ✅**, Wellfound ⬜
-3. 🟨 LatAm: GetOnBoard 🔎 (investigado, viable, diferido — requiere resolución de empresa), Computrabajo ⬜, Bumeran ⬜
+3. 🟨 LatAm: **GetOnBoard ✅** (skill probado en vivo, salarios mensuales USD, `--min-salary`), Computrabajo ⬜, Bumeran ⬜
 4. ⬜ Por región: NZ (Seek), Europa (EURES), USA
 
-**Portales agregados y probados en vivo:** Arbeitnow (visa/EU) · RemoteOK (remoto+salario) · We Work Remotely (remoto).
-**Investigados:** GetOnBoard (viable, diferido) · VanHack (rechazado: login).
+**Portales agregados y probados en vivo:** Arbeitnow (visa/EU) · RemoteOK (remoto+salario anual) · We Work Remotely (remoto) · GetOnBoard (LatAm+remoto, salario mensual USD).
+**Investigados:** VanHack (rechazado: login).
 Ver fichas en `docs/portals/`.
 
 ## Fase 3 — Posts de recruiters en LinkedIn (híbrido) ⬜
