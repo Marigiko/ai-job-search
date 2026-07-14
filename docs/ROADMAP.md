@@ -20,16 +20,20 @@ Leyenda de estado: ⬜ pendiente · 🟨 en progreso · ✅ hecho
 - ✅ **1c** Banda salarial como dimensión de fit (`### 7. Compensation Fit`) + fix del bug de `/setup`
 - ✅ **1d** Relocación/visa como señal positiva (`### 8. Relocation & Visa Fit`) + veto quitado en 04/rank.md/job-scraper
 
-## Fase 2 — Expansión de portales (iterativo) 🟨
-Orden por alineación con la meta. Cada portal se ficha en `docs/portals/`.
-1. 🟨 Visa/relocación: **Arbeitnow ✅**, **Landing.jobs ✅** (flag `relocation_paid`), Relocate.me ⬜ (sin API, scraping), VanHack ❌ (auth-walled, rechazado)
-2. 🟨 Remotos globales: **RemoteOK ✅** (con `--min-salary`), **We Work Remotely ✅**, Wellfound ❌ (Cloudflare/token), Remotive/Jobicy 🔎 (APIs OK, bonus fácil)
-3. 🟨 LatAm: **GetOnBoard ✅** (salarios mensuales USD), Computrabajo 🔎 (HTML accesible, scraping), Bumeran 🔎 (SPA, API interna)
-4. ⬜ Por región: NZ (Seek 🔎 API protegida), Europa (EURES), USA
+## Fase 2 — Expansión de portales ✅ (viables agotados)
+Cada portal se ficha en `docs/portals/`. **9 portales adoptados y probados en vivo:**
+1. Visa/relocación: **Arbeitnow ✅** (EU, `--visa`), **Landing.jobs ✅** (EU, `relocation_paid`)
+2. Remotos: **RemoteOK ✅** (`--min-salary`), **We Work Remotely ✅** (`--category`), **Remotive ✅**
+3. Remoto por región: **Jobicy ✅** (`--geo usa|new-zealand|europe`)
+4. USA + global: **The Muse ✅** (`--location`, per-job detail)
+5. LatAm/Argentina: **GetOnBoard ✅** (salario mensual USD), **Computrabajo ✅** (`--country ar`, HTML)
 
-**Portales agregados y probados en vivo (5):** Arbeitnow (visa/EU) · RemoteOK (remoto+salario anual) · We Work Remotely (remoto) · GetOnBoard (LatAm+remoto, salario mensual USD) · Landing.jobs (visa/EU).
-**Investigados:** VanHack ❌ / Wellfound ❌ (auth) · Computrabajo/Bumeran/Relocate.me/Seek NZ 🔎 (viables con más trabajo) · Remotive/Jobicy 🔎 (bonus fácil).
-Ver fichas y matriz de viabilidad en `docs/portals/`.
+**Cobertura del objetivo de regiones (≥3 por región donde aplica):**
+- **USA:** The Muse, Jobicy (`--geo usa`), Remotive/RemoteOK/WWR → ✅
+- **Europa:** Arbeitnow, Landing.jobs, Jobicy (`--geo europe`), The Muse → ✅
+- **Nueva Zelanda:** The Muse (`-l "Auckland, New Zealand"`), Jobicy (`--geo new-zealand`) → ✅
+
+**Rechazados/diferidos:** VanHack ❌ / Wellfound ❌ / Bumeran ❌ (auth/Cloudflare) · Relocate.me / Seek NZ ⏸ (diferidos; NZ ya cubierto). Ver matriz en `docs/portals/README.md`.
 
 ## Fase 3 — Posts de recruiters en LinkedIn (híbrido) ⬜
 - ⬜ Skill `linkedin-posts-search`, comando `extract <post-url>` (modo compliant)

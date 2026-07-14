@@ -33,21 +33,32 @@ y deja registro de por qué un portal se adoptó o rechazó. Nombre de archivo: 
 
 | Portal | Estado | Alineación | Ficha |
 |--------|--------|-----------|-------|
-| Arbeitnow | adoptado | visa/relocación + remoto | [arbeitnow.md](arbeitnow.md) |
+| Arbeitnow | adoptado | visa/relocación + remoto (EU) | [arbeitnow.md](arbeitnow.md) |
 | RemoteOK | adoptado | remoto USD | [remoteok.md](remoteok.md) |
 | We Work Remotely | adoptado | remoto USD | [weworkremotely.md](weworkremotely.md) |
 | GetOnBoard | adoptado | LatAm + remoto | [getonbrd.md](getonbrd.md) |
 | Landing.jobs | adoptado | visa/relocación (EU) | [landingjobs.md](landingjobs.md) |
+| Remotive | adoptado | remoto (por región) | [remotive.md](remotive.md) |
+| Jobicy | adoptado | remoto **USA / NZ / Europa** (`--geo`) | [jobicy.md](jobicy.md) |
+| The Muse | adoptado | **USA** + NZ + Europa (`--location`) | [themuse.md](themuse.md) |
+| Computrabajo | adoptado | LatAm / **Argentina** (`--country`) | [computrabajo.md](computrabajo.md) |
 | VanHack | rechazado (auth) | visa/relocación | [vanhack.md](vanhack.md) |
+| Bumeran | rechazado (Cloudflare) | Argentina/LatAm | [bumeran.md](bumeran.md) |
 
-## Sondeados (pendientes / feasibility) — 2026-07-14
+## Cobertura por región objetivo (USA / Europa / Nueva Zelanda)
 
-| Portal | Resultado del sondeo | Camino para construir |
-|--------|----------------------|-----------------------|
-| **Computrabajo** (pe) | HTML 200 accesible (sin Cloudflare) | scraping HTML de las tarjetas de empleo (patrón `linkedin-search`) |
-| **Bumeran** (pe) | SPA JS (shell 63KB) | hallar la API interna (api.bumeran / guuk) e ir por JSON |
-| **Relocate.me** | sin API pública (`/api/jobs` 404) | scraping HTML |
-| **Wellfound** | SPA + Cloudflare/GraphQL con token | **rechazado** (efectivamente auth-walled) |
-| **Seek NZ** | API protegida (308, requiere headers/host) | investigar endpoint chalice-search + headers |
-| **Remotive** | API JSON pública OK | bonus remoto, fácil (misma plantilla) |
-| **Jobicy** | API JSON v2 pública OK | bonus remoto, fácil (misma plantilla) |
+| Región | Portales |
+|--------|----------|
+| **USA** | The Muse (`-l "New York, NY"`), Jobicy (`--geo usa`), Remotive/RemoteOK/WWR (remoto US) |
+| **Europa** | Arbeitnow (EU), Landing.jobs (EU), Jobicy (`--geo europe`), The Muse (`-l "London, United Kingdom"`) |
+| **Nueva Zelanda** | The Muse (`-l "Auckland, New Zealand"`), Jobicy (`--geo new-zealand`) |
+| **LatAm / Argentina** | Computrabajo (`--country ar`), GetOnBoard |
+
+## Sondeados no adoptados — 2026-07-14
+
+| Portal | Resultado | Estado |
+|--------|-----------|--------|
+| **Wellfound** | SPA + Cloudflare/GraphQL con token | rechazado (auth-walled) |
+| **Bumeran** | API interna tras Cloudflare (403) | rechazado — ver [bumeran.md](bumeran.md) |
+| **Relocate.me** | sin API pública (`/api/jobs` 404) | diferido (requiere scraping HTML) |
+| **Seek NZ** | API `chalice-search` protegida (308) | diferido (requiere headers/host); NZ ya cubierto por The Muse + Jobicy |
