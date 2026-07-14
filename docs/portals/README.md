@@ -37,4 +37,17 @@ y deja registro de por qué un portal se adoptó o rechazó. Nombre de archivo: 
 | RemoteOK | adoptado | remoto USD | [remoteok.md](remoteok.md) |
 | We Work Remotely | adoptado | remoto USD | [weworkremotely.md](weworkremotely.md) |
 | GetOnBoard | adoptado | LatAm + remoto | [getonbrd.md](getonbrd.md) |
+| Landing.jobs | adoptado | visa/relocación (EU) | [landingjobs.md](landingjobs.md) |
 | VanHack | rechazado (auth) | visa/relocación | [vanhack.md](vanhack.md) |
+
+## Sondeados (pendientes / feasibility) — 2026-07-14
+
+| Portal | Resultado del sondeo | Camino para construir |
+|--------|----------------------|-----------------------|
+| **Computrabajo** (pe) | HTML 200 accesible (sin Cloudflare) | scraping HTML de las tarjetas de empleo (patrón `linkedin-search`) |
+| **Bumeran** (pe) | SPA JS (shell 63KB) | hallar la API interna (api.bumeran / guuk) e ir por JSON |
+| **Relocate.me** | sin API pública (`/api/jobs` 404) | scraping HTML |
+| **Wellfound** | SPA + Cloudflare/GraphQL con token | **rechazado** (efectivamente auth-walled) |
+| **Seek NZ** | API protegida (308, requiere headers/host) | investigar endpoint chalice-search + headers |
+| **Remotive** | API JSON pública OK | bonus remoto, fácil (misma plantilla) |
+| **Jobicy** | API JSON v2 pública OK | bonus remoto, fácil (misma plantilla) |
