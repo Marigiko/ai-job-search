@@ -32,6 +32,22 @@ from pathlib import Path
 ACTIVE_STAGES = ["interested", "drafted", "applied", "interview", "offer", "hired"]
 TERMINAL_NEGATIVE = {"rejected", "no response", "offer declined", "withdrawn", "expired"}
 
+# Feature (Phase 7): follow-up reminder — applications sitting in these stages
+# longer than this many days without moving are flagged as "needs follow-up".
+FOLLOWUP_DAYS = 10
+FOLLOWUP_STAGES = {"applied", "interview"}
+
+
+def days_since(date_str, today):
+    """Whole days between an ISO date string and today (ISO). None if unparseable."""
+    from datetime import date as _date
+    try:
+        d0 = _date.fromisoformat((date_str or "")[:10])
+        d1 = _date.fromisoformat(today[:10])
+        return (d1 - d0).days
+    except (ValueError, TypeError):
+        return None
+
 # Normalize the various status spellings (CSV uses spaces, outcome.md uses
 # underscores) to a single funnel stage.
 STATUS_ALIASES = {
@@ -171,6 +187,11 @@ tbody tr:hover { background: #f9fafb; }
 .below{color:#c0392b;font-weight:700}.ok{color:#9a6b00}.ideal{color:#0a7d47;font-weight:700}.unknown{color:#999}
 a { color: #2f5fd0; text-decoration: none; } a:hover { text-decoration: underline; }
 .empty { color:#888; font-style: italic; }
+.followup { cursor: help; }
+.conv { display: flex; flex-wrap: wrap; gap: 24px; }
+.conv > div { flex: 1; min-width: 280px; }
+.conv h3 { font-size: 13px; margin: 0 0 8px; color: #555; }
+table.mini td, table.mini th { padding: 5px 8px; }
 @media (prefers-color-scheme: dark) {
   body{background:#15171b;color:#e6e7ea}.card,.section{background:#1e2127;border-color:#2c3038}
   .sub,.card .l,th{color:#9aa0aa}.controls input,.controls select{background:#1e2127;border-color:#3a3f48}
@@ -202,10 +223,19 @@ def render(rows, seen, outcomes, minimum, ideal, today) -> str:
     offers = stage_counts["offer"] + stage_counts["hired"]
     hired = stage_counts["hired"]
 
+    # follow-up: rows stuck in applied/interview past FOLLOWUP_DAYS
+    stale_ids = set()
+    for i, r in enumerate(rows):
+        st = normalize_status(r.get("status", ""))
+        if st in FOLLOWUP_STAGES:
+            ds = days_since(r.get("date", ""), today)
+            if ds is not None and ds >= FOLLOWUP_DAYS:
+                stale_ids.add(i)
+
     cards = [
         ("Applications", total_apps), ("Active", active),
         ("Reached interview", interviews), ("Offers", offers), ("Hired", hired),
-        ("Scraped (pipeline)", scraped_total),
+        ("Needs follow-up", len(stale_ids)), ("Scraped (pipeline)", scraped_total),
     ]
     cards_html = "".join(
         f'<div class="card"><div class="n">{n}</div><div class="l">{esc(l)}</div></div>'
@@ -232,13 +262,40 @@ def render(rows, seen, outcomes, minimum, ideal, today) -> str:
         f'· expired: {seen_counts.get("expired", 0)}'
     )
 
+    # conversion analytics (Phase 7): by channel and by role type
+    REACHED = {"interview", "offer", "hired"}
+
+    def conversion(field):
+        groups = {}
+        for r in rows:
+            key = (r.get(field) or "—").strip() or "—"
+            g = groups.setdefault(key, {"total": 0, "reached": 0, "offers": 0})
+            g["total"] += 1
+            st = normalize_status(r.get("status", ""))
+            if st in REACHED:
+                g["reached"] += 1
+            if st in ("offer", "hired"):
+                g["offers"] += 1
+        rowsy = ""
+        for key, g in sorted(groups.items(), key=lambda kv: -kv[1]["total"]):
+            rate = f'{round(100 * g["reached"] / g["total"])}%' if g["total"] else "—"
+            rowsy += (
+                f"<tr><td>{esc(key)}</td><td>{g['total']}</td>"
+                f"<td>{g['reached']}</td><td>{g['offers']}</td><td>{rate}</td></tr>"
+            )
+        return rowsy or '<tr><td colspan="5" class="empty">no data yet</td></tr>'
+
+    conv_channel = conversion("channel")
+    conv_role = conversion("role_type")
+
     # --- table ---
     headers = ["Date", "Company", "Role", "Type", "Channel", "Status",
                "Salary (offered)", "Reloc/Visa", "Fit", "Link"]
     body = ""
-    for r in rows:
+    for i, r in enumerate(rows):
         st = normalize_status(r.get("status", ""))
         st_class = "st-" + re.sub(r"[^a-z]", "", st) if st else ""
+        followup = ' <span title="needs follow-up" class="followup">⏰</span>' if i in stale_ids else ""
         offered = r.get("salary_offered", "")
         monthly = parse_monthly_usd(offered)
         scls = salary_class(monthly, minimum, ideal)
@@ -260,7 +317,7 @@ def render(rows, seen, outcomes, minimum, ideal, today) -> str:
             f'<td>{esc(r.get("role",""))}</td>'
             f'<td>{esc(r.get("role_type",""))}</td>'
             f'<td>{esc(r.get("channel",""))}</td>'
-            f'<td><span class="pill {st_class}">{esc(st)}</span></td>'
+            f'<td><span class="pill {st_class}">{esc(st)}</span>{followup}</td>'
             f'<td>{sal_disp}</td>'
             f'<td><span class="dot {vcls}"></span>{esc(vlabel)}</td>'
             f'<td>{esc(r.get("fit_rating",""))}</td>'
@@ -294,6 +351,14 @@ data from job_search_tracker.csv, seen_jobs.json, outcome.md</div>
 <div class="section"><h2>Application funnel</h2>
 <div class="funnel">{funnel_rows}</div>
 <div class="sub" style="margin-top:12px">Closed: {neg_html}<br>Scraper pipeline — {scraper_line}</div>
+</div>
+
+<div class="section"><h2>Conversion</h2>
+<div class="conv">
+  <div><h3>By channel</h3><table class="mini"><thead><tr><th>Channel</th><th>Apps</th><th>Interview+</th><th>Offers</th><th>Rate</th></tr></thead><tbody>{conv_channel}</tbody></table></div>
+  <div><h3>By role type</h3><table class="mini"><thead><tr><th>Role type</th><th>Apps</th><th>Interview+</th><th>Offers</th><th>Rate</th></tr></thead><tbody>{conv_role}</tbody></table></div>
+</div>
+<div class="sub" style="margin-top:10px">Rate = share of applications that reached at least an interview. Use it to double down on the channels/roles that convert.</div>
 </div>
 
 <div class="section"><h2>Applications</h2>

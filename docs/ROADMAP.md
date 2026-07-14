@@ -58,14 +58,14 @@ Cada portal se ficha en `docs/portals/`. **9 portales adoptados y probados en vi
 - ✅ `tools/dashboard.py` → `dashboard.html` autocontenido (embudo, filtros, semáforos salario/visa) — probado con fixtures y vacío
 - ✅ Comando `/dashboard`
 
-## Fase 7 — Funcionalidades nuevas propuestas ⬜
-1. ⬜ Radar de visa/sponsorship
-2. ⬜ Inteligencia salarial + costo de vida (Lima vs destino)
-3. ⬜ Seguimiento y recordatorios de follow-up
-4. ⬜ Monitor de posts/empleos + digest diario
-5. ⬜ Analítica de conversión + calibración automática
-6. ⬜ (Extra) Variantes de CV por rol
-7. ⬜ (Extra) Localización idiomática (inglés/Europass/resume USA)
+## Fase 7 — Funcionalidades nuevas 🟨 (implementadas las clave; resto documentado) — ver [`FEATURES.md`](FEATURES.md)
+1. ✅ Radar de visa/sponsorship (flags `--visa` en todos los portales + dim #8 + `docs/visa-sponsorship.md`)
+2. 🧩 Inteligencia salarial + costo de vida — salario ya normalizado a USD mensual + `--min-salary`; costo de vida (BA vs destino) queda como receta
+3. ✅ Seguimiento y recordatorios de follow-up (dashboard: tarjeta + ⏰ para `applied`/`interview` estancados ≥10d)
+4. 🧩 Monitor + digest diario — receta vía `/loop 24h /scrape && /rank` (sin código nuevo)
+5. ✅ Analítica de conversión (dashboard: por canal y por tipo de rol, % a entrevista)
+6. 🧩 Variantes de CV por rol — statements/lenguaje por rol ya existen (Fase 1b); guardar `cv/base_<rol>.tex` es la receta
+7. 🧩 Localización idiomática (inglés/Europass/resume USA) — receta sobre el workflow de `/apply`
 
 ---
 
