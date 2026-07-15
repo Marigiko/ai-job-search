@@ -4,10 +4,11 @@
 Run from anywhere: python tools/lint_skills.py
 
 Checks:
-- Every SKILL.md (.claude/skills/*, .agents/skills/*) has YAML frontmatter that
-  parses, with non-empty `name` and `description` keys
+- Every SKILL.md (.claude/skills/*, .agents/skills/*, .opencode/skills/*) has YAML
+  frontmatter that parses, with non-empty `name` and `description` keys
 - `allowed-tools` entries of the form `Bash(bun run <path> *)` point at files
   that exist (skill paths resolve relative to the repo root and to .agents/)
+- .claude/skills/ and .opencode/skills/ have the same set of skill names (parity check)
 - Every .claude/commands/*.md starts with a `# /<name>` title
 - .claude/settings.json is valid JSON with a permissions.allow list
 
@@ -95,8 +96,28 @@ def check_settings() -> None:
         errors.append(".claude/settings.json: expected permissions.allow to be a list")
 
 
+def check_skill_parity() -> None:
+    """Ensure .claude/skills/ and .opencode/skills/ declare the same skill names."""
+    claude_names = {p.parent.name for p in ROOT.glob(".claude/skills/*/SKILL.md")}
+    opencode_names = {p.parent.name for p in ROOT.glob(".opencode/skills/*/SKILL.md")}
+    missing_in_opencode = claude_names - opencode_names
+    missing_in_claude = opencode_names - claude_names
+    if missing_in_opencode:
+        errors.append(
+            f"skill parity: {sorted(missing_in_opencode)} in .claude/skills/ but missing from .opencode/skills/"
+        )
+    if missing_in_claude:
+        errors.append(
+            f"skill parity: {sorted(missing_in_claude)} in .opencode/skills/ but missing from .claude/skills/"
+        )
+
+
 def main() -> int:
-    skills = sorted(ROOT.glob(".claude/skills/*/SKILL.md")) + sorted(ROOT.glob(".agents/skills/*/SKILL.md"))
+    skills = (
+        sorted(ROOT.glob(".claude/skills/*/SKILL.md"))
+        + sorted(ROOT.glob(".agents/skills/*/SKILL.md"))
+        + sorted(ROOT.glob(".opencode/skills/*/SKILL.md"))
+    )
     commands = sorted((ROOT / ".claude" / "commands").glob("*.md"))
     if not skills:
         errors.append("no SKILL.md files found - glob roots are wrong or the tree moved")
@@ -108,13 +129,14 @@ def main() -> int:
     for command in commands:
         check_command(command)
     check_settings()
+    check_skill_parity()
 
     if errors:
         print(f"lint_skills: {len(errors)} failure(s)")
         for err in errors:
             print(f"  - {err}")
         return 1
-    print(f"lint_skills: OK ({len(skills)} skills, {len(commands)} commands, settings.json)")
+    print(f"lint_skills: OK ({len(skills)} skills, {len(commands)} commands, parity OK, settings.json)")
     return 0
 
 

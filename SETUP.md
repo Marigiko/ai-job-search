@@ -4,15 +4,22 @@ Step-by-step instructions for getting the AI Job Search framework running.
 
 ## 1. Prerequisites
 
-### Claude Code
+### Claude Code, MiMoCode, or OpenCode
 
-Install Claude Code (Anthropic's CLI for Claude):
+Install at least one of these AI assistant CLIs:
 
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-You'll need an Anthropic API key or a Claude Pro/Team subscription. See the [Claude Code docs](https://docs.anthropic.com/en/docs/claude-code) for details.
+- **Claude Code** (Anthropic):
+  ```bash
+  npm install -g @anthropic-ai/claude-code
+  ```
+- **MiMoCode** (Xiaomi):
+  ```bash
+  npm install -g @anthropic-ai/mimocode
+  ```
+- **OpenCode** (open-source):
+  ```bash
+  # see https://github.com/opencode-ai/opencode for installation
+  ```
 
 ### Python
 
@@ -183,14 +190,21 @@ done
 
 For `linkedin-search` and `freehire-search` the install is optional: both have zero runtime dependencies and run with plain `bun`; `bun install` only pulls TypeScript dev types.
 
-If you're outside Denmark, you can generate an equivalent search skill for your local job board with `/add-portal` — it scaffolds the same CLI structure for any public portal and test-runs a live query before registering. See the "Job search tools" section in the README.
+If you're outside Denmark, you can generate an equivalent search skill for your local job board with the `add-portal` skill — it scaffolds the same CLI structure for any public portal and test-runs a live query before registering. See the "Job search tools" section in the README.
 
 ## 4. Run the setup interview
 
-Start Claude Code in the repository:
+Start your AI assistant in the repository:
 
 ```bash
+# Claude Code
 claude
+
+# MiMoCode
+mimo
+
+# OpenCode
+opencode
 ```
 
 Then run the onboarding:
