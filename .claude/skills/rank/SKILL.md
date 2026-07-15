@@ -1,0 +1,142 @@
+---
+name: rank
+description: >
+  Batch-score scraped jobs against the fit framework and return a ranked shortlist. Triage-level scoring
+  from posting text and profile only — no company research, no reviewer. Bridge between scrape and apply.
+  Triggers on: /rank, rank jobs, rank postings, triage jobs, prioritize jobs
+allowed-tools: Read, Write, Edit, Glob, Grep, Agent, WebFetch
+---
+
+# Rank
+
+---
+
+You are batch-scoring the jobs that the `scrape` skill has collected, so the user can decide where to spend `apply` effort. The `scrape` skill finds and dedupes postings; the `apply` skill evaluates one at a time in depth. The `rank` skill is the bridge: it scores every new posting against the fit framework and returns a ranked shortlist.
+
+`/rank` produces **triage scores**, not final evaluations. It scores from the posting text and the candidate profile only - no company research, no reviewer agent. The `apply` skill's Step 1 evaluation (which adds company research) remains authoritative and always re-runs when the user applies.
+
+Follow these steps **in order**.
+
+---
+
+## Step 0: Parse Input
+
+The user's message may contain:
+
+- Nothing → rank all jobs with status `new` in `job_scraper/seen_jobs.json`
+- A focus area (e.g. "rank data science") → rank only jobs whose title or stored fit-notes match the focus
+- `--all` → re-rank every job that has not been applied to, including previously ranked ones (useful after the profile changes)
+- `--top <N>` → shortlist size (default 5)
+
+---
+
+## Step 1: Load State
+
+1. Read `job_scraper/seen_jobs.json`. If the file is missing or has no entries, tell the user to run the `scrape` skill first and stop.
+2. Read `job_search_tracker.csv`. Build the exclusion set: any company+role already in the tracker is out of scope regardless of flags - it has been applied to or consciously tracked.
+3. Select candidates: entries with status `new` (or all non-applied entries with `--all`), minus the exclusion set, filtered by the focus area if one was given.
+4. If no candidates remain, say so ("Nothing new to rank - run the `scrape` skill to find fresh postings") and stop.
+5. Read the scoring framework and profile **once**:
+   - `.claude/skills/job-application-assistant/04-job-evaluation.md`
+   - `.claude/skills/job-application-assistant/01-candidate-profile.md`
+
+State how many jobs will be ranked before proceeding.
+
+---
+
+## Step 2: Batch-Fetch and Score
+
+Dispatch parallel `general-purpose` agents via the **Agent tool**, ~5 jobs per agent (a single agent is fine for ≤5 jobs). Token-efficiency rules, consistent with `apply`:
+
+- Pass each agent everything it needs **inline in the prompt** - the job list (title, company, URL) and a compact scoring rubric extracted from the files you read in Step 1: the strong/moderate/weak skill match areas, direct/adjacent experience domains, behavioral thrive/drain factors, career goals, deal-breakers, the location constraints, the **compensation band** (min/ideal from CLAUDE.md → Compensation), and the **mobility preference** (relocation/visa from CLAUDE.md → Mobility). Do **not** make agents re-read the profile files.
+- Agents fetch each posting URL with WebFetch and score **only from actually fetched content**. If a URL is dead, redirects to a listing page, or the posting has expired, the agent marks that job `expired` - it never scores from the title alone and never fabricates posting content.
+- Scope is triage: posting text vs. rubric. **No company research, no `salary_lookup.py` benchmark, no web searches** - that depth belongs to `apply`. (Compensation Fit here is scored only from any salary *stated in the posting text*; if none is stated, score 50 and flag it.)
+
+Each agent returns a JSON array, one object per job:
+
+```json
+{
+  "key": "<the job's key in seen_jobs.json>",
+  "status": "scored" | "expired",
+  "scores": { "technical": 0-100, "experience": 0-100, "behavioral": 0-100, "career": 0-100, "compensation": 0-100, "relocation_visa": 0-100 },
+  "compensation_veto": true | false,
+  "location": "PASS" | "FAIL" | "FLAG",
+  "deadline": "YYYY-MM-DD" | null,
+  "strengths": ["1-3 bullets, grounded in the posting text"],
+  "gaps": ["1-3 bullets, honest"],
+  "language": "<posting language>"
+}
+```
+
+Scoring uses the dimension definitions from `04-job-evaluation.md` verbatim. The honesty rule applies to triage too: gaps are stated, never smoothed over, and a posting that is a poor fit gets a low score even if it looks prestigious.
+
+---
+
+## Step 3: Aggregate and Rank
+
+Back in the main context, for each scored job:
+
+1. Compute the overall score with the weighting from `04-job-evaluation.md` (Technical 25%, Experience 20%, Behavioral 10%, Career Alignment 20%, Compensation Fit 15%, Relocation & Visa Fit 10%; location is unweighted).
+2. Map to the framework's verdict bands (Strong Fit 75+, Good Fit 60-74, Moderate Fit 45-59, Weak Fit 30-44, Poor Fit <30).
+3. **Vetoes:** two things exclude a job from the shortlist no matter the score — list them separately with the reason:
+   - `compensation_veto: true` (pay stated below the minimum band). Relocation is **not** a veto anymore; an on-site-abroad role scores *higher* on Relocation & Visa Fit, it is not excluded.
+   - `location: "FAIL"` (genuinely unreachable AND no remote/relocation path). `FLAG` (e.g. heavy travel, or relocation cost on the candidate) stays in the ranking with a visible ⚠ marker.
+4. **Deadline urgency:** a deadline within 7 days gets a marker and wins ties. A deadline that has already passed moves the job to `expired`.
+
+Sort by overall score (descending), urgency as tiebreaker.
+
+---
+
+## Step 4: Update State
+
+Update `job_scraper/seen_jobs.json` in place - these fields are additive to the scraper's schema:
+
+- Ranked jobs: set `"status": "ranked"` and add `"rank_score": <overall>`, `"rank_verdict": "<band>"`, `"rank_date": "YYYY-MM-DD"`
+- Dead or past-deadline jobs: set `"status": "expired"`
+
+Do not modify `job_search_tracker.csv` - that file records applications, and `rank` never applies. Re-running `rank` is idempotent: already-`ranked` jobs are skipped unless `--all` re-scores them.
+
+---
+
+## Step 5: Present the Shortlist
+
+```
+## Job Ranking - YYYY-MM-DD
+
+Ranked <N> new postings (<X> shortlisted, <Y> below threshold, <Z> expired/vetoed).
+
+### Shortlist
+
+| # | Score | Verdict | Title | Company | Location | Deadline | |
+|---|-------|---------|-------|---------|----------|----------|---|
+| 1 | 78 | Strong Fit | ... | ... | ... | ... | |
+
+### Why these ranked highest
+**1. <Title> at <Company> (78)** - [2-3 strength bullets and the honest gap, from the agent's findings]
+[repeat for each shortlisted job]
+
+### Below threshold
+| Score | Verdict | Title | Company | One-line reason |
+
+### Excluded
+- <Title> at <Company> - compensation veto: pay below the minimum band
+- <Title> at <Company> - location FAIL: on-site, unreachable, no remote/relocation path
+- <Title> at <Company> - expired <date>
+```
+
+Rules for the presentation:
+
+- Every claim traces to fetched posting text or the profile - no invented details.
+- Say explicitly that these are **triage scores from the posting text only**, and that `apply` will re-evaluate with company research before anything is drafted.
+- Then ask: "Want to apply to any of these? Give me the number(s) and I'll start with the full `apply` workflow."
+- If the user picks one, run the `apply` skill on that job's URL, passing the triage verdict as prior context but **re-running the full Step 1 evaluation** - triage never substitutes for it.
+
+---
+
+## Important Rules
+
+1. **Never rank unfetched postings.** A job whose posting cannot be retrieved is marked expired, not guessed at.
+2. **Triage depth only.** No company research, no salary lookups, no reviewer agents - `rank` exists to be cheap enough to run on every scrape batch.
+3. **Deal-breakers veto scores.** A 90-point job whose pay is below the minimum band (compensation veto), or that is genuinely unreachable with no remote/relocation path (location FAIL), is excluded, not ranked first. Relocation itself is not a deal-breaker.
+4. **Honest scoring.** Gaps are reported per job; a low-scoring posting is presented as such. The score bands and weights come from `04-job-evaluation.md` - if the user disagrees with a ranking, the fix is updating their profile or the framework, not bending scores.
+5. **State stays consistent.** `seen_jobs.json` fields are only added, never restructured, so the `scrape` skill's dedup keeps working; the tracker is read-only for this skill.

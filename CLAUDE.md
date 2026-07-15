@@ -18,7 +18,7 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 ### Identity
 - **Name:** Mario Aquino (legal: Sergio Mario Oscar Aquino)
 - **Location:** Resistencia, Chaco, Argentina (open to remote / relocation)
-- **Contact:** marioaquinojob@gmail.com · +54 9 362 5455786 · linkedin.com/in/keyzdev · github.com/Marigiko
+- **Contact:** marioaquinojob@gmail.com · +54 9 362 5455786 · linkedin.com/in/keyzdev · github.com/Marigiko · [Portfolio](https://keyz.freedev.app)
 - **Languages:** Spanish (native), English (B2+ professional working), Portuguese (B2)
 - **CV language:** English
 - **Status:** Employed part-time (Scraper Developer, ~1500 USD/mo) — actively seeking a **second role** to add on top.

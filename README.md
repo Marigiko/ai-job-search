@@ -12,9 +12,9 @@
 
 [![CI](https://github.com/MadsLorentzen/ai-job-search/actions/workflows/ci.yml/badge.svg)](https://github.com/MadsLorentzen/ai-job-search/actions/workflows/ci.yml)
 
-An AI-powered job application framework built on [Claude Code](https://claude.com/claude-code). Fork it, fill in your profile, and let Claude evaluate job postings, tailor your CV, write cover letters, and prepare you for interviews.
+An AI-powered job application framework that runs on [Claude Code](https://claude.com/claude-code), [MiMoCode](https://github.com/anthropics/mimocode), or [OpenCode](https://github.com/opencode-ai/opencode). Fork it, fill in your profile, and let your AI assistant evaluate job postings, tailor your CV, write cover letters, and prepare you for interviews.
 
-> Note: This is an independent open-source project and is not affiliated with, endorsed by, sponsored by, or maintained by Anthropic. Anthropic and Claude Code are referenced only to describe the toolchain this workflow uses.
+> Note: This is an independent open-source project and is not affiliated with, endorsed by, sponsored by, or maintained by Anthropic. Anthropic and Claude Code are referenced only to describe one of the toolchains this workflow supports.
 >
 > This project has **no affiliated cryptocurrency, token, or paid sponsorship program**. Anything claiming otherwise is unauthorized and should be treated as a scam. The only ways to support the project are the Ko-fi link below and contributing on GitHub.
 
@@ -39,7 +39,15 @@ Sixty-nine tailored applications, twenty first interviews, and one signed contra
 
 ## What this is
 
-A structured workflow that turns Claude Code into a full-stack job application assistant. The core workflow (self-profiling, fit evaluation, and the drafter-reviewer application pipeline) is **language- and country-agnostic**. The job portal search skills are built for the Danish market (Jobindex, Jobnet, Akademikernes Jobbank, etc.), but the pattern is designed to be swapped for your local job boards.
+A structured workflow that turns your AI coding assistant into a full-stack job application assistant. The core workflow (self-profiling, fit evaluation, and the drafter-reviewer application pipeline) is **language- and country-agnostic**. The job portal search skills are built for the Danish market (Jobindex, Jobnet, Akademikernes Jobbank, etc.), but the pattern is designed to be swapped for your local job boards.
+
+This repo supports three AI assistant platforms:
+
+- **Claude Code** (Anthropic) — slash commands live in `.claude/commands/`, skills in `.claude/skills/`.
+- **MiMoCode** (Xiaomi) — discovers skills from `.claude/skills/`, `.agents/skills/`, and `.opencode/skills/`.
+- **OpenCode** (open-source) — discovers skills from `.opencode/skills/` (mirrored from `.claude/skills/`).
+
+All three share `CLAUDE.md` as the canonical profile and workflow rules.
 
 ```
 /setup          /scrape              /apply <url>
@@ -61,11 +69,15 @@ The framework encodes career guidance best practices, including structured evalu
 
 ## Prerequisites
 
-- [Claude Code](https://claude.com/claude-code) (CLI). Using a different agent tool (Codex, Antigravity, Gemini CLI)? Start at [`AGENTS.md`](AGENTS.md) - the portal search skills work there out of the box, and [community forks](https://github.com/MadsLorentzen/ai-job-search/discussions/78) adapt the full workflow.
+- One of:
+  - [Claude Code](https://claude.com/claude-code) (CLI)
+  - [MiMoCode](https://github.com/anthropics/mimocode) (CLI binary `mimo`)
+  - [OpenCode](https://github.com/opencode-ai/opencode) (CLI)
+  - Using a different agent (Codex, Antigravity, Gemini CLI)? Start at [`AGENTS.md`](AGENTS.md) — the portal search skills work there out of the box, and [community forks](https://github.com/MadsLorentzen/ai-job-search/discussions/78) adapt the full workflow.
 - Python 3.10+
 - [Bun](https://bun.sh) (for job search CLI tools)
 - LaTeX distribution with `lualatex` and `xelatex`: [TeX Live](https://tug.org/texlive/), [MacTeX](https://tug.org/mactex/), [TinyTeX](https://yihui.org/tinytex/), or [MiKTeX](https://miktex.org/). The CV compiles with `lualatex` (pdflatex often fails on modern MiKTeX installs with `fontawesome5` font-expansion errors); the cover letter compiles with `xelatex` because `cover.cls` requires `fontspec`. If using a minimal TeX install such as TinyTeX or BasicTeX, install the extra packages listed in [SETUP.md](SETUP.md#minimal-tex-install-tinytexbasictex).
-- Optional: `pdftotext` from [poppler](https://poppler.freedesktop.org/) (macOS: `brew install poppler`, Debian/Ubuntu: `apt install poppler-utils`, Windows: `choco install poppler`) — used by `/apply`'s ATS parseability check on the compiled CV. If missing, the check degrades gracefully to a visual keyword review.
+- Optional: `pdftotext` from [poppler](https://poppler.freedesktop.org/) (macOS: `brew install poppler`, Debian/Ubuntu: `apt install poppler-utils`, Windows: `choco install poppler`) — used by the `apply` skill's ATS parseability check on the compiled CV. If missing, the check degrades gracefully to a visual keyword review.
 
 ## Quick start
 
@@ -101,17 +113,28 @@ For `linkedin-search` and `freehire-search` the install is optional: both have z
 
 ### 3. Set up your profile
 
+Start your AI assistant in the repo root:
+
 ```bash
-claude
-# Then inside Claude Code:
+# Any of:
+claude      # Claude Code
+mimo        # MiMoCode
+opencode    # OpenCode
+```
+
+Then run the `setup` skill:
+
+```
 /setup
 ```
 
-`/setup` offers three paths: read your `documents/` folder if you have one populated (CV PDF, LinkedIn export, diplomas, reference letters, past applications), import a single CV pasted in chat, or walk through an interview. It auto-detects what you have and asks. Documents-folder mode is idempotent and safe to re-run as you add more material; see `documents/README.md` for the layout.
+The `setup` skill offers three paths: read your `documents/` folder if you have one populated (CV PDF, LinkedIn export, diplomas, reference letters, past applications), import a single CV pasted in chat, or walk through an interview. It auto-detects what you have and asks. Documents-folder mode is idempotent and safe to re-run as you add more material; see `documents/README.md` for the layout.
+
+On Claude Code, the slash command `/setup` still works (see `.claude/commands/setup.md`). On MiMoCode/OpenCode, invoke `/setup` as a skill (discovered from `.claude/skills/setup/SKILL.md` and `.opencode/skills/setup/SKILL.md`).
 
 ### 4. Search for jobs
 
-```bash
+```
 /scrape
 ```
 
@@ -135,7 +158,7 @@ Postings are treated as untrusted input (the workflow follows no instructions em
 
 ## Other commands
 
-`/setup`, `/scrape`, and `/apply` form the core workflow. Ten more commands extend it once your profile is in place:
+`/setup`, `/scrape`, and `/apply` form the core workflow. Ten more commands extend it once your profile is in place. Each is available both as a Claude Code slash command (`.claude/commands/*.md`) and as a skill (`.claude/skills/<name>/SKILL.md` + `.opencode/skills/<name>/SKILL.md`):
 
 - **`/interview`** preps you for a scheduled interview on a tracked application. It builds a stage-specific prep pack from the application's archive (the exact posting, the CV and cover letter the interviewer actually read, feedback recorded from earlier rounds), researches the company and interviewers with a verify-before-use rule, maps likely questions to your STAR examples, and offers a mock interview following the roleplay protocol in `07-interview-prep.md`. Gaps get honest bridge answers, never invented experience.
 - **`/outcome`** records what happened to an application - interview stages, offers, rejections, silence. It archives the submitted CV, cover letter, and posting text into `documents/applications/<company>_<role>/`, keeps `outcome.md` in the format `/setup` Path A parses, and updates the tracker. It also owns the stretch before there is an outcome to record: `/outcome followup` surfaces open applications that have gone quiet (default 10 days), drafts a short channel-appropriate follow-up in your writing style using only claims from the materials you already submitted (drafts only, never sends; at most twice per application), and offers a thank-you note in the same turn an interview stage is recorded. Once a few applications resolve, it points you back to `/setup` to calibrate the fit framework from what actually got interviews.
@@ -156,34 +179,47 @@ Postings are treated as untrusted input (the workflow follows no instructions em
 ai-job-search/
 ├── CLAUDE.md                          # Main candidate profile + workflow rules
 ├── .claude/
-│   ├── commands/
-│   │   ├── apply.md                   # /apply workflow (drafter-reviewer)
-│   │   ├── setup.md                   # /setup onboarding (documents folder, CV import, or interview)
-│   │   ├── expand.md                  # /expand competency enrichment from documents and online presence
-│   │   ├── add-template.md            # /add-template register custom LaTeX templates
-│   │   ├── add-portal.md              # /add-portal generate a job-portal search skill for your market
-│   │   ├── rank.md                    # /rank triage scraped jobs into a ranked shortlist
-│   │   ├── outcome.md                 # /outcome record application results, archive materials
-│   │   ├── gmail-sync.md              # /gmail-sync auto-detect application status from Gmail
-│   │   ├── interview.md               # /interview stage-specific prep pack + mock interview
-│   │   ├── html-report.md             # /html-report generate application tracker dashboard
-│   │   ├── notion-sync.md             # /notion-sync one-way pipeline view in a Notion database
-│   │   └── reset.md                   # /reset wipe profile data or documents folder
-│   ├── skills/
-│   │   ├── job-application-assistant/  # Core application skill
-│   │   │   ├── SKILL.md               # Skill definition
-│   │   │   ├── 01-candidate-profile.md # Your education, experience, skills
-│   │   │   ├── 02-behavioral-profile.md# PI/DISC/personality assessment
-│   │   │   ├── 03-writing-style.md    # Tone, structure, do's and don'ts
-│   │   │   ├── 04-job-evaluation.md   # Scoring framework for job fit
-│   │   │   ├── 05-cv-templates.md     # LaTeX CV structure + tailoring rules
+│   ├── commands/                       # Slash commands (Claude Code only)
+│   │   ├── apply.md                     # /apply workflow (drafter-reviewer)
+│   │   ├── setup.md                     # /setup onboarding (documents folder, CV import, or interview)
+│   │   ├── expand.md                    # /expand competency enrichment from documents and online presence
+│   │   ├── add-template.md              # /add-template register custom LaTeX templates
+│   │   ├── add-portal.md                # /add-portal generate a job-portal search skill for your market
+│   │   ├── rank.md                      # /rank triage scraped jobs into a ranked shortlist
+│   │   ├── outcome.md                   # /outcome record application results, archive materials
+│   │   ├── gmail-sync.md               # /gmail-sync auto-detect application status from Gmail
+│   │   ├── interview.md                 # /interview stage-specific prep pack + mock interview
+│   │   ├── html-report.md              # /html-report generate application tracker dashboard
+│   │   ├── notion-sync.md              # /notion-sync one-way pipeline view in a Notion database
+│   │   └── reset.md                     # /reset wipe profile data or documents folder
+│   ├── skills/                         # Skills (Claude Code + MiMoCode)
+│   │   ├── job-application-assistant/    # Core application skill
+│   │   │   ├── SKILL.md                 # Skill definition
+│   │   │   ├── 01-candidate-profile.md   # Your education, experience, skills
+│   │   │   ├── 02-behavioral-profile.md  # PI/DISC/personality assessment
+│   │   │   ├── 03-writing-style.md      # Tone, structure, do's and don'ts
+│   │   │   ├── 04-job-evaluation.md     # Scoring framework for job fit
+│   │   │   ├── 05-cv-templates.md       # LaTeX CV structure + tailoring rules
 │   │   │   ├── 06-cover-letter-templates.md # LaTeX cover letter templates
-│   │   │   └── 07-interview-prep.md   # STAR examples + interview framework
-│   │   ├── job-scraper/               # Job search orchestration
-│   │   └── upskill/                   # /upskill skill gap analysis and learning plan
-│   └── settings.json                  # Claude Code permissions (shared, scoped)
-├── .agents/skills/                    # Job portal CLI tools
-│   ├── jobbank-search/                # Akademikernes Jobbank (Denmark)
+│   │   │   └── 07-interview-prep.md     # STAR examples + interview framework
+│   │   ├── job-scraper/                 # Job search orchestration
+│   │   ├── upskill/                     # Skill gap analysis and learning plan
+│   │   ├── apply/                       # /apply workflow as a skill
+│   │   ├── setup/                       # /setup onboarding as a skill
+│   │   ├── expand/                      # /expand as a skill
+│   │   ├── add-template/                # /add-template as a skill
+│   │   ├── add-portal/                  # /add-portal as a skill
+│   │   ├── rank/                        # /rank as a skill
+│   │   ├── outcome/                     # /outcome as a skill
+│   │   ├── interview/                   # /interview as a skill
+│   │   ├── reset/                       # /reset as a skill
+│   │   └── dashboard/                   # /dashboard as a skill
+│   └── settings.json                    # Claude Code permissions (shared, scoped)
+├── .opencode/
+│   └── skills/                         # Skill parity mirror for OpenCode
+│       ├── (same structure as .claude/skills/)
+├── .agents/skills/                     # Job portal CLI tools
+│   ├── jobbank-search/                 # Akademikernes Jobbank (Denmark)
 │   ├── jobdanmark-search/             # Jobdanmark.dk (Denmark)
 │   ├── jobindex-search/               # Jobindex.dk (Denmark)
 │   ├── jobnet-search/                 # Jobnet.dk (Denmark, government portal)
