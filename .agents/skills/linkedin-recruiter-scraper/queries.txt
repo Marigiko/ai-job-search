@@ -1,0 +1,20 @@
+# LinkedIn recruiter post discovery queries.
+# One per line. These are site-restricted public search engine queries,
+# NOT LinkedIn feed searches. Each is searched via Google/Bing; the scraper
+# collects linkedin.com/posts/... result URLs and extracts the apply email.
+#
+# Format: <keywords> <location/terms>. Engine adds site:linkedin.com/posts.
+
+# --- Backend ---
+site:linkedin.com/posts "send your CV" hiring backend developer remote
+site:linkedin.com/posts "apply at" "backend engineer" Node.js TypeScript remote
+site:linkedin.com/posts hiring "NestJS developer" "email your resume"
+
+# --- AI / LLM ---
+site:linkedin.com/posts hiring "AI developer" "LLM" "apply" remote
+site:linkedin.com/posts "hiring" "machine learning engineer" "send CV"
+site:linkedin.com/posts looking "Python developer" AI automation email
+
+# --- Full-stack / LatAm + visa friendly ---
+site:linkedin.com/posts "we are hiring" developer "visa sponsorship" remote
+site:linkedin.com_posts "buscamos" developer "envia tu CV" backend

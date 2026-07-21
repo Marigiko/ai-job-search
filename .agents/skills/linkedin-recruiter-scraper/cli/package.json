@@ -1,0 +1,21 @@
+{
+  "name": "linkedin-recruiter-cli",
+  "version": "1.0.0",
+  "description": "CLI to discover LinkedIn recruiter posts with apply-by-email via public search engines (Playwright/chromium). Personal use only.",
+  "type": "module",
+  "main": "src/cli.ts",
+  "bin": {
+    "linkedin-recruiter-scraper": "src/cli.ts"
+  },
+  "scripts": {
+    "start": "bun run src/cli.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/bun": "latest"
+  }
+}
