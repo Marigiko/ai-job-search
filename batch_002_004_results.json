@@ -1,0 +1,682 @@
+[
+  {
+    "key": "SLR Consulting_AI Engineer_Manchester England United Kingdom",
+    "title": "AI Engineer",
+    "company": "SLR Consulting",
+    "url": "https://uk.linkedin.com/jobs/view/ai-engineer-at-slr-consulting-4436584873",
+    "status": "scored",
+    "scores": { "technical": 85, "experience": 75, "behavioral": 80, "career": 85, "compensation": 50, "relocation_visa": 60 },
+    "overall": 74.75,
+    "verdict": "Good Fit",
+    "compensation_veto": false,
+    "location": "FLAG",
+    "deadline": null,
+    "strengths": [
+      "Python/TypeScript backend with LLMs, RAG, vector DBs, agent orchestration — directly matches AI engineering skills",
+      "2-5 yr range fits seniority; SLR is a global firm with relocation potential",
+      "Role covers MCP, tool-use frameworks, agentic AI — all areas explicitly mentioned in profile"
+    ],
+    "gaps": [
+      "On-site Manchester UK — would require visa sponsorship/relocation which is not stated in posting"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Version 1_AI Engineer_Newcastle Upon Tyne England United Kingdom",
+    "title": "AI Engineer",
+    "company": "Version 1",
+    "url": "https://uk.linkedin.com/jobs/view/ai-engineer-at-version-1-4429843272",
+    "status": "scored",
+    "scores": { "technical": 60, "experience": 60, "behavioral": 60, "career": 60, "compensation": 50, "relocation_visa": 50 },
+    "overall": 57.5,
+    "verdict": "Moderate Fit",
+    "compensation_veto": false,
+    "location": "FLAG",
+    "deadline": null,
+    "strengths": [
+      "AI Engineer title aligns with AI/LLM career direction",
+      "Version 1 is a UK/Ireland IT services firm — may have visa sponsorship pathways"
+    ],
+    "gaps": [
+      "LinkedIn paywall prevented full job description retrieval",
+      "On-site Newcastle UK with unknown visa/relocation policy"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Version 1_AI Engineer_Edinburgh Scotland United Kingdom",
+    "title": "AI Engineer",
+    "company": "Version 1",
+    "url": "https://uk.linkedin.com/jobs/view/ai-engineer-at-version-1-4429842294",
+    "status": "scored",
+    "scores": { "technical": 60, "experience": 60, "behavioral": 60, "career": 60, "compensation": 50, "relocation_visa": 50 },
+    "overall": 57.5,
+    "verdict": "Moderate Fit",
+    "compensation_veto": false,
+    "location": "FLAG",
+    "deadline": null,
+    "strengths": [
+      "AI Engineer title aligns with AI/LLM career direction",
+      "Version 1 is a UK/Ireland IT services firm — may have visa sponsorship pathways"
+    ],
+    "gaps": [
+      "LinkedIn paywall prevented full job description retrieval",
+      "On-site Edinburgh UK with unknown visa/relocation policy"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Innefu Labs_Python Developer_Delhi India",
+    "title": "Python Developer",
+    "company": "Innefu Labs",
+    "url": "https://in.linkedin.com/jobs/view/python-developer-at-innefu-labs-4436666713",
+    "status": "scored",
+    "scores": { "technical": 70, "experience": 40, "behavioral": 50, "career": 30, "compensation": 0, "relocation_visa": 10 },
+    "overall": 30.5,
+    "verdict": "Poor Fit",
+    "compensation_veto": true,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [
+      "Strong Python + web scraping (Selenium, Scrapy, BeautifulSoup) match with current Magnar role",
+      "Kafka, Redis, Elasticsearch experience aligns with backend data pipeline skills"
+    ],
+    "gaps": [
+      "Pay is ₹200k-500k/yr (~$200-500/mo) — far below the $2000/mo minimum",
+      "Entry level (1-4 yrs) below candidate seniority",
+      "On-site Delhi India — no remote option, no relocation value"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "NielsenIQ_Software Engineer- Web scraping_PunePimpri-Chinchwad Area",
+    "title": "Software Engineer- Web scraping",
+    "company": "NielsenIQ",
+    "url": "https://in.linkedin.com/jobs/view/software-engineer-web-scraping-at-nielseniq-4437015529",
+    "status": "scored",
+    "scores": { "technical": 55, "experience": 50, "behavioral": 50, "career": 40, "compensation": 30, "relocation_visa": 20 },
+    "overall": 43.25,
+    "verdict": "Weak Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [
+      "Web scraping role directly matches current Magnar work",
+      "NielsenIQ is a global company — possible internal mobility"
+    ],
+    "gaps": [
+      "LinkedIn paywall — no details on pay, tech stack, or remote policy",
+      "On-site Pune India — no relocation benefit, India salary likely below minimum"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Virtusa_Python Engineer_Andhra Pradesh India",
+    "title": "Python Engineer",
+    "company": "Virtusa",
+    "url": "https://in.linkedin.com/jobs/view/python-engineer-at-virtusa-4408429111",
+    "status": "scored",
+    "scores": { "technical": 40, "experience": 40, "behavioral": 40, "career": 30, "compensation": 30, "relocation_visa": 20 },
+    "overall": 34.5,
+    "verdict": "Weak Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [
+      "Python Engineer title fits backend skills"
+    ],
+    "gaps": [
+      "LinkedIn paywall — no details available",
+      "On-site Andhra Pradesh India — no relocation benefit",
+      "Indian IT services role likely below $2000/mo"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Deloitte_Frontend React developer_Delhi India",
+    "title": "Frontend React developer",
+    "company": "Deloitte",
+    "url": "https://in.linkedin.com/jobs/view/frontend-react-developer-at-deloitte-4438408525",
+    "status": "scored",
+    "scores": { "technical": 30, "experience": 40, "behavioral": 40, "career": 30, "compensation": 30, "relocation_visa": 20 },
+    "overall": 32.0,
+    "verdict": "Weak Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [
+      "React skills are in candidate's secondary stack"
+    ],
+    "gaps": [
+      "Frontend-only role — not aligned with backend/full-stack career goal",
+      "LinkedIn paywall — no details",
+      "On-site Delhi India — no route to relocation or minimum comp"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Infosys_React JS Developer_Bengaluru Karnataka India",
+    "title": "React JS Developer",
+    "company": "Infosys",
+    "url": "https://in.linkedin.com/jobs/view/react-js-developer-at-infosys-4438307100",
+    "status": "scored",
+    "scores": { "technical": 25, "experience": 35, "behavioral": 35, "career": 25, "compensation": 30, "relocation_visa": 20 },
+    "overall": 28.25,
+    "verdict": "Poor Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [],
+    "gaps": [
+      "Frontend-only React role — not backend/full-stack",
+      "Infosys on-site India — low pay, no relocation",
+      "LinkedIn paywall — no details"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Infosys_React JS Developer_Pune District Maharashtra India",
+    "title": "React JS Developer",
+    "company": "Infosys",
+    "url": "https://in.linkedin.com/jobs/view/react-js-developer-at-infosys-4437994777",
+    "status": "scored",
+    "scores": { "technical": 25, "experience": 35, "behavioral": 35, "career": 25, "compensation": 30, "relocation_visa": 20 },
+    "overall": 28.25,
+    "verdict": "Poor Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [],
+    "gaps": [
+      "Frontend-only React role — not backend/full-stack",
+      "Infosys on-site India — low pay, no relocation",
+      "LinkedIn paywall — no details"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Infosys_Reactjs Developer_Pune Division Maharashtra India",
+    "title": "Reactjs Developer",
+    "company": "Infosys",
+    "url": "https://in.linkedin.com/jobs/view/reactjs-developer-at-infosys-4433462994",
+    "status": "scored",
+    "scores": { "technical": 25, "experience": 35, "behavioral": 35, "career": 25, "compensation": 30, "relocation_visa": 20 },
+    "overall": 28.25,
+    "verdict": "Poor Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [],
+    "gaps": [
+      "Frontend-only React role — not backend/full-stack",
+      "Infosys on-site India — low pay, no relocation",
+      "LinkedIn paywall — no details"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Infosys_React JS Developer_Hyderabad Telangana India",
+    "title": "React JS Developer",
+    "company": "Infosys",
+    "url": "https://in.linkedin.com/jobs/view/react-js-developer-at-infosys-4437996761",
+    "status": "scored",
+    "scores": { "technical": 25, "experience": 35, "behavioral": 35, "career": 25, "compensation": 30, "relocation_visa": 20 },
+    "overall": 28.25,
+    "verdict": "Poor Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [],
+    "gaps": [
+      "Frontend-only React role — not backend/full-stack",
+      "Infosys on-site India — low pay, no relocation",
+      "LinkedIn paywall — no details"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Infosys_Reactjs Developer_Hyderabad Telangana India",
+    "title": "React.js Developer",
+    "company": "Infosys",
+    "url": "https://in.linkedin.com/jobs/view/react-js-developer-at-infosys-4433471833",
+    "status": "scored",
+    "scores": { "technical": 25, "experience": 35, "behavioral": 35, "career": 25, "compensation": 30, "relocation_visa": 20 },
+    "overall": 28.25,
+    "verdict": "Poor Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [],
+    "gaps": [
+      "Frontend-only React role — not backend/full-stack",
+      "Infosys on-site India — low pay, no relocation",
+      "LinkedIn paywall — no details"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Infosys_React JS Developer_Chennai Tamil Nadu India",
+    "title": "React JS Developer",
+    "company": "Infosys",
+    "url": "https://in.linkedin.com/jobs/view/react-js-developer-at-infosys-4437997748",
+    "status": "scored",
+    "scores": { "technical": 25, "experience": 35, "behavioral": 35, "career": 25, "compensation": 30, "relocation_visa": 20 },
+    "overall": 28.25,
+    "verdict": "Poor Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [],
+    "gaps": [
+      "Frontend-only React role — not backend/full-stack",
+      "Infosys on-site India — low pay, no relocation",
+      "LinkedIn paywall — no details"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Google_Software Engineer Full Stack_Bengaluru Karnataka India",
+    "title": "Software Engineer, Full Stack",
+    "company": "Google",
+    "url": "https://in.linkedin.com/jobs/view/software-engineer-full-stack-at-google-4441354802",
+    "status": "scored",
+    "scores": { "technical": 70, "experience": 60, "behavioral": 65, "career": 70, "compensation": 60, "relocation_visa": 25 },
+    "overall": 61.5,
+    "verdict": "Good Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [
+      "Google — strong brand, full-stack role aligns with profile",
+      "Google's India compensation is competitive locally"
+    ],
+    "gaps": [
+      "LinkedIn paywall — no tech stack details",
+      "On-site Bengaluru — Google may offer internal transfer but posting itself doesn't mention relocation",
+      "India salary likely meets local minimum but not USD target for second-income role"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Intuit_Full Stack Software Developer I_Toronto Ontario Canada",
+    "title": "Full Stack Software Developer I",
+    "company": "Intuit",
+    "url": "https://ca.linkedin.com/jobs/view/full-stack-software-developer-i-at-intuit-4432963982",
+    "status": "scored",
+    "scores": { "technical": 45, "experience": 30, "behavioral": 40, "career": 30, "compensation": 50, "relocation_visa": 40 },
+    "overall": 38.75,
+    "verdict": "Weak Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [
+      "Full-stack role at a top tech company (Intuit)",
+      "$94k-127k CAD is decent compensation in Canada"
+    ],
+    "gaps": [
+      "Entry-level role (0-2 yrs) — well below candidate's seniority",
+      "On-site Toronto — needs Canadian work authorization/visa",
+      "Ruby/Java/C# stack likely — not candidate's Node.js/Python primary"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Deloitte_Full Stack Developer_Bengaluru Karnataka India",
+    "title": "Full Stack Developer",
+    "company": "Deloitte",
+    "url": "https://in.linkedin.com/jobs/view/full-stack-developer-at-deloitte-4435955804",
+    "status": "scored",
+    "scores": { "technical": 40, "experience": 45, "behavioral": 40, "career": 30, "compensation": 30, "relocation_visa": 20 },
+    "overall": 35.5,
+    "verdict": "Weak Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [
+      "Full-stack title aligns with profile"
+    ],
+    "gaps": [
+      "LinkedIn paywall — no details on tech stack or comp",
+      "On-site Bengaluru India — no relocation route",
+      "Indian IT services salary likely below $2000/mo minimum"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "KitaLulus_Backend Engineer - Short-term Contract KLI-75_Jakarta Jakarta Indonesia",
+    "title": "Backend Engineer - Short-term Contract (KLI-75)",
+    "company": "KitaLulus",
+    "url": "https://id.linkedin.com/jobs/view/backend-engineer-short-term-contract-kli-75-at-kitalulus-4441914487",
+    "status": "scored",
+    "scores": { "technical": 45, "experience": 45, "behavioral": 40, "career": 25, "compensation": 30, "relocation_visa": 30 },
+    "overall": 36.75,
+    "verdict": "Weak Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [
+      "Backend Engineer title matches primary role target"
+    ],
+    "gaps": [
+      "LinkedIn paywall — no tech stack or comp details",
+      "Short-term contract — unstable for second income",
+      "On-site Jakarta Indonesia — no relocation benefit",
+      "Indonesia salary likely below $2000/mo minimum"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Rhino Sp z oo_Backend Developer_Remote",
+    "title": "Backend Developer",
+    "company": "Rhino Sp. z o.o.",
+    "url": "https://nofluffjobs.com/job/backend-developer-rhino-remote?utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 40, "experience": 60, "behavioral": 60, "career": 50, "compensation": 60, "relocation_visa": 70 },
+    "overall": 54.0,
+    "verdict": "Moderate Fit",
+    "compensation_veto": false,
+    "location": "PASS",
+    "deadline": "2026-08-16",
+    "strengths": [
+      "Fully remote — compatible with second-income setup",
+      "16-24k PLN/mo B2B (~$4k-6k USD) — excellent compensation",
+      "IoT/cloud platform experience is interesting"
+    ],
+    "gaps": [
+      "Java/Spring stack — not candidate's Node.js/Python primary",
+      "Polish language requirement (B2 Polish needed)",
+      "Poland-focused role, candidate is Argentina-based"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "DatsTeam_Backend-разработчик NestJS  TypeScript_Весь мир",
+    "title": "Backend-разработчик (NestJS / TypeScript)",
+    "company": "Dats.Team",
+    "url": "https://getmatch.ru/vacancies/33553-backend-razrabotchik-nestjs-typescript?utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 95, "experience": 80, "behavioral": 75, "career": 80, "compensation": 80, "relocation_visa": 85 },
+    "overall": 83.75,
+    "verdict": "Strong Fit",
+    "compensation_veto": false,
+    "location": "PASS",
+    "deadline": null,
+    "strengths": [
+      "NestJS/TypeScript/Node.js — exact primary tech stack match",
+      "$3,500-4,500/mo net — perfect second-income range (above $3k ideal)",
+      "Fully remote worldwide — works from Argentina, no visa needed",
+      "Microservices, Redis, Docker, CI/CD — all core competencies"
+    ],
+    "gaps": [
+      "Russian company — English communication level on team is unknown",
+      "International contract arrangement needs verification for Argentina"
+    ],
+    "language": "ru"
+  },
+  {
+    "key": "Сбер_Backend Developer в GigaChat Alignment_Весь мир",
+    "title": "Backend Developer в GigaChat Alignment",
+    "company": "Сбер",
+    "url": "https://getmatch.ru/vacancies/33794-backend-developer-v-gigachat-alignment?utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 80, "experience": 70, "behavioral": 70, "career": 85, "compensation": 70, "relocation_visa": 80 },
+    "overall": 76.5,
+    "verdict": "Strong Fit",
+    "compensation_veto": false,
+    "location": "PASS",
+    "deadline": null,
+    "strengths": [
+      "Python/FastAPI — directly matches backend Python skills",
+      "ML/AI platform work (GigaChat alignment) — aligns with AI career goal",
+      "350k-500k RUB/mo (~$4k-5.5k USD) — strong comp for second income",
+      "Fully remote worldwide — no location constraint"
+    ],
+    "gaps": [
+      "Russian company — sanctions/currency risk with RUB payments",
+      "Russian language work environment likely",
+      "MLOps-heavy (Airflow, CI/CD pipelines) — less pure backend work"
+    ],
+    "language": "ru"
+  },
+  {
+    "key": "Devire_Senior Backend Developer_Remote",
+    "title": "Senior Backend Developer",
+    "company": "Devire",
+    "url": "https://nofluffjobs.com/job/senior-backend-developer-devire-remote-4?utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 35, "experience": 65, "behavioral": 60, "career": 40, "compensation": 65, "relocation_visa": 65 },
+    "overall": 52.0,
+    "verdict": "Moderate Fit",
+    "compensation_veto": false,
+    "location": "PASS",
+    "deadline": "2026-08-19",
+    "strengths": [
+      "Senior title fits experience level",
+      "150-200 PLN/h (~$38-51/h) — good rate for part-time contractor",
+      "Fully remote from Poland"
+    ],
+    "gaps": [
+      "Java 17+/Spring stack — not candidate's Node.js/Python primary",
+      "Polish language required (posting is in Polish)",
+      "Role is for a Polish bank — Poland-focused, no international mobility"
+    ],
+    "language": "pl"
+  },
+  {
+    "key": "Honor_Senior Backend Engineer_Remote Position",
+    "title": "Senior Backend Engineer",
+    "company": "Honor",
+    "url": "https://boards.greenhouse.io/honor/jobs/8382000002?gh_jid=8382000002&utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 75, "experience": 75, "behavioral": 70, "career": 70, "compensation": 95, "relocation_visa": 40 },
+    "overall": 73.0,
+    "verdict": "Good Fit",
+    "compensation_veto": false,
+    "location": "FLAG",
+    "deadline": null,
+    "strengths": [
+      "Python backend — direct skill match",
+      "$160k-180k USD — exceptional compensation",
+      "Mission-driven healthcare tech — meaningful work",
+      "Senior role with ownership and autonomy"
+    ],
+    "gaps": [
+      "Application asks 'Will you require visa sponsorship?' — US work authorization unclear",
+      "Remote US — likely requires US residency/work rights",
+      "AWS/preferred candidate may already be US-based"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Dwelly_Senior Backend Software Engineer  Data Migration Platform_Remote",
+    "title": "Senior Backend Software Engineer — Data Migration Platform",
+    "company": "Dwelly",
+    "url": "https://job-boards.eu.greenhouse.io/dwelly/jobs/4928198101?utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 90, "experience": 80, "behavioral": 80, "career": 85, "compensation": 50, "relocation_visa": 70 },
+    "overall": 78.0,
+    "verdict": "Strong Fit",
+    "compensation_veto": false,
+    "location": "PASS",
+    "deadline": null,
+    "strengths": [
+      "Python/FastAPI — exact stack match",
+      "Data migration, ETL, LLM APIs — AI/data engineering aligns with profile",
+      "Fully remote UK-based company (remote-first)",
+      "Senior ownership role with architecture responsibilities"
+    ],
+    "gaps": [
+      "No salary stated in posting ('competitive based on experience') — unknown if meets $2k-3k target",
+      "UK company — may prefer UK timezone candidates (though remote)"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Gremlin_Senior Backend Engineer_Remote based in the US",
+    "title": "Senior Backend Engineer",
+    "company": "Gremlin",
+    "url": "https://job-boards.greenhouse.io/gremlin/jobs/7934212002?utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 30, "experience": 70, "behavioral": 65, "career": 40, "compensation": 95, "relocation_visa": 0 },
+    "overall": 42.0,
+    "verdict": "Weak Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [
+      "$220k-290k USD — top-tier compensation",
+      "Chaos engineering is a high-impact domain"
+    ],
+    "gaps": [
+      "Java/Go stack — not candidate's Node.js/Python primary",
+      "Explicitly states 'does not offer sponsorship employment benefits'",
+      "Remote based in the US only — requires US work authorization",
+      "US-only location with no remote-global option"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "raya_Senior Backend Engineer Core Discovery_Remote",
+    "title": "Senior Backend Engineer, Core Discovery",
+    "company": "raya",
+    "url": "https://jobs.lever.co/raya/fbab9fe1-3c22-40a6-a429-1f292283f3ec?utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 90, "experience": 80, "behavioral": 80, "career": 80, "compensation": 95, "relocation_visa": 70 },
+    "overall": 83.75,
+    "verdict": "Strong Fit",
+    "compensation_veto": false,
+    "location": "FLAG",
+    "deadline": null,
+    "strengths": [
+      "Node.js/TypeScript — exact primary stack match",
+      "$180k-230k USD — top compensation",
+      "Location-based systems, geospatial, Elasticsearch — interesting domain",
+      "Strong AI tools enthusiasm mentioned — aligns with profile"
+    ],
+    "gaps": [
+      "No explicit remote-worldwide policy — likely US-remote given USD salary range",
+      "6+ yrs experience requirement is at the upper edge",
+      "US-based startup — may require US work authorization"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Outside_Senior Backend Engineer - MapMyFitness_Remote",
+    "title": "Senior Backend Engineer - MapMyFitness",
+    "company": "Outside",
+    "url": "https://www.outsideinc.com/openings?gh_jid=5287456008&utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 50, "experience": 55, "behavioral": 50, "career": 50, "compensation": 50, "relocation_visa": 40 },
+    "overall": 50.0,
+    "verdict": "Moderate Fit",
+    "compensation_veto": false,
+    "location": "FLAG",
+    "deadline": null,
+    "strengths": [
+      "Senior Backend Engineer at a well-known active lifestyle brand"
+    ],
+    "gaps": [
+      "Job posting not found — the careers page redirects to a generic portal",
+      "No tech stack, salary, or remote policy available for scoring",
+      "US-based company — likely requires US work authorization"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "iTeamly_Senior Backend Engineer_Remote",
+    "title": "Senior Backend Engineer",
+    "company": "iTeamly",
+    "url": "https://nofluffjobs.com/job/senior-backend-engineer-iteamly-remote?utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 50, "experience": 65, "behavioral": 60, "career": 50, "compensation": 60, "relocation_visa": 65 },
+    "overall": 57.0,
+    "verdict": "Moderate Fit",
+    "compensation_veto": false,
+    "location": "PASS",
+    "deadline": "2026-08-13",
+    "strengths": [
+      "Senior title, fully remote from Poland",
+      "21.5k-26.5k PLN gross/mo — decent compensation (~$5k-6.5k USD)",
+      "Multi-language stack (Python, Go, Java) — some Python overlap"
+    ],
+    "gaps": [
+      "PHP/Java preferred — not candidate's Node.js/Python primary",
+      "Polish market role — Poland-focused",
+      "English required but Polish work ecosystem"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Wonderland_Senior Backend Developer_Remote",
+    "title": "Senior Backend Developer",
+    "company": "Wonderland",
+    "url": "https://apply.wonderland.xyz/o/backend-developer?utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 80, "experience": 70, "behavioral": 70, "career": 60, "compensation": 50, "relocation_visa": 85 },
+    "overall": 69.0,
+    "verdict": "Good Fit",
+    "compensation_veto": false,
+    "location": "PASS",
+    "deadline": null,
+    "strengths": [
+      "TypeScript/Node.js — exact primary stack match",
+      "Fully remote — works from anywhere",
+      "Senior-level with high ownership, CI/CD, testing focus",
+      "Web3/DeFi domain — interesting for AI-automation minded developer"
+    ],
+    "gaps": [
+      "No salary stated — compensation unknown",
+      "Web3/DeFi niche — not a traditional backend role",
+      "Rust/Go/Python listed as nice-to-haves (Node.js/TS is core)"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "vannevarlabs_Senior Backend Engineer Collection_Remote",
+    "title": "Senior Backend Engineer, Collection",
+    "company": "vannevarlabs",
+    "url": "https://job-boards.greenhouse.io/vannevarlabs/jobs/5092167007?utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 85, "experience": 80, "behavioral": 75, "career": 70, "compensation": 70, "relocation_visa": 0 },
+    "overall": 58.75,
+    "verdict": "Moderate Fit",
+    "compensation_veto": false,
+    "location": "FAIL",
+    "deadline": null,
+    "strengths": [
+      "Python, AWS, distributed systems — strong tech match",
+      "Web scraping / data collection — directly matches current Magnar role",
+      "Senior role with mentorship and ownership"
+    ],
+    "gaps": [
+      "US Person (citizen/permanent resident) required — hard block for candidate",
+      "Remote US only — no international option",
+      "Security clearance needed — lengthy process for non-citizens"
+    ],
+    "language": "en"
+  },
+  {
+    "key": "Proxify AB_Senior Backend Developer Python_Anywhere in the World",
+    "title": "Senior Backend Developer (Python)",
+    "company": "Proxify AB",
+    "url": "https://weworkremotely.com/remote-jobs/proxify-ab-senior-backend-developer-python-8?utm_source=freehire.dev",
+    "status": "scored",
+    "scores": { "technical": 70, "experience": 70, "behavioral": 65, "career": 50, "compensation": 55, "relocation_visa": 80 },
+    "overall": 64.25,
+    "verdict": "Good Fit",
+    "compensation_veto": false,
+    "location": "PASS",
+    "deadline": "2026-08-12",
+    "strengths": [
+      "Python/Django — matches backend Python skills",
+      "Remote worldwide — fully location-independent",
+      "CET +/- 3 timezone compatible with Argentina"
+    ],
+    "gaps": [
+      "Agency/contracting model (Proxify places you with clients) — less stable than direct hire",
+      "No salary range stated — unknown comp",
+      "Django focus rather than FastAPI/NestJS which is candidate's strength"
+    ],
+    "language": "en"
+  }
+]
