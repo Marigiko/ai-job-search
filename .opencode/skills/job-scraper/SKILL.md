@@ -5,7 +5,7 @@ description: >
   (LinkedIn, local job boards, and any skills added with /add-portal). Deduplicates
   across runs. Triggers on: job scrape, find jobs, search jobs, new jobs, job search,
   scrape jobs, /scrape
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash(bun --version), Bash(bun run .agents/skills/*/cli/src/cli.ts *), WebFetch, WebSearch, Agent, AskUserQuestion
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash(bun --version), Bash(bun run .agents/skills/*/cli/src/cli.ts *), Bash(python3 .agents/skills/*/scraper.py *), Bash(python3 .agents/skills/*/cli/src/cli.py *), Bash(python3 .agents/skills/image-ocr/cli/ocr_cli.py *), Bash(python3 .agents/skills/telegram-search/fetcher.py *), Bash(python3 .agents/skills/discord-search/bot.py *), WebFetch, WebSearch, Agent, AskUserQuestion
 ---
 
 # Job Scraper
@@ -47,31 +47,74 @@ Read `search-queries.md` (this directory) for the search strategy. By default, r
 
 **Use the installed CLI tools as the primary search mechanism.** Fall back to `WebSearch` only for portals that do not have a CLI skill, or if `bun` is unavailable on the system.
 
-#### 1a. Check bun availability
+#### 1a. Check bun + python availability
 
 ```bash
 bun --version
+python3 --version
 ```
 
-If this fails (bun not installed), skip to **1c (WebSearch fallback)** for all portals and note the fallback in the Step 5 output.
+If `bun` is missing, skip bun-based CLIs. If `python3` is missing, skip Python CLIs. Fall back to **1d (WebSearch)** for any portal whose runtime is unavailable.
 
-#### 1b. Run CLI tools (primary — run these in parallel where possible)
+#### 1b. Discover + classify installed portal CLI skills
 
-Discover all installed portal CLI skills by reading every `SKILL.md` found under `.agents/skills/*/SKILL.md`. Each file documents that portal's exact CLI flags and usage examples. **Use each portal's own documented interface — do not guess flags.** This approach automatically includes any new portals added via `/add-portal` without requiring changes to this file.
+Discover all installed portal skills by reading every `SKILL.md` under `.agents/skills/*/SKILL.md`. Each documents its own CLI flags. Classify each into one of two tiers:
 
-For each installed portal skill:
+- **Tier A — API-fed CLIs** (JSON/RSS/API, fast & parallel): most portal CLIs. Invoke via `bun run .agents/skills/<name>/cli/src/cli.ts search …`.
+- **Tier B — Browser-automation CLIs** (Playwright, anti-CAPCHA, slow & sequential): use when the portal blocks direct API calls. Invoke via `bun run .agents/skills/<name>/cli/src/cli.ts search …` (same shape — the CLI itself drives Chromium). **Limit Tier B to ONE invocation at a time** and increase the per-call timeout.
 
-1. Read its `SKILL.md` to find the correct `bun run …` invocation and supported flags.
-2. Translate the query terms from `search-queries.md` into that portal's flag format (e.g. `--key`, `--search-string`, `--query`, filter codes — whatever the portal's SKILL.md specifies).
-3. Scope to the last 14 days using the portal's supported recency flag (`--jobage`, `--since <YYYY-MM-DD>`, `--order PublicationDate`, etc. — as documented per portal).
-4. Cap results to ~20 per call using the portal's limit flag.
-5. Use `--format json` for machine-readable output.
+For each Tier A skill:
+1. Read its `SKILL.md` for the correct invocation and flags.
+2. Translate query terms from `search-queries.md` into that portal's flag format.
+3. Scope to the last 14 days using the portal's recency flag.
+4. Cap results to ~20 per call.
+5. Use `--format json` where supported.
 
-Run all portal CLI calls in parallel where possible using the Agent tool. Collect all `results` arrays into a single pool for Step 2, keeping each result tagged with its source portal skill (for Step 2 `detail` lookups).
+Run all Tier A portal CLIs in parallel using the Agent tool. Collect `results` arrays into a single pool. Tier B CLIs run sequentially after.
 
-If a CLI tool exits with a non-zero code, log the error message and continue — do not abort the whole search.
+If a CLI exits non-zero, log the error and continue — do not abort the whole search.
 
-#### 1c. WebSearch fallback
+#### 1c. Special handling — LinkedIn recruiter posts (`linkedin-recruiter-scraper`)
+
+The `linkedin-recruiter-scraper` (Tier B) uses public search engines via Playwright to find
+LinkedIn POST permalinks that include an apply-by-email address. When it's in scope:
+
+1. Build `site:linkedin.com/posts` queries from `search-queries.md` terms (add `hiring`, `send your CV`, `apply at`, `email`).
+2. Run ONE query at a time: `bun run .agents/skills/linkedin-recruiter-scraper/cli/src/cli.ts search --query "<query>" [--max-results N] [--engine google|bing]`
+3. If `applyEmail` is non-null, it's a strong lead — flag it as **high-interest (email-apply possible)** in the results pool.
+4. Each result feeds directly into the email application workflow (`linkedin_email_workflow.py`) — add these to the tracker with `channel: "linkedin"` and `status: "pending_user_action"` (or `interested`).
+
+Deduplicate links against `seen_jobs.json`. Note: Tier B CLIs need Playwright Chromium (`bun install && npx playwright install chromium` once).
+
+#### 1d. Messaging platforms — WhatsApp, Telegram, Discord
+
+These sources fetch job offers shared in groups/channels. They need prior auth (one-time):
+
+| Source | Auth | CLI command |
+|--------|------|-------------|
+| **Telegram** | `TELEGRAM_API_ID` + `TELEGRAM_API_HASH` env vars (https://my.telegram.org), then interactive phone verification | `bun run .agents/skills/telegram-search/cli/src/cli.ts fetch --group "GroupName" --limit 50` |
+| **Discord** | `DISCORD_BOT_TOKEN` env var + bot invited to server | `bun run .agents/skills/discord-search/cli/src/cli.ts fetch --channel "jobs" --limit 50` |
+| **WhatsApp** | QR scan (one-time, secondary number recommended) | `bun run .agents/skills/whatsapp-search/cli/src/cli.ts auth` then `listen` |
+
+When in scope:
+1. Read each messaging skill's `SKILL.md` for exact invocation.
+2. Run fetch/listen per source. `applyEmail` + `channel: <source>` → strong lead.
+3. OAuth-dependent: if auth not configured, **log a warning with setup instructions** and continue.
+4. Deduplicate against `seen_jobs.json` + tracker.
+5. Add results to tracker with `channel: "telegram"/"discord"/"whatsapp"`.
+
+#### 1e. Image OCR — `jobs_images/` directory
+
+The `image-ocr` skill extracts job data from images (screenshots, photos of offers).
+
+1. If `jobs_images/` has images: `python3 .agents/skills/image-ocr/cli/ocr_cli.py batch --dir jobs_images/`
+2. For single images: `python3 .agents/skills/image-ocr/cli/ocr_cli.py extract --image path.png`
+3. Parsed results have `image_path` field for traceability.
+4. Source tag: `source: "image_ocr"`.
+
+Supported formats: PNG, JPG, JPEG, WEBP, BMP. Engine: rapidocr (primary) → pytesseract (fallback if Tesseract binary installed).
+
+#### 1f. WebSearch fallback
 
 Use `WebSearch` for:
 - Portals listed in `search-queries.md` that do **not** have a corresponding directory under `.agents/skills/`

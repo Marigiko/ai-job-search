@@ -5,3 +5,8 @@ python-dotenv>=1.0.0
 PyYAML>=6.0
 playwright>=1.40.0
 requests>=2.31.0
+# OCR engine (rapidocr is primary — no tesseract binary needed)
+rapidocr-onnxruntime>=1.2.0
+# Messaging platform fetchers
+telethon>=1.44.0
+discord.py>=2.7.0
