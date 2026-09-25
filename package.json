@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "recharts": "^2.12.7"
+  }
+}

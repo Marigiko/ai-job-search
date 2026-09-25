@@ -2,7 +2,8 @@
 
 <!-- SETUP: Customize these queries based on your skills, target roles, and location. -->
 <!-- Target roles are the canonical list in CLAUDE.md → Target Roles. Keep the tiers below in sync. -->
-<!-- This candidate seeks a SECOND role, remote-in-USD or with relocation/visa (goal: migrate). -->
+<!-- GOAL: Enter the US startup market as a dev founder / founding engineer. Willing to accept $1000/mo for the right role. -->
+<!-- CONTACT STRATEGY: All leads must be contactable by email for outbound automation. -->
 
 ## Installed portal CLIs (primary for `/scrape`)
 
@@ -14,83 +15,104 @@ The `site:` query templates in this file are the **WebSearch fallback** — for 
 
 Primary:
 - **linkedin.com/jobs** — LinkedIn job listings (via `linkedin-search`; location passed explicitly, incl. "Remote")
+- **linkedin.com/posts** — Recruiter hiring posts with apply-by-email (via `linkedin-posts-search` + `linkedin-recruiter-scraper`)
 - **freehire.dev** — tech aggregator (via `freehire-search`; multi-market, remote facets)
-- **Visa/relocation & remote boards** — added via `/add-portal` (Arbeitnow, RemoteOK, We Work Remotely, Relocate.me, Landing.jobs, VanHack)
-- **Computrabajo (ar) + GetOnBoard** — LatAm/Argentina safety net (`computrabajo-search --country ar`, `getonbrd-search`)
+- **The Muse** — US companies and startups (via `themuse-search`)
+- **AngelList / Wellfound** — US startup jobs (email-contactable, equity-focused)
 
 Secondary (company career pages via Google):
-- Direct Google searches with `site:` filters for known target companies
+- Direct Google searches with `site:` filters for known US startup career pages
+- Y Combinator job board (workatastartup.com)
 
 ## Query Categories
 
-Queries are grouped by priority. Because the goal is remote-USD or relocation/visa, prefer the modifiers
-`remote`, `"visa sponsorship"`, and `relocation` on international queries. Local queries are a fallback.
+Queries are grouped by priority. The goal is **US startup / founding engineer roles paying $1000+ USD/mo or with equity**, all contactable by email.
 
-### Priority 1: Backend Developer & AI Developer (strongest, most desired)
-
-```
-site:linkedin.com/jobs "backend developer" remote
-site:linkedin.com/jobs "backend engineer" "visa sponsorship"
-site:linkedin.com/jobs ("web scraping" OR "data pipeline" OR "python") remote
-site:linkedin.com/jobs ("AI engineer" OR "AI developer" OR "LLM" OR "agents") remote
-site:linkedin.com/jobs ("AI engineer" OR "RAG" OR "LLM") "relocation"
-```
-
-### Priority 2: Frontend Developer & VibeCoder / AI-assisted builder
+### Priority 1: US Startup Founder / Founding Engineer Roles
 
 ```
-site:linkedin.com/jobs "frontend developer" remote
-site:linkedin.com/jobs "full stack developer" ("visa sponsorship" OR relocation)
-site:linkedin.com/jobs ("AI-assisted" OR "prompt engineer" OR "vibe coding" OR "product engineer") remote
+site:linkedin.com/jobs "founding engineer" OR "first engineer" OR "technical co-founder" USA
+site:linkedin.com/jobs "founding engineer" "pre-seed" OR "seed" "startup"
+"founding engineer" "startup" "send your CV" OR "apply at" OR "email"
+"technical co-founder" "startup" ("send CV" OR "apply" OR "contact") email
+site:linkedin.com/posts "hiring" ("founding engineer" OR "first engineer" OR "technical co-founder") startup
+site:linkedin.com/posts "send your CV" ("founding engineer" OR "first engineer") USA
+"we're hiring" "founding engineer" OR "first engineer" startup email
+"join our team" "technical co-founder" OR "founding engineer" email
 ```
 
-### Priority 3: Relocation / visa-sponsor focused (any of the above roles)
-
-Target boards and phrasing that surface migration-friendly employers.
+### Priority 2: US Startup Developer Roles (Backend/AI/Full-Stack)
 
 ```
-site:arbeitnow.com (backend OR "ai engineer" OR frontend) "visa sponsorship"
-site:remoteok.com (backend OR python OR "ai engineer")
-site:relocate.me developer
-"software engineer" "visa sponsorship" (Netherlands OR Germany OR "New Zealand" OR Canada OR USA)
-"backend developer" "relocation package"
+site:linkedin.com/jobs ("startup" OR "early-stage") ("backend developer" OR "AI engineer") USA remote
+site:linkedin.com/jobs "software engineer" "startup" ("pre-seed" OR "seed" OR "Series A") USA
+site:linkedin.com/posts "hiring" ("backend" OR "AI engineer" OR "full stack") "startup" email
+"hiring" "software engineer" "startup" ("send your CV" OR "apply at") email
+site:linkedin.com/jobs ("backend developer" OR "AI developer") "startup" "visa sponsorship" USA
+"remote" "startup" "developer" ("apply" OR "send resume") email
 ```
 
-### Priority 4: Broader net (contract / part-time second income)
+### Priority 3: US Companies Hiring Remotely from LATAM
 
 ```
-site:linkedin.com/jobs (python OR "backend developer") ("part-time" OR contract) remote
-site:freehire.dev backend remote
-site:linkedin.com/jobs "developer" remote (contract OR freelance)
+site:linkedin.com/jobs "remote" "USA" ("backend" OR "AI" OR "full stack") "contractor"
+site:linkedin.com/jobs "remote" "US startup" ("node" OR "python" OR "AI") "contract"
+"hiring remotely" "USA" "developer" email "apply"
+site:linkedin.com/posts "remote developer" "USA" "startup" "send CV"
+"remote" "hiring" "startup" "email" ("developer" OR "engineer")
+```
+
+### Priority 4: Email-Only Discovery (Recruiter Posts + Cold Outreach)
+
+These queries target LinkedIn recruiter posts where the apply method is by email — the primary automation path.
+
+```
+site:linkedin.com/posts "hiring" ("backend" OR "AI" OR "full stack" OR "founding") ("send CV to" OR "email" OR "apply at")
+site:linkedin.com/posts "we're hiring" ("startup" OR "early-stage") ("send your CV" OR "apply at")
+site:linkedin.com/posts ("founding engineer" OR "first engineer") ("send your CV" OR "email")
+site:linkedin.com/posts "hiring" ("node" OR "python" OR "AI") "startup" "email"
+site:linkedin.com/posts "join our team" ("developer" OR "engineer") "startup" "send"
+"send your CV to" ("startup" OR "founding" OR "first engineer") email
 ```
 
 ## Mobility Filter
 
-Relocation is a **goal, not a constraint** (CLAUDE.md → Mobility). When evaluating results:
-- **Fully remote (USD pay in the target band):** in scope — top priority for the "second income now" case.
-- **On-site abroad with relocation/visa support:** in scope and preferred (aligns with migration goal).
-- **On-site abroad without support, candidate willing to relocate:** in scope, FLAG the relocation cost.
-- **Local on-site Resistencia (Chaco) / Argentina within commute, or Buenos Aires:** in scope as a fallback.
-- **On-site somewhere unreachable with no remote/relocation path:** out of scope.
+Remote from Argentina to US companies is the primary mode. Relocation is a **goal, not a constraint**:
+- **Remote (US company, USD pay ≥$1000/mo):** in scope — top priority
+- **Remote with equity (startup):** in scope — preferred for founder roles
+- **On-site US with relocation/visa:** in scope — but must justify the $1000/mo tradeoff
+- **Local Argentina / non-US:** out of scope unless it's a US company's LATAM office
 
 ## Salary Filter
 
-Only pursue postings whose stated pay meets the minimum band (CLAUDE.md → Compensation, currently 2000 USD/mo).
+Only pursue postings whose stated pay meets the minimum band (CLAUDE.md → Compensation, currently 1000 USD/mo).
 Where a portal supports a salary filter, set it to the minimum. If pay is not stated, keep the posting but flag
-"salary undisclosed — confirm early".
+"salary undisclosed — confirm early". For founder roles with equity, lower cash compensation is acceptable if equity is meaningful.
+
+## Contact Filter (NEW — email required)
+
+**Every lead must have a contactable email.** Prioritize:
+1. Postings that explicitly say "send your CV to <email>"
+2. Recruiter posts with an apply-by-email
+3. Company career pages with a direct email
+4. LinkedIn jobs where the apply URL leads to an email-based application
+
+Skip postings that ONLY have LinkedIn Easy Apply or an ATS with no email contact — these don't fit the automation workflow.
 
 ## Date Filter
 
 Only include jobs posted within the last 14 days, or with an application deadline that has not yet passed. If a posting date cannot be determined, include it but flag as "date unknown".
 
-## Discovery: LinkedIn recruiter posts (Phase 3)
+## Discovery: LinkedIn recruiter posts (Primary Phase)
 
-Many roles are advertised in recruiter *posts* (often with an apply-by-email), not the jobs section. Discover public
-post permalinks via WebSearch, then hand the URL to `linkedin-posts-search extract <url>`:
+Many startup roles are advertised in recruiter *posts* with apply-by-email. This is the primary discovery path:
+1. Use `linkedin-recruiter-scraper` to find recruiter posts for target roles/locations
+2. Use `linkedin-posts-search extract <url>` to extract the apply email from each post
+3. Feed emails into the `apply` skill for automated Gmail draft outreach
 
 ```
-site:linkedin.com/posts ("send your CV" OR "apply at" OR "hiring") ("backend" OR "ai engineer" OR frontend) remote
-site:linkedin.com/posts ("visa sponsorship" OR relocation) developer
+site:linkedin.com/posts ("send your CV" OR "apply at" OR "hiring") ("founding engineer" OR "first engineer" OR "backend" OR "AI") startup
+site:linkedin.com/posts ("visa sponsorship" OR relocation) developer startup
 ```
 
 ## Adapting Queries

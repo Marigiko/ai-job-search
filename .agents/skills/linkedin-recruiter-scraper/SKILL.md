@@ -3,8 +3,8 @@ name: linkedin-recruiter-scraper
 version: 1.0.0
 description: >
   Use this skill to discover LinkedIn recruiter POSTS that contain apply-by-email
-  addresses for a given role/location. Searches public search engines (Google/Bing)
-  via Playwright/chromium to find LinkedIn post permalinks, then extracts the apply
+  addresses for a given role/location. Searches public search engines via Serper API,
+  DuckDuckGo, or direct scrape to find LinkedIn post permalinks, then extracts the apply
   email + metadata from each. Designed to feed the email application workflow
   (`/apply` with `applyEmail`). Personal use only (LinkedIn ToS) — no authentication,
   no feed crawling. Trigger phrases: linkedin recruiter posts, linkedin email jobs,
@@ -31,9 +31,9 @@ from each post. The bridge to the **email application workflow** (`/apply` with
 ## Architecture
 
 ```
-queries.txt ──► cli.ts search (Playwright+Google/Bing) ──► LinkedIn URLs
-                                                          │
-                  cli.ts extract (per URL) ◄───────────────┘
+queries.txt ──► cli.ts search (Serper API → DuckDuckGo → Bing scrape) ──► LinkedIn URLs
+                                                                        │
+                  cli.ts extract (per URL) ◄─────────────────────────────┘
                                 │
                                 ▼
                       { meta: { count }, results: [...] }
@@ -105,9 +105,11 @@ bun run .agents/skills/linkedin-recruiter-scraper/cli/src/cli.ts parse \
 
 ## Notes
 
-- **Playwright + chromium required** for `search` (browser automation). Install with:
-  `bun install && npx playwright install chromium`. `extract` and `parse` do not need Playwright.
-- `search` uses Bing by default — Google may intercept with CAPTCHA/consent, Bing is friendlier to automation.
+- **Search backends (in priority order):**
+  1. **Serper API** (if `SERPER_API_KEY` env var is set) — Google results without CAPTCHA, 2500 free calls
+  2. **DuckDuckGo HTML** (free, no API key) — fallback when Serper unavailable
+  3. **Bing/Google direct scrape** (last resort) — may hit CAPTCHA
+- `search` uses DuckDuckGo by default (free, no key needed). Set `SERPER_API_KEY` for better results.
 - The post `date` is decoded from the activity id's high bits when available.
 - `applyEmail` is the first address found; `emails` lists all.
 - If a post has no email, the lead still carries the text/author so the user can apply via the normal channel.

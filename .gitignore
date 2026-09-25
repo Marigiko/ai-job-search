@@ -97,3 +97,19 @@ dashboard/*.html
 
 # Brainstorm mockups (superpowers visual companion) - never ship
 .superpowers/
+
+# Local databases
+careeros.db
+test_careeros.db
+
+# Personal data from job outreach (third-party emails, OCR of postings) - never commit
+data/batch_sent.json
+data/email_validation_report.json
+data/new_jobs.json
+jobs_images/ocr_results*.json
+
+# Local outreach data (third-party personal data) - never commit
+data/
+
+# Local candidate profile (personal data)
+profile.local.json

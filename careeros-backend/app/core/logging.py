@@ -1,0 +1,21 @@
+"""Structured logging configuration."""
+
+from __future__ import annotations
+
+import logging
+import sys
+
+
+def configure_logging(level: str = "INFO") -> None:
+    """Configure root logger with a consistent format."""
+    logging.basicConfig(
+        level=level.upper(),
+        format="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+        stream=sys.stdout,
+    )
+
+
+def get_logger(name: str) -> logging.Logger:
+    """Return a named logger instance."""
+    return logging.getLogger(name)

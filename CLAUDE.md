@@ -77,29 +77,39 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 <!-- Canonical list of role types to target. Consumed by search-queries.md (search) AND -->
 <!-- 04-job-evaluation.md (scoring) AND 05-cv-templates.md (CV framing). Keep in sync. -->
 <!-- Priority 1 = strongest/most-desired; higher numbers = adjacent/wider net. -->
-- **Backend Developer** (Priority 1) — Node.js/NestJS, Python (FastAPI/Django), REST/GraphQL, event-driven (Kafka/RabbitMQ), AWS; web scraping & data pipelines
-- **AI Developer** (Priority 1) — LLM orchestration (Ollama, LangChain), multi-agent systems, n8n automation, RAG, Claude Code / agentic tooling
-- **Frontend Developer** (Priority 2) — React.js, Next.js, React Native/Expo, Tailwind, shadcn/ui
-- **VibeCoder / AI-assisted builder** (Priority 2) — rapid product building with AI coding tools (Claude Code, etc.)
+- **Dev Founder / Technical Co-founder** (Priority 1) — founding engineer at US startups, equity + modest salary, full-stack + AI builder
+- **Founding Engineer / First Engineer** (Priority 1) — early-stage US startups (pre-seed/seed), wears multiple ships, AI-forward
+- **Backend Developer** (Priority 2) — Node.js/NestJS, Python (FastAPI/Django), REST/GraphQL, event-driven (Kafka/RabbitMQ), AWS; web scraping & data pipelines
+- **AI Developer** (Priority 2) — LLM orchestration (Ollama, LangChain), multi-agent systems, n8n automation, RAG, Claude Code / agentic tooling
+- **Frontend Developer** (Priority 3) — React.js, Next.js, React Native/Expo, Tailwind, shadcn/ui
+- **VibeCoder / AI-assisted builder** (Priority 3) — rapid product building with AI coding tools (Claude Code, etc.)
 <!-- Add/adjust roles here; then reflect them in search-queries.md priority tiers. -->
 
 ### Target Sectors
-- AI / LLM products & automation (legal-tech, dev-tools, agents) — e.g. Magnar-like legaltech, AI startups
-- SaaS / cloud-native platforms and startups hiring backend/full-stack in USD or with relocation/visa
-- Any sector offering strong remote-USD comp or EU/NZ/USA-Canada relocation for backend/AI roles
+- **US startups** (pre-seed to Series A) hiring founding engineers / first engineers — primary target
+- **US dev-founder roles** — technical co-founder positions at early-stage startups
+- AI / LLM product startups in the US (agentic tooling, dev-tools, automation)
+- Remote-first US companies open to LATAM contractors at startup rates
+- Any US startup offering equity + modest salary ($1000/mo entry point) to break into the US market
 
 ### Compensation
 <!-- Candidate salary preference. Drives the Compensation Fit scoring dimension (04-job-evaluation.md #7). -->
 <!-- Separate from salary_lookup.py, which is a company market-index benchmark, not a preference. -->
 - **Currency:** USD (monthly, net take-home unless a posting states otherwise)
-- **Minimum acceptable:** 2000 USD/mo (below this → hard fail on Compensation Fit)
-- **Ideal / target:** 3000 USD/mo (at or above → full marks)
-- **Context:** this is a *second* income on top of a ~1500 USD/mo part-time role, so it can be part-time or contract.
+- **Minimum acceptable:** 1000 USD/mo (entry point to break into the US startup market — below this → hard fail)
+- **Ideal / target:** 2000+ USD/mo (with equity preferred for founder roles)
+- **Context:** this is a *second* income on top of a ~1500 USD/mo part-time role. Willing to accept $1000/mo for the right US startup/founder role to gain US market entry, equity, and references. Part-time or contract OK.
 
 ### Deal-breakers
 <!-- Hard constraints on job search. NOTE: relocation is NOT a deal-breaker — see Mobility above. -->
 - Pay below the minimum acceptable band (see Compensation)
 - Roles that conflict with keeping the current part-time Magnar role (must fit as a second income — part-time/contract/remote-friendly hours)
+
+### Contact Strategy
+<!-- How to reach out to leads — drives automation workflow -->
+- **Preferred contact method:** email (for outbound automation via Gmail drafts)
+- **Target leads must have:** a directly contactable email (apply-by-email postings, recruiter posts with email, or company career email)
+- **Outbound automation:** use `linkedin-posts-search` and `linkedin-recruiter-scraper` to find apply-by-email leads, then automate Gmail drafts via the `apply` skill
 
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)

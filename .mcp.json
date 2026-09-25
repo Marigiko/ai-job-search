@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "linkedin": {
+      "command": "/home/keyz/.local/bin/mcp-linkedin",
+      "startupTimeoutMs": 120000
+    },
+    "upwork": {
+      "command": "/home/keyz/.local/bin/mcp-upwork",
+      "startupTimeoutMs": 120000
+    },
+    "freelance": {
+      "command": "/home/keyz/.local/bin/mcp-freelance",
+      "startupTimeoutMs": 120000
+    },
+    "jobspy": {
+      "command": "/home/keyz/.local/bin/mcp-jobspy",
+      "startupTimeoutMs": 120000
+    }
+  }
+}

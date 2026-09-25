@@ -9,6 +9,12 @@ from email.mime.base import MIMEBase
 from email import encoders
 from pathlib import Path
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent.parent / "scripts"))
+from env_loader import load_env
+load_env()
+from profile_loader import PROFILE, get_sender
+
 
 def _deobfuscate_email(text: str) -> str:
     """Convert obfuscated emails to real format."""
@@ -32,7 +38,7 @@ def send_application_email(to_email: str, cv_path: str, cover_path: str | None, 
     """Send application via Gmail SMTP."""
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
-    sender = os.getenv("GMAIL_SENDER", "you@example.com")
+    sender = get_sender()
     password = os.getenv("GMAIL_APP_PASSWORD")
     if not password:
         raise ValueError("GMAIL_APP_PASSWORD not set in .env")
@@ -45,13 +51,13 @@ def send_application_email(to_email: str, cv_path: str, cover_path: str | None, 
 
 I am writing to express my interest in the {job_title} position.
 
-My name is Mario Aquino, a Senior Full-Stack / Backend Engineer with 5+ years of experience in Node.js, TypeScript, Python, AWS, Docker, Kubernetes, and AI/LLM automation. I have attached my CV and cover letter for your review.
+My name is {PROFILE.get('name', 'Your Name')}, a Senior Full-Stack / Backend Engineer with 5+ years of experience in Node.js, TypeScript, Python, AWS, Docker, Kubernetes, and AI/LLM automation. I have attached my CV and cover letter for your review.
 
 I would welcome the opportunity to discuss how my background aligns with your needs.
 
 Best regards,
-Mario Aquino
-you@example.com · linkedin.com/in/keyzdev
+{PROFILE.get('name', 'Your Name')}
+{PROFILE.get('email', 'you@example.com')} · {PROFILE.get('linkedin', 'linkedin.com/in/your-handle')}
 """
     msg.attach(MIMEText(body, "plain"))
 

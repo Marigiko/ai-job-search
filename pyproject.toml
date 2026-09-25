@@ -1,3 +1,16 @@
-# pyproject.toml
+# pyproject.toml (root)
+# Note: CareerOS backend tests live in careeros-backend/ which has its own pyproject.toml
+# pointing pytest at that directory. The root config below is only for any top-level
+# scripts/ tests that don't pull heavy optional deps.
 [tool.pytest.ini_options]
 pythonpath = ["."]
+testpaths = ["tests"]
+# Skip test modules that depend on optional/heavy packages not installed by default
+addopts = "--ignore=tests/test_browser_runner.py"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "SIM"]

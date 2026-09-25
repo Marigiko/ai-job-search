@@ -155,19 +155,68 @@ function synthTitle(text: string | null, author: string | null): string {
   return author ? `Post by ${author}` : "LinkedIn post"
 }
 
+/** Extract company name from JSON-LD or og:title patterns. */
+function extractCompany(html: string, ogTitle: string | null): string | null {
+  // Try JSON-LD orgName
+  const jsonLdMatch = html.match(
+    /<script[^>]+type="\/application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/i,
+  )
+  if (jsonLdMatch) {
+    try {
+      const data = JSON.parse(jsonLdMatch[1])
+      const org = data?.author?.name || data?.publisher?.name || data?.hiringOrganization?.name
+      if (org) return org.replace(/\s*-\s*LinkedIn\.?$/, "").trim()
+    } catch { /* ignore malformed JSON-LD */ }
+  }
+  // Fallback: extract from og:title "| Company" pattern
+  if (ogTitle) {
+    const pipe = ogTitle.lastIndexOf("|")
+    if (pipe > 0) {
+      const candidate = ogTitle.slice(pipe + 1).trim()
+      if (candidate && !candidate.toLowerCase().includes("linkedin")) return candidate
+    }
+  }
+  return null
+}
+
+/** Extract location from common patterns in post text. */
+function extractLocation(html: string): string | null {
+  const locMatch = html.match(/"location":"([^"]+)"/) || html.match(/"jobLocation":"([^"]+)"/)
+  return locMatch ? decodeHtmlEntities(locMatch[1]) : null
+}
+
+/** Extract description from JSON-LD schema (LinkedIn embeds this). */
+function extractJsonLdDescription(html: string): string | null {
+  const match = html.match(
+    /<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/i,
+  )
+  if (!match) return null
+  try {
+    const data = JSON.parse(match[1])
+    const desc = data?.description || data?.articleBody
+    return desc ? decodeHtmlEntities(desc).slice(0, 4000) : null
+  } catch {
+    return null
+  }
+}
+
 /** Build a PostResult from fetched post HTML. */
 export function buildFromHtml(html: string, url: string): PostResult {
   const ogTitle = meta(html, "og:title")
   const ogDesc = meta(html, "og:description") || meta(html, "description")
+  const metaDesc = meta(html, "description")
   const author = authorFromOgTitle(ogTitle)
-  const text = ogDesc || null
+  const company = extractCompany(html, ogTitle)
+  const location = extractLocation(html)
+  // Fallback chain for text: og:description → meta description → JSON-LD → ""
+  const text = ogDesc || metaDesc || extractJsonLdDescription(html) || null
   const id = activityIdFromUrl(url)
   const emails = extractEmails(html)
   return {
     id: id || url,
     title: synthTitle(text, author),
-    company: null,
-    location: null,
+    company,
+    location,
     date: dateFromActivityId(id),
     url: url.split("?")[0],
     applyEmail: emails[0] ?? null,

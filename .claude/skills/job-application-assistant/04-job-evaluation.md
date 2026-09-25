@@ -58,8 +58,8 @@ Does work history align with what they're looking for?
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** backend/full-stack engineering (Node/TS/Python), cloud-native systems on AWS, API design, AI/LLM automation, web scraping, tech mentoring
-**Moderate:** frontend-lead roles, DevOps/platform engineering, legal-tech / data-acquisition, startup 0→1 product engineering
+**Strong:** backend/full-stack engineering (Node/TS/Python), cloud-native systems on AWS, API design, AI/LLM automation, web scraping, tech mentoring, **startup MVP building (<72h)**, **multi-stack ownership**
+**Moderate:** frontend-lead roles, DevOps/platform engineering, legal-tech / data-acquisition, **startup 0→1 product engineering**, **technical co-founder / founding engineer**
 **Entry-level:** dedicated data-science/ML-research, SRE-only, senior engineering-management (has mentoring, not formal management)
 
 ### 3. Behavioral/Culture Fit (0-100)
@@ -94,19 +94,22 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- Land a strong **second income** (min 2000 / ideal 3000 USD/mo) on top of the current part-time Magnar role
-- **Migrate abroad** via a role with relocation/visa sponsorship (EU, NZ, USA/Canada) — or remote-USD to self-fund it
-- Grow toward senior backend/AI engineering with architectural ownership at an AI-forward company
+- Enter the **US startup market** as a **dev founder / founding engineer / first engineer** at an early-stage company (pre-seed/seed/Series A)
+- Land a role paying **$1000-2000+ USD/mo** (cash + equity acceptable) on top of the current part-time Magnar role
+- **Break into the US market** — gain US references, network, and a foothold for future opportunities
+- Grow toward senior backend/AI engineering with architectural ownership at an AI-forward US company
+- **Migration path:** US remote → potential relocation/visa sponsorship long-term
 
 **Motivation filter:** Evaluate not just whether Mario *can* do the tasks, but whether they will *energize* him:
-- Tasks that energize: building scalable/cloud-native systems, AI/LLM automation & agents, 0→1 product work, clean-architecture refactors, mentoring
+- Tasks that energize: building scalable/cloud-native systems, AI/LLM automation & agents, **startup 0→1 product building**, **founding engineer work (wearing multiple hats, fast iteration)**, clean-architecture refactors, mentoring
 - Tasks that drain: pure maintenance/legacy-only work, bureaucratic low-autonomy process, ticket-taking with no design input
-- Non-task factors: autonomy, AI-forward culture, remote flexibility, relocation/visa support
+- Non-task factors: **startup culture**, **equity upside**, autonomy, AI-forward culture, remote flexibility, US market exposure
 
 **Life situation alignment:**
-- **Security**: has a part-time role (~1500 USD/mo); this search is for *additional* income, so part-time/contract is fine and the minimum band is a hard floor
-- **Flexibility**: must coexist with the current Magnar part-time role → remote-friendly hours strongly preferred
-- **Professional development**: wants architectural growth and a path to relocation/migration
+- **Security:** has a part-time role (~1500 USD/mo); this search is for *additional* income, so part-time/contract is fine. Minimum band ($1000/mo) is a hard floor for cash compensation, but equity-heavy founder roles may go lower.
+- **Flexibility:** must coexist with the current Magnar part-time role → remote-friendly hours strongly preferred
+- **Professional development:** wants US market entry, architectural growth, and a path to relocation/migration
+- **Risk tolerance:** willing to accept lower cash comp for the right US startup with equity and growth potential
 
 ### 6. Salary Benchmark (Optional)
 

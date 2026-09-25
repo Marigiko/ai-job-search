@@ -14,6 +14,8 @@
 
 An AI-powered job application framework that runs on [Claude Code](https://claude.com/claude-code), [MiMoCode](https://github.com/anthropics/mimocode), or [OpenCode](https://github.com/opencode-ai/opencode). Fork it, fill in your profile, and let your AI assistant evaluate job postings, tailor your CV, write cover letters, and prepare you for interviews.
 
+**CareerOS** is the next evolution: a unified, visual, premium job-search operating system built on FastAPI + React, with a Kanban pipeline, A/B-tested outreach, and real-time analytics. See the [CareerOS Quickstart](#careeros-quickstart) below to get it running in two commands.
+
 > Note: This is an independent open-source project and is not affiliated with, endorsed by, sponsored by, or maintained by Anthropic. Anthropic and Claude Code are referenced only to describe one of the toolchains this workflow supports.
 >
 > This project has **no affiliated cryptocurrency, token, or paid sponsorship program**. Anything claiming otherwise is unauthorized and should be treated as a scam. The only ways to support the project are the Ko-fi link below and contributing on GitHub.
@@ -66,6 +68,80 @@ files ready    with fit ratings     (LaTeX, tailored)
 ```
 
 The framework encodes career guidance best practices, including structured evaluation criteria, forward-looking cover letter framing, and optional salary benchmarking.
+
+## CareerOS Quickstart
+
+CareerOS is a full-stack job-search OS: **FastAPI + SQLAlchemy 2.0 async backend** with a **React 18 + Vite + Tailwind frontend**. Single-user, local-first, zero external services.
+
+```
+┌─────────────────────────┬──────────────────────────────────┐
+│  Frontend (React + Vite) │  Backend (FastAPI + SQLAlchemy) │
+│  :5173                   │  :8000                           │
+│  - Kanban pipeline       │  - /api/v1/* REST + WebSocket   │
+│  - Outreach composer     │  - SQLite via async SQLAlchemy  │
+│  - Funnel analytics      │  - Portal search plugin system  │
+│  - CV/CL generator       │  - Outreach queue + A/B testing │
+└─────────────────────────┴──────────────────────────────────┘
+```
+
+### 1. Clone & setup (one time)
+
+```bash
+git clone https://github.com/MadsLorentzen/ai-job-search && cd ai-job-search
+make setup              # installs backend (venv + pip) and frontend (npm)
+```
+
+### 2. Initialize the database
+
+```bash
+make migrate            # create tables via Alembic (optional — dev mode auto-creates)
+make migrate-data       # import your legacy JSON leads, templates, bounces → SQLite
+```
+
+### 3. Run it
+
+```bash
+make dev                # starts backend (:8000) and frontend (:5173) together
+```
+
+Open <http://localhost:5173> — the Kanban board, outreach composer, and analytics dashboard are ready. Backend docs: <http://localhost:8000/docs>.
+
+### Useful `make` targets
+
+| Target | What it does |
+|--------|-------------|
+| `make dev` | Backend + frontend in parallel |
+| `make dev-backend` / `make dev-frontend` | Run one side only |
+| `make test` | Backend pytest suite |
+| `make lint` | Ruff (backend) + tsc (frontend) |
+| `make migrate` | Alembic upgrade to head |
+| `make migrate-data` | Import legacy JSON/CSV → SQLite |
+| `make setup` | One-time dependency install |
+| `make clean` | Remove build artefacts + caches |
+| `make help` | Show all targets |
+
+### Environment
+
+Backend config lives in `.env` (copied from `.env.example`). Key variables:
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `DATABASE_URL` | `sqlite+aiosqlite:///./careeros.db` | Async SQLAlchemy URL |
+| `APP_PORT` | `8000` | Backend listen port |
+| `CORS_ORIGINS` | `http://localhost:5173,...` | Frontend origin allowlist |
+| `SMTP_HOST` / `SMTP_SENDER` / `GMAIL_APP_PASSWORD` | — | Outreach email sending |
+| `OUTREACH_DAILY_CAP` | `20` | Rate limit for sent emails |
+| `HUNTER_API_KEY` / `APOLLO_API_KEY` | — | Contact discovery APIs |
+
+### Tech stack
+
+| Layer | Technology |
+|-------|-----------|
+| Backend | FastAPI, uvicorn, SQLAlchemy 2.0 async, Alembic, Pydantic |
+| Database | SQLite (via aiosqlite) |
+| Frontend | React 18, Vite, Tailwind 3, Zustand, TanStack Query, Framer Motion, Recharts |
+| Testing | pytest + pytest-asyncio |
+| Linting | Ruff (Python), tsc (TypeScript) |
 
 ## Prerequisites
 

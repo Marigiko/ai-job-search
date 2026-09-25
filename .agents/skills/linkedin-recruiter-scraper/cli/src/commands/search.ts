@@ -10,9 +10,9 @@ export interface SearchOptions {
 }
 
 /**
- * Discover LinkedIn recruiter post URLs via public search engines (Google/Bing).
- * Delegates the Playwright browser automation to the Python search module (which
- * has a working Playwright/chromium install) and converts its JSON output into the
+ * Discover LinkedIn recruiter post URLs via public search engines.
+ * Tries Serper API → DuckDuckGo → direct scrape, in that order.
+ * Delegates to the Python search module and converts its JSON output into the
  * standard results contract.
  */
 export async function runSearch(opts: SearchOptions): Promise<number> {
@@ -28,14 +28,13 @@ export async function runSearch(opts: SearchOptions): Promise<number> {
   const here = dirname(fileURLToPath(import.meta.url))
   const pyScript = resolve(here, "..", "..", "..", "search.py")
 
-  // Try python3 first (system Python with playwright), fall back to python.
   const candidates = process.platform === "win32" ? ["python3", "python"] : ["python3"]
   let proc: ReturnType<typeof spawnSync> | null = null
   for (const py of candidates) {
     const r = spawnSync(
       py,
       [pyScript, "--query", query, "--max-results", maxResults, "--engine", engine, "--format", "json"],
-      { encoding: "utf-8", timeout: 90_000 },
+      { encoding: "utf-8", timeout: 30_000 },
     )
     if (!r.error) {
       proc = r
@@ -43,7 +42,7 @@ export async function runSearch(opts: SearchOptions): Promise<number> {
     }
   }
   if (!proc) {
-    writeError("no python interpreter with playwright available. Install: pip install playwright && python -m playwright install chromium", "NO_PYTHON")
+    writeError("no python interpreter available. Install Python 3.", "NO_PYTHON")
     return 1
   }
 
