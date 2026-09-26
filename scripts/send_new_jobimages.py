@@ -6,21 +6,23 @@ from pathlib import Path
 
 import os
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from profile_loader import get_sender
 
-sender = get_sender()
-import re
-_env = open('.env', encoding='utf-8').read()
-_password_match = re.search(r'GMAIL_APP_PASSWORD=(\S+)', _env)
-password = _password_match.group(1) if _password_match else ''
+def main() -> None:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from profile_loader import get_sender
 
-applications = [
-    {
-        'to': 'gbellen.rrhh@gmail.com',
-        'subject': 'Application: Software Engineer Python (AI) - Mario Aquino',
-        'company': 'Python AI (via G. Bellenin)',
-        'body': '''Estimado equipo de contratacion,
+    sender = get_sender()
+    import re
+    _env = open('.env', encoding='utf-8').read()
+    _password_match = re.search(r'GMAIL_APP_PASSWORD=(\S+)', _env)
+    password = _password_match.group(1) if _password_match else ''
+
+    applications = [
+        {
+            'to': 'gbellen.rrhh@gmail.com',
+            'subject': 'Application: Software Engineer Python (AI) - Mario Aquino',
+            'company': 'Python AI (via G. Bellenin)',
+            'body': '''Estimado equipo de contratacion,
 
 Mi nombre es Mario Aquino, soy desarrollador de software con mas de 5 anos 
 de experiencia construyendo sistemas backend en produccion con Python 
@@ -48,14 +50,14 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev | github.com/Marigiko
 ''',
-        'cv': 'cv/main_pythonai_arg.pdf',
-        'cl': 'cover_letters/cover_pythonai_arg.pdf',
-    },
-    {
-        'to': 'mpassarotti@gmail.com',
-        'subject': 'Application: FullStack Developer SSR/SR - Mario Aquino',
-        'company': 'HealthTech (via M. Passarotti)',
-        'body': '''Estimada Mariana,
+            'cv': 'cv/main_pythonai_arg.pdf',
+            'cl': 'cover_letters/cover_pythonai_arg.pdf',
+        },
+        {
+            'to': 'mpassarotti@gmail.com',
+            'subject': 'Application: FullStack Developer SSR/SR - Mario Aquino',
+            'company': 'HealthTech (via M. Passarotti)',
+            'body': '''Estimada Mariana,
 
 Mi nombre es Mario Aquino, soy desarrollador full-stack con mas de 5 anos 
 de experiencia construyendo aplicaciones web escalables: frontend en JavaScript, 
@@ -82,14 +84,14 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev | github.com/Marigiko
 ''',
-        'cv': 'cv/main_healthtech_latam.pdf',
-        'cl': 'cover_letters/cover_healthtech_latam.pdf',
-    },
-    {
-        'to': 'talentoit@tecnosoftware.com',
-        'subject': 'Postulacion: Desarrollador Frontend / DevOps SSR - Mario Aquino',
-        'company': 'Tecnosoftware',
-        'body': '''Estimado equipo de Tecnosoftware,
+            'cv': 'cv/main_healthtech_latam.pdf',
+            'cl': 'cover_letters/cover_healthtech_latam.pdf',
+        },
+        {
+            'to': 'talentoit@tecnosoftware.com',
+            'subject': 'Postulacion: Desarrollador Frontend / DevOps SSR - Mario Aquino',
+            'company': 'Tecnosoftware',
+            'body': '''Estimado equipo de Tecnosoftware,
 
 Mi nombre es Mario Aquino, soy desarrollador de software con mas de 5 anos 
 de experiencia construyendo aplicaciones web escalables: React.js y Next.js 
@@ -117,33 +119,37 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev | github.com/Marigiko
 ''',
-        'cv': 'cv/main_tecnosoftware.pdf',
-        'cl': 'cover_letters/cover_tecnosoftware.pdf',
-    },
-]
+            'cv': 'cv/main_tecnosoftware.pdf',
+            'cl': 'cover_letters/cover_tecnosoftware.pdf',
+        },
+    ]
 
-sent = 0
-for app in applications:
-    try:
-        msg = EmailMessage()
-        msg['From'] = sender
-        msg['To'] = app['to']
-        msg['Subject'] = app['subject']
-        msg.set_content(app['body'])
+    sent = 0
+    for app in applications:
+        try:
+            msg = EmailMessage()
+            msg['From'] = sender
+            msg['To'] = app['to']
+            msg['Subject'] = app['subject']
+            msg.set_content(app['body'])
 
-        for p in [app['cv'], app['cl']]:
-            if Path(p).exists():
-                data = Path(p).read_bytes()
-                msg.add_attachment(data, maintype='application', subtype='pdf', filename=Path(p).name)
+            for p in [app['cv'], app['cl']]:
+                if Path(p).exists():
+                    data = Path(p).read_bytes()
+                    msg.add_attachment(data, maintype='application', subtype='pdf', filename=Path(p).name)
 
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as s:
-            s.login(sender, password)
-            s.send_message(msg)
+            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as s:
+                s.login(sender, password)
+                s.send_message(msg)
 
-        print(f"  ENVIADO: {app['company']} -> {app['to']}")
-        sent += 1
-        time.sleep(2)
-    except Exception as e:
-        print(f"  ERROR: {app['company']} -> {app['to']}: {e}")
+            print(f"  ENVIADO: {app['company']} -> {app['to']}")
+            sent += 1
+            time.sleep(2)
+        except Exception as e:
+            print(f"  ERROR: {app['company']} -> {app['to']}: {e}")
 
-print(f"\nTOTAL ENVIADOS: {sent}/{len(applications)}")
+    print(f"\nTOTAL ENVIADOS: {sent}/{len(applications)}")
+
+
+if __name__ == '__main__':
+    main()

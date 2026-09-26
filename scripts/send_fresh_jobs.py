@@ -8,31 +8,32 @@ from email.mime.base import MIMEBase
 from email import encoders
 from pathlib import Path
 
-env_path = Path(__file__).parent.parent / ".env"
-with open(env_path) as f:
-    for line in f:
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, _, value = line.partition("=")
-        os.environ[key.strip()] = value.strip()
+def main() -> None:
+    env_path = Path(__file__).parent.parent / ".env"
+    with open(env_path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, value = line.partition("=")
+            os.environ[key.strip()] = value.strip()
 
-SENDER = os.environ.get("GMAIL_SENDER", "you@example.com")
-PASSWORD = os.environ.get("GMAIL_APP_PASSWORD")
+    SENDER = os.environ.get("GMAIL_SENDER", "you@example.com")
+    PASSWORD = os.environ.get("GMAIL_APP_PASSWORD")
 
-BASE = Path(__file__).parent.parent
-CV_DIR = BASE / "cv"
-COVER_DIR = BASE / "cover_letters"
+    BASE = Path(__file__).parent.parent
+    CV_DIR = BASE / "cv"
+    COVER_DIR = BASE / "cover_letters"
 
-# Use existing CVs - they're already tailored for these types of roles
-# We'll reuse the Serra CV (founding engineer) and Clera CV (founding SWE) as base templates
-# Since we don't have specific CVs for each, we'll use the ones we have
+    # Use existing CVs - they're already tailored for these types of roles
+    # We'll reuse the Serra CV (founding engineer) and Clera CV (founding SWE) as base templates
+    # Since we don't have specific CVs for each, we'll use the ones we have
 
-applications = [
-    {
-        "to": "jcoghlan@gitlab.com",
-        "subject": "Application: Intermediate Backend Engineer — Mario Aquino",
-        "body": """Hi GitLab team,
+    applications = [
+        {
+            "to": "jcoghlan@gitlab.com",
+            "subject": "Application: Intermediate Backend Engineer — Mario Aquino",
+            "body": """Hi GitLab team,
 
 I'm applying for the Intermediate Backend Engineer role on the Platform Readiness team (posted Aug 4). With 5+ years building cloud-native products at early-stage startups, I bring:
 
@@ -46,14 +47,14 @@ I'm comfortable with TypeScript and Python, and excited about GitLab's agentic w
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_serra_founding_engineer.pdf",
-        "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
-        "company": "GitLab",
-    },
-    {
-        "to": "founders@peter.md",
-        "subject": "Application: Backend Developer — Mario Aquino",
-        "body": """Hi Peter MD team,
+            "cv": CV_DIR / "main_serra_founding_engineer.pdf",
+            "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
+            "company": "GitLab",
+        },
+        {
+            "to": "founders@peter.md",
+            "subject": "Application: Backend Developer — Mario Aquino",
+            "body": """Hi Peter MD team,
 
 I'm applying for the Backend Developer role (posted Aug 3). With 5+ years building cloud-native and AI products:
 
@@ -67,14 +68,14 @@ I'm excited about Peter MD's AI assistant layer and telehealth mission. Remote-r
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_recruitslab_founding.pdf",
-        "cover": COVER_DIR / "cover_recruitslab_founding.pdf",
-        "company": "Peter MD",
-    },
-    {
-        "to": "careers@zoominfo.com",
-        "subject": "Application: Senior Software Engineer, IDP — Mario Aquino",
-        "body": """Hi ZoomInfo team,
+            "cv": CV_DIR / "main_recruitslab_founding.pdf",
+            "cover": COVER_DIR / "cover_recruitslab_founding.pdf",
+            "company": "Peter MD",
+        },
+        {
+            "to": "careers@zoominfo.com",
+            "subject": "Application: Senior Software Engineer, IDP — Mario Aquino",
+            "body": """Hi ZoomInfo team,
 
 I'm applying for the Senior Software Engineer - IDP role (posted Aug 3). With 5+ years building cloud-native products and AI systems:
 
@@ -88,14 +89,14 @@ I'm excited about ZoomInfo's Backstage IDP with LLM/MCP server integration. Remo
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_zoominfo_swe.pdf" if (CV_DIR / "main_zoominfo_swe.pdf").exists() else CV_DIR / "main_serra_founding_engineer.pdf",
-        "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
-        "company": "ZoomInfo",
-    },
-    {
-        "to": "mstevens@healthequity.com",
-        "subject": "Application: Sr Cloud Applications Engineer — Mario Aquino",
-        "body": """Hi HealthEquity team,
+            "cv": CV_DIR / "main_zoominfo_swe.pdf" if (CV_DIR / "main_zoominfo_swe.pdf").exists() else CV_DIR / "main_serra_founding_engineer.pdf",
+            "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
+            "company": "ZoomInfo",
+        },
+        {
+            "to": "mstevens@healthequity.com",
+            "subject": "Application: Sr Cloud Applications Engineer — Mario Aquino",
+            "body": """Hi HealthEquity team,
 
 I'm applying for the Sr Cloud Applications Engineer role (posted Aug 3). With 5+ years building cloud-native products:
 
@@ -109,14 +110,14 @@ I'm excited about HealthEquity's AI platform on Azure with Claude Code. Remote-r
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_healthcloud_swe.pdf" if (CV_DIR / "main_healthcloud_swe.pdf").exists() else CV_DIR / "main_serra_founding_engineer.pdf",
-        "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
-        "company": "HealthEquity",
-    },
-    {
-        "to": "kkustron@cityofhope.org",
-        "subject": "Application: AI Automation Developer — Mario Aquino",
-        "body": """Hi City of Hope team,
+            "cv": CV_DIR / "main_healthcloud_swe.pdf" if (CV_DIR / "main_healthcloud_swe.pdf").exists() else CV_DIR / "main_serra_founding_engineer.pdf",
+            "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
+            "company": "HealthEquity",
+        },
+        {
+            "to": "kkustron@cityofhope.org",
+            "subject": "Application: AI Automation Developer — Mario Aquino",
+            "body": """Hi City of Hope team,
 
 I'm applying for the AI Automation Developer role (posted Aug 3). With 5+ years building AI automation systems:
 
@@ -130,14 +131,14 @@ I'm excited about bringing AI automation to healthcare workflows at City of Hope
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_clickhouse_ai.pdf",
-        "cover": COVER_DIR / "cover_clickhouse_ai.pdf",
-        "company": "City of Hope",
-    },
-    {
-        "to": "founder@hunthorpe.com",
-        "subject": "Application: Full Stack Engineer — Mario Aquino",
-        "body": """Hi Hunthorpe Labs team,
+            "cv": CV_DIR / "main_clickhouse_ai.pdf",
+            "cover": COVER_DIR / "cover_clickhouse_ai.pdf",
+            "company": "City of Hope",
+        },
+        {
+            "to": "founder@hunthorpe.com",
+            "subject": "Application: Full Stack Engineer — Mario Aquino",
+            "body": """Hi Hunthorpe Labs team,
 
 I'm applying for the Full Stack Engineer role (posted Aug 3). With 5+ years building full-stack products:
 
@@ -151,14 +152,14 @@ I'm excited about Hunthorpe's flat culture and gov project work. Remote-ready fr
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_serra_founding_engineer.pdf",
-        "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
-        "company": "Hunthorpe Labs",
-    },
-    {
-        "to": "tal.valler@celigo.com",
-        "subject": "Application: Senior Developer — Mario Aquino",
-        "body": """Hi Celigo team,
+            "cv": CV_DIR / "main_serra_founding_engineer.pdf",
+            "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
+            "company": "Hunthorpe Labs",
+        },
+        {
+            "to": "tal.valler@celigo.com",
+            "subject": "Application: Senior Developer — Mario Aquino",
+            "body": """Hi Celigo team,
 
 I'm applying for the Senior Developer role (posted Aug 2). With 5+ years building cloud-native products:
 
@@ -172,14 +173,14 @@ I'm excited about Celigo's AI Studio and agentic workflow capabilities. Remote-r
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_celigo_swe.pdf" if (CV_DIR / "main_celigo_swe.pdf").exists() else CV_DIR / "main_serra_founding_engineer.pdf",
-        "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
-        "company": "Celigo",
-    },
-    {
-        "to": "arman@sayvo.ai",
-        "subject": "Application: Junior Full Stack Developer — Mario Aquino",
-        "body": """Hi Arman,
+            "cv": CV_DIR / "main_celigo_swe.pdf" if (CV_DIR / "main_celigo_swe.pdf").exists() else CV_DIR / "main_serra_founding_engineer.pdf",
+            "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
+            "company": "Celigo",
+        },
+        {
+            "to": "arman@sayvo.ai",
+            "subject": "Application: Junior Full Stack Developer — Mario Aquino",
+            "body": """Hi Arman,
 
 I'm applying for the Junior Full Stack Developer role at SayVo AI (posted Aug 2). With 5+ years building full-stack and AI products:
 
@@ -193,14 +194,14 @@ I'm excited about SayVo AI's AI voice agents and the opportunity to contribute f
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_sayvo_jr.pdf" if (CV_DIR / "main_sayvo_jr.pdf").exists() else CV_DIR / "main_serra_founding_engineer.pdf",
-        "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
-        "company": "SayVo AI",
-    },
-    {
-        "to": "david-poll@github.com",
-        "subject": "Interest: Staff Software Engineer, Identity — Mario Aquino",
-        "body": """Hi GitHub team,
+            "cv": CV_DIR / "main_sayvo_jr.pdf" if (CV_DIR / "main_sayvo_jr.pdf").exists() else CV_DIR / "main_serra_founding_engineer.pdf",
+            "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
+            "company": "SayVo AI",
+        },
+        {
+            "to": "david-poll@github.com",
+            "subject": "Interest: Staff Software Engineer, Identity — Mario Aquino",
+            "body": """Hi GitHub team,
 
 I'm reaching out regarding the Staff Software Engineer, Identity Core role (posted Aug 3). With 5+ years building cloud-native products:
 
@@ -214,40 +215,44 @@ I'm excited about GitHub's identity and authorization platform. Remote-ready fro
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_github_staff.pdf" if (CV_DIR / "main_github_staff.pdf").exists() else CV_DIR / "main_serra_founding_engineer.pdf",
-        "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
-        "company": "GitHub",
-    },
-]
+            "cv": CV_DIR / "main_github_staff.pdf" if (CV_DIR / "main_github_staff.pdf").exists() else CV_DIR / "main_serra_founding_engineer.pdf",
+            "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
+            "company": "GitHub",
+        },
+    ]
 
-sent = 0
-failed = 0
-for app in applications:
-    msg = MIMEMultipart()
-    msg["From"] = SENDER
-    msg["To"] = app["to"]
-    msg["Subject"] = app["subject"]
-    msg.attach(MIMEText(app["body"], "plain"))
+    sent = 0
+    failed = 0
+    for app in applications:
+        msg = MIMEMultipart()
+        msg["From"] = SENDER
+        msg["To"] = app["to"]
+        msg["Subject"] = app["subject"]
+        msg.attach(MIMEText(app["body"], "plain"))
 
-    for path in [app["cv"], app["cover"]]:
-        if path.exists():
-            with open(path, "rb") as f:
-                part = MIMEBase("application", "octet-stream")
-                part.set_payload(f.read())
-            encoders.encode_base64(part)
-            part.add_header("Content-Disposition", f"attachment; filename={path.name}")
-            msg.attach(part)
+        for path in [app["cv"], app["cover"]]:
+            if path.exists():
+                with open(path, "rb") as f:
+                    part = MIMEBase("application", "octet-stream")
+                    part.set_payload(f.read())
+                encoders.encode_base64(part)
+                part.add_header("Content-Disposition", f"attachment; filename={path.name}")
+                msg.attach(part)
 
-    try:
-        with smtplib.SMTP("smtp.gmail.com", 587) as server:
-            server.ehlo()
-            server.starttls()
-            server.login(SENDER, PASSWORD)
-            server.send_message(msg)
-        print(f"  SENT: {app['company']} -> {app['to']}")
-        sent += 1
-    except Exception as e:
-        print(f"  FAILED: {app['company']} -> {app['to']}: {e}")
-        failed += 1
+        try:
+            with smtplib.SMTP("smtp.gmail.com", 587) as server:
+                server.ehlo()
+                server.starttls()
+                server.login(SENDER, PASSWORD)
+                server.send_message(msg)
+            print(f"  SENT: {app['company']} -> {app['to']}")
+            sent += 1
+        except Exception as e:
+            print(f"  FAILED: {app['company']} -> {app['to']}: {e}")
+            failed += 1
 
-print(f"\nDone: {sent} sent, {failed} failed")
+    print(f"\nDone: {sent} sent, {failed} failed")
+
+
+if __name__ == '__main__':
+    main()

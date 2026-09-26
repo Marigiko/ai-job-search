@@ -9,30 +9,32 @@ from email import encoders
 from pathlib import Path
 
 # Load .env
-env_path = Path(__file__).parent.parent / ".env"
-with open(env_path) as f:
-    for line in f:
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, _, value = line.partition("=")
-        os.environ[key.strip()] = value.strip()
 
-SENDER = os.environ.get("GMAIL_SENDER", "you@example.com")
-PASSWORD = os.environ.get("GMAIL_APP_PASSWORD")
-if not PASSWORD:
-    print("ERROR: GMAIL_APP_PASSWORD not set")
-    exit(1)
+def main() -> None:
+    env_path = Path(__file__).parent.parent / ".env"
+    with open(env_path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, value = line.partition("=")
+            os.environ[key.strip()] = value.strip()
 
-BASE = Path(__file__).parent.parent
-CV_DIR = BASE / "cv"
-COVER_DIR = BASE / "cover_letters"
+    SENDER = os.environ.get("GMAIL_SENDER", "you@example.com")
+    PASSWORD = os.environ.get("GMAIL_APP_PASSWORD")
+    if not PASSWORD:
+        print("ERROR: GMAIL_APP_PASSWORD not set")
+        exit(1)
 
-applications = [
-    {
-        "to": "founders@serra.io",
-        "subject": "Application: Founding Engineer — Mario Aquino",
-        "body": """Dear Serra team,
+    BASE = Path(__file__).parent.parent
+    CV_DIR = BASE / "cv"
+    COVER_DIR = BASE / "cover_letters"
+
+    applications = [
+        {
+            "to": "founders@serra.io",
+            "subject": "Application: Founding Engineer — Mario Aquino",
+            "body": """Dear Serra team,
 
 I am applying for the Founding Engineer role. I have been following Serra's mission to transform how skilled trades are hired in the US, and I believe my experience building full-stack products and data pipelines at early-stage startups makes me a strong fit.
 
@@ -51,13 +53,13 @@ Looking forward to hearing from you.
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_serra_founding_engineer.pdf",
-        "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
-    },
-    {
-        "to": "paytransparency@clickhouse.com",
-        "subject": "Application: AI Product Engineer — Mario Aquino",
-        "body": """Dear ClickHouse team,
+            "cv": CV_DIR / "main_serra_founding_engineer.pdf",
+            "cover": COVER_DIR / "cover_serra_founding_engineer.pdf",
+        },
+        {
+            "to": "paytransparency@clickhouse.com",
+            "subject": "Application: AI Product Engineer — Mario Aquino",
+            "body": """Dear ClickHouse team,
 
 I am applying for the AI Product Engineer role. With 5+ years building data pipelines and AI automation systems at early-stage startups, I bring:
 
@@ -71,13 +73,13 @@ I am remote-ready, based in Argentina. CV and cover letter attached.
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_clickhouse_ai.pdf",
-        "cover": COVER_DIR / "cover_clickhouse_ai.pdf",
-    },
-    {
-        "to": "careers@launchdarkly.com",
-        "subject": "Application: Backend Engineer, Flag Delivery — Mario Aquino",
-        "body": """Dear LaunchDarkly team,
+            "cv": CV_DIR / "main_clickhouse_ai.pdf",
+            "cover": COVER_DIR / "cover_clickhouse_ai.pdf",
+        },
+        {
+            "to": "careers@launchdarkly.com",
+            "subject": "Application: Backend Engineer, Flag Delivery — Mario Aquino",
+            "body": """Dear LaunchDarkly team,
 
 I am applying for the Backend Engineer role. With 5+ years building scalable backend services at early-stage startups:
 
@@ -91,13 +93,13 @@ I am remote-ready, based in Argentina. CV and cover letter attached.
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_launchdarkly_backend.pdf",
-        "cover": COVER_DIR / "cover_launchdarkly_backend.pdf",
-    },
-    {
-        "to": "experts@storetasker.com",
-        "subject": "Application: Senior Shopify Developer — Mario Aquino",
-        "body": """Dear Storetasker team,
+            "cv": CV_DIR / "main_launchdarkly_backend.pdf",
+            "cover": COVER_DIR / "cover_launchdarkly_backend.pdf",
+        },
+        {
+            "to": "experts@storetasker.com",
+            "subject": "Application: Senior Shopify Developer — Mario Aquino",
+            "body": """Dear Storetasker team,
 
 I am applying for the Senior Shopify Developer role. With 5+ years building web applications at startups:
 
@@ -111,13 +113,13 @@ I am remote-ready, fast learner, comfortable with new stacks. CV and cover lette
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_storetasker_shopify.pdf",
-        "cover": COVER_DIR / "cover_storetasker_shopify.pdf",
-    },
-    {
-        "to": "support@askclera.com",
-        "subject": "Application: Founding Software Engineer — Mario Aquino",
-        "body": """Dear Clera team,
+            "cv": CV_DIR / "main_storetasker_shopify.pdf",
+            "cover": COVER_DIR / "cover_storetasker_shopify.pdf",
+        },
+        {
+            "to": "support@askclera.com",
+            "subject": "Application: Founding Software Engineer — Mario Aquino",
+            "body": """Dear Clera team,
 
 I am applying for the Founding Software Engineer role. As a full-stack engineer with experience building cloud-native products at early-stage startups, I am drawn to the challenge of transforming insurance workflows with AI.
 
@@ -132,13 +134,13 @@ I am based in Argentina, fully remote-ready, and open to relocation. CV and cove
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_clera_founding.pdf",
-        "cover": COVER_DIR / "cover_clera_founding.pdf",
-    },
-    {
-        "to": "darren@recruitslab.com",
-        "subject": "Application: Founding Senior AI/ML Engineer — Mario Aquino",
-        "body": """Dear Darren,
+            "cv": CV_DIR / "main_clera_founding.pdf",
+            "cover": COVER_DIR / "cover_clera_founding.pdf",
+        },
+        {
+            "to": "darren@recruitslab.com",
+            "subject": "Application: Founding Senior AI/ML Engineer — Mario Aquino",
+            "body": """Dear Darren,
 
 I am applying for the Founding Senior AI/ML Engineer role. With 5+ years building AI automation systems and data pipelines at early-stage startups, I am excited about the opportunity to lead technical development at a real estate AI company.
 
@@ -153,13 +155,13 @@ I am remote-ready, comfortable with autonomy, and bring both technical depth and
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_recruitslab_founding.pdf",
-        "cover": COVER_DIR / "cover_recruitslab_founding.pdf",
-    },
-    {
-        "to": "founder@getadvisoryai.com",
-        "subject": "Application: Founding Software Engineer — Mario Aquino",
-        "body": """Dear AdvisoryAI team,
+            "cv": CV_DIR / "main_recruitslab_founding.pdf",
+            "cover": COVER_DIR / "cover_recruitslab_founding.pdf",
+        },
+        {
+            "to": "founder@getadvisoryai.com",
+            "subject": "Application: Founding Software Engineer — Mario Aquino",
+            "body": """Dear AdvisoryAI team,
 
 I am applying for the Founding Software Engineer role. With 5+ years building cloud-native products at early-stage startups:
 
@@ -173,13 +175,13 @@ I am remote-ready (UK hours compatible), based in Argentina. CV and cover letter
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_advisoryai_founding.pdf",
-        "cover": COVER_DIR / "cover_advisoryai_founding.pdf",
-    },
-    {
-        "to": "founder@neuralledger.com",
-        "subject": "Application: Full Stack Founding Engineer — Mario Aquino",
-        "body": """Dear Neural Ledger team,
+            "cv": CV_DIR / "main_advisoryai_founding.pdf",
+            "cover": COVER_DIR / "cover_advisoryai_founding.pdf",
+        },
+        {
+            "to": "founder@neuralledger.com",
+            "subject": "Application: Full Stack Founding Engineer — Mario Aquino",
+            "body": """Dear Neural Ledger team,
 
 I am applying for the Full Stack Founding Engineer role. With 5+ years building cloud-native and AI products:
 
@@ -193,13 +195,13 @@ I am remote-ready, based in Argentina. CV and cover letter attached.
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_neuralledger_founding.pdf",
-        "cover": COVER_DIR / "cover_neuralledger_founding.pdf",
-    },
-    {
-        "to": "founder@naviohq.com",
-        "subject": "Application: Founding Engineer — Mario Aquino",
-        "body": """Dear Navio team,
+            "cv": CV_DIR / "main_neuralledger_founding.pdf",
+            "cover": COVER_DIR / "cover_neuralledger_founding.pdf",
+        },
+        {
+            "to": "founder@naviohq.com",
+            "subject": "Application: Founding Engineer — Mario Aquino",
+            "body": """Dear Navio team,
 
 I am applying for the Founding Engineer role. With 5+ years building cloud-native products and AI automation:
 
@@ -213,13 +215,13 @@ I am remote-ready, based in Argentina. CV and cover letter attached.
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_navio_founding.pdf",
-        "cover": COVER_DIR / "cover_navio_founding.pdf",
-    },
-    {
-        "to": "founder@orangestorm.io",
-        "subject": "Application: Full-stack AI Engineer (Founding) — Mario Aquino",
-        "body": """Dear Orange Storm team,
+            "cv": CV_DIR / "main_navio_founding.pdf",
+            "cover": COVER_DIR / "cover_navio_founding.pdf",
+        },
+        {
+            "to": "founder@orangestorm.io",
+            "subject": "Application: Full-stack AI Engineer (Founding) — Mario Aquino",
+            "body": """Dear Orange Storm team,
 
 I am applying for the Full-stack AI Engineer (Founding) role. With 5+ years building AI automation and cloud-native products:
 
@@ -233,13 +235,13 @@ I am remote-ready, based in Argentina. CV and cover letter attached.
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_orangestorm_founding.pdf",
-        "cover": COVER_DIR / "cover_orangestorm_founding.pdf",
-    },
-    {
-        "to": "founder@impactcare.org",
-        "subject": "Application: Founding VP of Engineering — Mario Aquino",
-        "body": """Dear IMPaCT Care team,
+            "cv": CV_DIR / "main_orangestorm_founding.pdf",
+            "cover": COVER_DIR / "cover_orangestorm_founding.pdf",
+        },
+        {
+            "to": "founder@impactcare.org",
+            "subject": "Application: Founding VP of Engineering — Mario Aquino",
+            "body": """Dear IMPaCT Care team,
 
 I am applying for the Founding VP of Engineering role. With 5+ years building cloud-native products and leading technical teams:
 
@@ -253,39 +255,43 @@ I am remote-ready, based in Argentina. CV and cover letter attached.
 Best,
 Mario Aquino
 you@example.com | linkedin.com/in/keyzdev""",
-        "cv": CV_DIR / "main_impactcare_vpe.pdf",
-        "cover": COVER_DIR / "cover_impactcare_vpe.pdf",
-    },
-]
+            "cv": CV_DIR / "main_impactcare_vpe.pdf",
+            "cover": COVER_DIR / "cover_impactcare_vpe.pdf",
+        },
+    ]
 
-sent = 0
-failed = 0
-for app in applications:
-    msg = MIMEMultipart()
-    msg["From"] = SENDER
-    msg["To"] = app["to"]
-    msg["Subject"] = app["subject"]
-    msg.attach(MIMEText(app["body"], "plain"))
+    sent = 0
+    failed = 0
+    for app in applications:
+        msg = MIMEMultipart()
+        msg["From"] = SENDER
+        msg["To"] = app["to"]
+        msg["Subject"] = app["subject"]
+        msg.attach(MIMEText(app["body"], "plain"))
 
-    for path in [app["cv"], app["cover"]]:
-        if path.exists():
-            with open(path, "rb") as f:
-                part = MIMEBase("application", "octet-stream")
-                part.set_payload(f.read())
-            encoders.encode_base64(part)
-            part.add_header("Content-Disposition", f"attachment; filename={path.name}")
-            msg.attach(part)
+        for path in [app["cv"], app["cover"]]:
+            if path.exists():
+                with open(path, "rb") as f:
+                    part = MIMEBase("application", "octet-stream")
+                    part.set_payload(f.read())
+                encoders.encode_base64(part)
+                part.add_header("Content-Disposition", f"attachment; filename={path.name}")
+                msg.attach(part)
 
-    try:
-        with smtplib.SMTP("smtp.gmail.com", 587) as server:
-            server.ehlo()
-            server.starttls()
-            server.login(SENDER, PASSWORD)
-            server.send_message(msg)
-        print(f"  SENT: {app['subject']} -> {app['to']}")
-        sent += 1
-    except Exception as e:
-        print(f"  FAILED: {app['subject']} -> {app['to']}: {e}")
-        failed += 1
+        try:
+            with smtplib.SMTP("smtp.gmail.com", 587) as server:
+                server.ehlo()
+                server.starttls()
+                server.login(SENDER, PASSWORD)
+                server.send_message(msg)
+            print(f"  SENT: {app['subject']} -> {app['to']}")
+            sent += 1
+        except Exception as e:
+            print(f"  FAILED: {app['subject']} -> {app['to']}: {e}")
+            failed += 1
 
-print(f"\nDone: {sent} sent, {failed} failed")
+    print(f"\nDone: {sent} sent, {failed} failed")
+
+
+if __name__ == '__main__':
+    main()

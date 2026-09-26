@@ -7,15 +7,16 @@ from email.mime.base import MIMEBase
 from email import encoders
 from pathlib import Path
 
-import os; sender = os.environ.get('GMAIL_SENDER', 'you@example.com')
-password = open('.env').read().split('GMAIL_APP_PASSWORD=')[1].strip()
+def main() -> None:
+    import os; sender = os.environ.get('GMAIL_SENDER', 'you@example.com')
+    password = open('.env').read().split('GMAIL_APP_PASSWORD=')[1].strip()
 
-applications = [
-    {
-        'to': 'jobs@curai.com',
-        'subject': 'Postulacion Senior Software Engineer - Mario Aquino',
-        'company': 'Curai Health',
-        'body': '''Estimado equipo de Curai,
+    applications = [
+        {
+            'to': 'jobs@curai.com',
+            'subject': 'Postulacion Senior Software Engineer - Mario Aquino',
+            'company': 'Curai Health',
+            'body': '''Estimado equipo de Curai,
 
 Me postulo a la posicion de Senior Software Engineer. Adjunto mi CV y carta de presentacion.
 
@@ -34,12 +35,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'recruiting@flocksafety.com',
-        'subject': 'Postulacion Senior Software Engineer, Fullstack - Mario Aquino',
-        'company': 'Flock Safety',
-        'body': '''Estimado equipo de Flock Safety,
+        },
+        {
+            'to': 'recruiting@flocksafety.com',
+            'subject': 'Postulacion Senior Software Engineer, Fullstack - Mario Aquino',
+            'company': 'Flock Safety',
+            'body': '''Estimado equipo de Flock Safety,
 
 Me postulo a la posicion de Senior Software Engineer, Fullstack. Adjunto mi CV y carta de presentacion.
 
@@ -58,12 +59,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'recruiting@clearcaptions.com',
-        'subject': 'Postulacion Web Developer - Mario Aquino',
-        'company': 'ClearCaptions',
-        'body': '''Estimado equipo de ClearCaptions,
+        },
+        {
+            'to': 'recruiting@clearcaptions.com',
+            'subject': 'Postulacion Web Developer - Mario Aquino',
+            'company': 'ClearCaptions',
+            'body': '''Estimado equipo de ClearCaptions,
 
 Me postulo a la posicion de Web Developer. Adjunto mi CV y carta de presentacion.
 
@@ -82,12 +83,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'cristina.silva@impactcommerce.com',
-        'subject': 'Postulacion Frontend Shopify Developer - Mario Aquino',
-        'company': 'IMPACT Commerce',
-        'body': '''Estimada Cristina,
+        },
+        {
+            'to': 'cristina.silva@impactcommerce.com',
+            'subject': 'Postulacion Frontend Shopify Developer - Mario Aquino',
+            'company': 'IMPACT Commerce',
+            'body': '''Estimada Cristina,
 
 Me postulo a la posicion de Frontend Shopify Developer. Adjunto mi CV y carta de presentacion.
 
@@ -106,12 +107,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'okib@danskebank.dk',
-        'subject': 'Application: Front-end (React) Developer - Mario Aquino',
-        'company': 'Danske Bank',
-        'body': '''Dear Danske Bank Team,
+        },
+        {
+            'to': 'okib@danskebank.dk',
+            'subject': 'Application: Front-end (React) Developer - Mario Aquino',
+            'company': 'Danske Bank',
+            'body': '''Dear Danske Bank Team,
 
 I am applying for the Front-end (React) Developer position for District GenAI. Please find my CV and cover letter attached.
 
@@ -128,12 +129,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'recruiting@crowdstrike.com',
-        'subject': 'Postulacion Senior Product Security Engineer - Mario Aquino',
-        'company': 'CrowdStrike',
-        'body': '''Estimado equipo de CrowdStrike,
+        },
+        {
+            'to': 'recruiting@crowdstrike.com',
+            'subject': 'Postulacion Senior Product Security Engineer - Mario Aquino',
+            'company': 'CrowdStrike',
+            'body': '''Estimado equipo de CrowdStrike,
 
 Me postulo a la posicion de Senior Product Security Engineer. Adjunto mi CV y carta de presentacion.
 
@@ -152,12 +153,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'steve.donahue@entrust.com',
-        'subject': 'Postulacion Sr. Platform Engineer - Mario Aquino',
-        'company': 'Entrust',
-        'body': '''Estimado equipo de Entrust,
+        },
+        {
+            'to': 'steve.donahue@entrust.com',
+            'subject': 'Postulacion Sr. Platform Engineer - Mario Aquino',
+            'company': 'Entrust',
+            'body': '''Estimado equipo de Entrust,
 
 Me postulo a la posicion de Sr. Platform Engineer. Adjunto mi CV y carta de presentacion.
 
@@ -176,12 +177,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'info@chainzeeper.io',
-        'subject': 'Postulacion Full Stack Developer - Mario Aquino',
-        'company': 'ChainZeeper',
-        'body': '''Estimado equipo de ChainZeeper,
+        },
+        {
+            'to': 'info@chainzeeper.io',
+            'subject': 'Postulacion Full Stack Developer - Mario Aquino',
+            'company': 'ChainZeeper',
+            'body': '''Estimado equipo de ChainZeeper,
 
 Me postulo a la posicion de Full Stack Developer. Adjunto mi CV y carta de presentacion.
 
@@ -200,12 +201,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': '-eng@cardiff.co',
-        'subject': 'Postulacion Senior Full-Stack Engineer (AI-Native) - Mario Aquino',
-        'company': 'Cardiff',
-        'body': '''Estimado equipo de Cardiff,
+        },
+        {
+            'to': '-eng@cardiff.co',
+            'subject': 'Postulacion Senior Full-Stack Engineer (AI-Native) - Mario Aquino',
+            'company': 'Cardiff',
+            'body': '''Estimado equipo de Cardiff,
 
 Me postulo a la posicion de Senior Full-Stack Engineer (AI-Native). Adjunto mi CV y carta de presentacion.
 
@@ -224,12 +225,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'hr@mrioa.com',
-        'subject': 'Postulacion Remote QA Engineer - Mario Aquino',
-        'company': 'Medical Review Institute',
-        'body': '''Estimado equipo de Medical Review Institute,
+        },
+        {
+            'to': 'hr@mrioa.com',
+            'subject': 'Postulacion Remote QA Engineer - Mario Aquino',
+            'company': 'Medical Review Institute',
+            'body': '''Estimado equipo de Medical Review Institute,
 
 Me postulo a la posicion de Remote Quality Assurance Engineer. Adjunto mi CV y carta de presentacion.
 
@@ -248,44 +249,48 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-]
+        },
+    ]
 
-sent = 0
-for app in applications:
-    try:
-        msg = MIMEMultipart()
-        msg['From'] = sender
-        msg['To'] = app['to']
-        msg['Subject'] = app['subject']
-        msg.attach(MIMEText(app['body'], 'plain', 'utf-8'))
+    sent = 0
+    for app in applications:
+        try:
+            msg = MIMEMultipart()
+            msg['From'] = sender
+            msg['To'] = app['to']
+            msg['Subject'] = app['subject']
+            msg.attach(MIMEText(app['body'], 'plain', 'utf-8'))
 
-        # Find company key for PDF files
-        company_key = {
-            'Curai Health': 'curai', 'Flock Safety': 'flock', 'ClearCaptions': 'clearcaptions',
-            'IMPACT Commerce': 'impact', 'Danske Bank': 'danske', 'CrowdStrike': 'crowdstrike',
-            'Entrust': 'entrust', 'ChainZeeper': 'chainz', 'Cardiff': 'cardiff',
-            'Medical Review Institute': 'mrioa'
-        }[app['company']]
+            # Find company key for PDF files
+            company_key = {
+                'Curai Health': 'curai', 'Flock Safety': 'flock', 'ClearCaptions': 'clearcaptions',
+                'IMPACT Commerce': 'impact', 'Danske Bank': 'danske', 'CrowdStrike': 'crowdstrike',
+                'Entrust': 'entrust', 'ChainZeeper': 'chainz', 'Cardiff': 'cardiff',
+                'Medical Review Institute': 'mrioa'
+            }[app['company']]
 
-        for p in [f'cv/main_{company_key}.pdf', f'cover_letters/cover_{company_key}.pdf']:
-            if Path(p).exists():
-                part = MIMEBase('application', 'octet-stream')
-                part.set_payload(Path(p).read_bytes())
-                encoders.encode_base64(part)
-                part.add_header('Content-Disposition', f'attachment; filename="{Path(p).name}"')
-                msg.attach(part)
+            for p in [f'cv/main_{company_key}.pdf', f'cover_letters/cover_{company_key}.pdf']:
+                if Path(p).exists():
+                    part = MIMEBase('application', 'octet-stream')
+                    part.set_payload(Path(p).read_bytes())
+                    encoders.encode_base64(part)
+                    part.add_header('Content-Disposition', f'attachment; filename="{Path(p).name}"')
+                    msg.attach(part)
 
-        with smtplib.SMTP('smtp.gmail.com', 587) as s:
-            s.ehlo()
-            s.starttls()
-            s.login(sender, password)
-            s.send_message(msg)
+            with smtplib.SMTP('smtp.gmail.com', 587) as s:
+                s.ehlo()
+                s.starttls()
+                s.login(sender, password)
+                s.send_message(msg)
 
-        print(f"  ENVIADO: {app['company']} -> {app['to']}")
-        sent += 1
-        time.sleep(2)  # avoid rate limiting
-    except Exception as e:
-        print(f"  ERROR: {app['company']} -> {app['to']}: {e}")
+            print(f"  ENVIADO: {app['company']} -> {app['to']}")
+            sent += 1
+            time.sleep(2)  # avoid rate limiting
+        except Exception as e:
+            print(f"  ERROR: {app['company']} -> {app['to']}: {e}")
 
-print(f"\nTOTAL ENVIADOS: {sent}/{len(applications)}")
+    print(f"\nTOTAL ENVIADOS: {sent}/{len(applications)}")
+
+
+if __name__ == '__main__':
+    main()

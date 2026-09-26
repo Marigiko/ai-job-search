@@ -7,18 +7,19 @@ from email.mime.base import MIMEBase
 from email import encoders
 from pathlib import Path
 
-sender = os.environ.get('GMAIL_SENDER', 'you@example.com')
-password = open('.env').read().split('GMAIL_APP_PASSWORD=')[1].strip()
+def main() -> None:
+    sender = os.environ.get('GMAIL_SENDER', 'you@example.com')
+    password = open('.env').read().split('GMAIL_APP_PASSWORD=')[1].strip()
 
-# Use the Curai base CV (full-stack AI) for all - it's generic enough
-base_cv = 'cv/main_curai.pdf'
+    # Use the Curai base CV (full-stack AI) for all - it's generic enough
+    base_cv = 'cv/main_curai.pdf'
 
-applications = [
-    {
-        'to': 'talentacquisition@workiva.com',
-        'subject': 'Application: Sr Machine Learning Engineering Manager - Mario Aquino',
-        'company': 'Workiva',
-        'body': '''Dear Workiva Team,
+    applications = [
+        {
+            'to': 'talentacquisition@workiva.com',
+            'subject': 'Application: Sr Machine Learning Engineering Manager - Mario Aquino',
+            'company': 'Workiva',
+            'body': '''Dear Workiva Team,
 
 I am applying for the Sr Machine Learning Engineering Manager position. Please find my CV and cover letter attached.
 
@@ -35,12 +36,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'recruiting@solace.health',
-        'subject': 'Application: Data Engineer - Mario Aquino',
-        'company': 'Solace',
-        'body': '''Dear Solace Health Team,
+        },
+        {
+            'to': 'recruiting@solace.health',
+            'subject': 'Application: Data Engineer - Mario Aquino',
+            'company': 'Solace',
+            'body': '''Dear Solace Health Team,
 
 I am applying for the Data Engineer position. Please find my CV and cover letter attached.
 
@@ -57,12 +58,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'agallagher@talener.com',
-        'subject': 'Application: Senior DevOps Engineer, AWS - Mario Aquino',
-        'company': 'Talener Group',
-        'body': '''Dear Gallagher Team,
+        },
+        {
+            'to': 'agallagher@talener.com',
+            'subject': 'Application: Senior DevOps Engineer, AWS - Mario Aquino',
+            'company': 'Talener Group',
+            'body': '''Dear Gallagher Team,
 
 I am applying for the Senior DevOps Engineer, AWS position. Please find my CV and cover letter attached.
 
@@ -79,12 +80,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'jobs@omgroupinc.us',
-        'subject': 'Application: Application/Web Developer III - Mario Aquino',
-        'company': 'Om Group Inc',
-        'body': '''Dear Om Group Team,
+        },
+        {
+            'to': 'jobs@omgroupinc.us',
+            'subject': 'Application: Application/Web Developer III - Mario Aquino',
+            'company': 'Om Group Inc',
+            'body': '''Dear Om Group Team,
 
 I am applying for the Application/Web Developer III position. Please find my CV and cover letter attached.
 
@@ -101,12 +102,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'careers@mutualofomaha.com',
-        'subject': 'Application: Engineer II/III Java/Spring Boot - Mario Aquino',
-        'company': 'Mutual of Omaha',
-        'body': '''Dear Mutual of Omaha Team,
+        },
+        {
+            'to': 'careers@mutualofomaha.com',
+            'subject': 'Application: Engineer II/III Java/Spring Boot - Mario Aquino',
+            'company': 'Mutual of Omaha',
+            'body': '''Dear Mutual of Omaha Team,
 
 I am applying for the Engineer II/III Java/Spring Boot position. Please find my CV and cover letter attached.
 
@@ -123,12 +124,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'dp@digitalxnode.com',
-        'subject': 'Application: DevOps Engineer - Mario Aquino',
-        'company': 'DigitalXNode',
-        'body': '''Dear DigitalXNode Team,
+        },
+        {
+            'to': 'dp@digitalxnode.com',
+            'subject': 'Application: DevOps Engineer - Mario Aquino',
+            'company': 'DigitalXNode',
+            'body': '''Dear DigitalXNode Team,
 
 I am applying for the DevOps Engineer position. Please find my CV and cover letter attached.
 
@@ -145,12 +146,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'rdfaria@aubay.pt',
-        'subject': 'Application: Data Scientist (Brazil) - Mario Aquino',
-        'company': 'Aubay Portugal',
-        'body': '''Dear Aubay Team,
+        },
+        {
+            'to': 'rdfaria@aubay.pt',
+            'subject': 'Application: Data Scientist (Brazil) - Mario Aquino',
+            'company': 'Aubay Portugal',
+            'body': '''Dear Aubay Team,
 
 I am applying for the Data Scientist position. Please find my CV and cover letter attached.
 
@@ -167,12 +168,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'tomasz@virtuetech.io',
-        'subject': 'Application: Frontend Engineer FinTech - Mario Aquino',
-        'company': 'VirtueTech Recruitment Group',
-        'body': '''Dear VirtueTech Team,
+        },
+        {
+            'to': 'tomasz@virtuetech.io',
+            'subject': 'Application: Frontend Engineer FinTech - Mario Aquino',
+            'company': 'VirtueTech Recruitment Group',
+            'body': '''Dear VirtueTech Team,
 
 I am applying for the Frontend Engineer position in FinTech. Please find my CV and cover letter attached.
 
@@ -189,12 +190,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': '-recruiting@columbiasouthern.edu',
-        'subject': 'Application: Software Engineer - Mario Aquino',
-        'company': 'Columbia Southern University',
-        'body': '''Dear Columbia Southern University Team,
+        },
+        {
+            'to': '-recruiting@columbiasouthern.edu',
+            'subject': 'Application: Software Engineer - Mario Aquino',
+            'company': 'Columbia Southern University',
+            'body': '''Dear Columbia Southern University Team,
 
 I am applying for the Software Engineer position. Please find my CV and cover letter attached.
 
@@ -211,12 +212,12 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-    {
-        'to': 'hiringaccommodation@mozilla.com',
-        'subject': 'Application: Senior Software Engineer - Mario Aquino',
-        'company': 'Mozilla',
-        'body': '''Dear Mozilla Team,
+        },
+        {
+            'to': 'hiringaccommodation@mozilla.com',
+            'subject': 'Application: Senior Software Engineer - Mario Aquino',
+            'company': 'Mozilla',
+            'body': '''Dear Mozilla Team,
 
 I am applying for the Senior Software Engineer position. Please find my CV and cover letter attached.
 
@@ -233,36 +234,40 @@ Mario Aquino
 you@example.com | +00 0 000 000000
 linkedin.com/in/keyzdev
 '''
-    },
-]
+        },
+    ]
 
-sent = 0
-for app in applications:
-    try:
-        msg = MIMEMultipart()
-        msg['From'] = sender
-        msg['To'] = app['to']
-        msg['Subject'] = app['subject']
-        msg.attach(MIMEText(app['body'], 'plain', 'utf-8'))
+    sent = 0
+    for app in applications:
+        try:
+            msg = MIMEMultipart()
+            msg['From'] = sender
+            msg['To'] = app['to']
+            msg['Subject'] = app['subject']
+            msg.attach(MIMEText(app['body'], 'plain', 'utf-8'))
 
-        # Attach base CV (reused for all)
-        if Path(base_cv).exists():
-            part = MIMEBase('application', 'octet-stream')
-            part.set_payload(Path(base_cv).read_bytes())
-            encoders.encode_base64(part)
-            part.add_header('Content-Disposition', f'attachment; filename="Mario_Aquino_CV.pdf"')
-            msg.attach(part)
+            # Attach base CV (reused for all)
+            if Path(base_cv).exists():
+                part = MIMEBase('application', 'octet-stream')
+                part.set_payload(Path(base_cv).read_bytes())
+                encoders.encode_base64(part)
+                part.add_header('Content-Disposition', f'attachment; filename="Mario_Aquino_CV.pdf"')
+                msg.attach(part)
 
-        with smtplib.SMTP('smtp.gmail.com', 587) as s:
-            s.ehlo()
-            s.starttls()
-            s.login(sender, password)
-            s.send_message(msg)
+            with smtplib.SMTP('smtp.gmail.com', 587) as s:
+                s.ehlo()
+                s.starttls()
+                s.login(sender, password)
+                s.send_message(msg)
 
-        print(f"  ENVIADO: {app['company']} -> {app['to']}")
-        sent += 1
-        time.sleep(2)
-    except Exception as e:
-        print(f"  ERROR: {app['company']} -> {app['to']}: {e}")
+            print(f"  ENVIADO: {app['company']} -> {app['to']}")
+            sent += 1
+            time.sleep(2)
+        except Exception as e:
+            print(f"  ERROR: {app['company']} -> {app['to']}: {e}")
 
-print(f"\nTOTAL ENVIADOS: {sent}/{len(applications)}")
+    print(f"\nTOTAL ENVIADOS: {sent}/{len(applications)}")
+
+
+if __name__ == '__main__':
+    main()
